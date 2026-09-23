@@ -3,11 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UFCD 0779 | Conteúdos</title>
-    <meta name="description" content="Índice de conteúdos da UFCD 0779 - Utilitário de apresentação gráfica.">
+    <title>UFCD 0779 | E-Portfólio</title>
     <link rel="stylesheet" href="assets/styles.css">
   </head>
-  <body data-page="conteudos-index">
+  <body data-page="e-portfolio">
     <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <aside class="sidebar" aria-label="Menu principal">
       <a class="brand" href="index.html#inicio"><span class="brand-mark">0779</span><span><strong>Apresentação Gráfica</strong></span></a>
@@ -15,8 +14,8 @@
         <a href="index.html#inicio">Início</a>
         <a href="index.html#objetivos">Objetivos</a>
         <a href="index.html#metodologia">Metodologia</a>
-        <button class="nav-parent" type="button" aria-expanded="true" aria-controls="submenu-conteudos">Conteúdos <span class="nav-parent-arrow" aria-hidden="true">▾</span></button>
-        <div class="submenu open" id="submenu-conteudos"></div>
+        <button class="nav-parent" type="button" aria-expanded="false" aria-controls="submenu-conteudos">Conteúdos <span class="nav-parent-arrow" aria-hidden="true">▾</span></button>
+        <div class="submenu" id="submenu-conteudos"></div>
         <button class="nav-parent" type="button" aria-expanded="false" aria-controls="submenu-atividades">Atividades <span class="nav-parent-arrow" aria-hidden="true">▾</span></button>
         <div class="submenu activity-submenu" id="submenu-atividades"></div>
         <button class="nav-parent" type="button" aria-expanded="false" aria-controls="submenu-avaliacao">Avaliação <span class="nav-parent-arrow" aria-hidden="true">▾</span></button>
@@ -25,19 +24,10 @@
         <div class="submenu resource-submenu" id="submenu-recursos"></div>
       </nav>
     </aside>
-    <main class="page-shell">
-      <section class="section no-image-section">
-        <div class="section-inner">
-          <div class="section-heading">
-            <p class="eyebrow">UFCD 0779</p>
-            <h1>Conteúdos de apresentação gráfica</h1>
-            <p class="lead">Percurso organizado por temas, da conceção de diapositivos à apresentação e difusão.</p>
-          </div>
-          <div class="content-grid" id="conteudos-index-grid"></div>
-        </div>
-      </section>
+    <main class="page-shell portfolio-embed-page">
+      <iframe class="portfolio-embed-frame" src="https://e-portfolio-ufcs.netlify.app/" title="Site do E-Portfólio" allowfullscreen></iframe>
     </main>
     <script src="assets/config.js"></script>
-    <script src="assets/app.js?v=20260720-cache-refresh"></script>
+    <script src="assets/app.js"></script>
   </body>
 </html>

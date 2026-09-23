@@ -29,9 +29,8 @@
     <script src="../assets/app.js?v=20260720-cache-refresh"></script>
     <script>
       (() => {
-        const presentationUrl = "https://www.mentimeter.com/app/presentation/alox8c2gpdwgm2ydmq86b36773zk6gsp/embed";
-        const participationUrl = "https://www.menti.com/alp5evxda36s";
-        const qrCodeUrl = "../assets/img/mentimeter_qr_code_0778.png";
+        const presentationUrl = window.UFCD0778_PENDING_LINKS.mentimeterEmbedUrl;
+        const participationUrl = window.UFCD0778_PENDING_LINKS.mentimeterUrl;
 
         function corrigirIdentificacao0778(elemento) {
           const walker = document.createTreeWalker(elemento, NodeFilter.SHOW_TEXT);
@@ -66,10 +65,6 @@
             }
           });
 
-          const qrCode = document.querySelector("#mentimeter-qr-modal img");
-          if (qrCode && qrCode.getAttribute("src") !== qrCodeUrl) {
-            qrCode.setAttribute("src", qrCodeUrl);
-          }
         }
 
         atualizarMentimeter0778();

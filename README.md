@@ -1,28 +1,15 @@
-# UFCD 0754 - Processador de Texto
+# UFCD 0779 — Utilitário de apresentação gráfica
 
-Site local de apoio à UFCD 0754 - Processador de Texto, ação 26109, com carga horária de 50 horas.
+Site de apoio à UFCD 0779 (25 horas), ação 26109. A estrutura foi herdada da UFCD 0778 e está a ser adaptada para apresentações gráficas.
 
-## Estado
+## Estado atual
 
-Versão local preparada a partir do modelo técnico da UFCD anterior, com conteúdos, atividades, avaliação e recursos adaptados para criação, edição, formatação, revisão, exportação e partilha de documentos profissionais.
+- Conteúdos introdutórios e recursos PowerPoint disponíveis.
+- Mentimeter inicial e E-Portfólio incorporados.
+- Avaliação diagnóstica e autoavaliação ligadas aos formulários da UFCD 0779.
+- Tarefas individuais, tarefas de grupo, projeto final e restantes avaliações em preparação; não devem usar materiais herdados da 0778.
+- Manual da UFCD 0779 ainda não disponível.
 
-## Estrutura principal
+## Utilização
 
-- `index.html` - página inicial da UFCD.
-- `conteudos.html` e `conteudos/` - nove áreas de conteúdo.
-- `atividades/` - Mentimeter inicial, glossário, tarefas individuais, projeto final e apoio à participação.
-- `avaliacoes/` - diagnóstica, resultados, sumativa, auditoria entre pares, autoavaliação e avaliação da formação.
-- `recursos/` - área preparada para manual, modelos e materiais de apoio.
-- `controlo-site.html` - controlo local de visibilidade e ligações.
-- `assets/config.js` - ficheiro central para links e identificadores pendentes.
-
-## Pendentes
-
-- Ligações definitivas do Moodle, quando forem ajustadas pela formadora.
-- URL definitivo do Mentimeter já configurado; QR Code fornecido e guardado em `assets/img/mentimeter_qr_code_0754.png`.
-- Manual de Formação da UFCD 0754 guardado em `assets/pdfs/Ufcd 0754 Manual.pdf`.
-- PDFs das tarefas individuais guardados em `assets/pdfs/TI01.pdf` a `assets/pdfs/TI12.pdf`.
-## Utilização local
-
-Abrir `index.html` diretamente no navegador ou servir a pasta com um servidor local simples. Esta versão não foi publicada nem enviada para GitHub/Netlify.
-
+Abrir `index.html` para consultar o site. A página `controlo-site.html` permite preparar a visibilidade local dos elementos, mas ainda não existe uma ligação própria da UFCD 0779 ao serviço remoto de controlo.

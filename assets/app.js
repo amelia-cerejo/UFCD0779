@@ -1,16 +1,16 @@
 const UFCD = {
-  code: "0778",
-  title: "Folha de Cálculo",
-  hours: "50 horas",
+  code: "0779",
+  title: "Utilitário de apresentação gráfica",
+  hours: "25 horas",
   action: "26109",
-  driveFolder: "26109/04-0778"
+  driveFolder: ""
 };
 
 const pendingLinks = {
   appsScriptUrl: window.UFCD0778_PENDING_LINKS?.appsScriptUrl || "PENDENTE_UFCD0778_APPS_SCRIPT_URL",
   spreadsheetId: window.UFCD0778_PENDING_LINKS?.spreadsheetId || "PENDENTE_UFCD0778_SPREADSHEET_ID",
-  mentimeterEmbedUrl: "https://www.mentimeter.com/app/presentation/alfbbg1d39wqoma1jbvcvpbirv9hyatr/embed",
-  mentimeterParticipationUrl: "https://www.menti.com/ald495rdgkt3",
+  mentimeterEmbedUrl: window.UFCD0778_PENDING_LINKS?.mentimeterEmbedUrl || "https://www.mentimeter.com/app/presentation/al8dp9dgyeb4gv33qy4c6tezkvgoq63r/embed",
+  mentimeterParticipationUrl: window.UFCD0778_PENDING_LINKS?.mentimeterUrl || "https://www.menti.com/al9tm8ir6gkm",
   glossaryUrl: /^https?:\/\//i.test(window.UFCD0778_PENDING_LINKS?.glossaryUrl || "") ? window.UFCD0778_PENDING_LINKS.glossaryUrl : "",
   individualTaskForumUrls: Array.isArray(window.UFCD0778_PENDING_LINKS?.individualTaskForumUrls)
     ? window.UFCD0778_PENDING_LINKS.individualTaskForumUrls.filter((url) => /^https?:\/\//i.test(url))
@@ -19,16 +19,15 @@ const pendingLinks = {
 };
 
 const topics = [
-  { id: "conceitos-gerais", title: "Conceitos gerais", menuTitle: "Conceitos gerais", cardTitle: "Conceitos gerais", intro: "O que é uma folha de cálculo, principais utilizações e elementos essenciais do ambiente de trabalho.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/conceitos_gerais.html" },
-  { id: "ficheiros-folhas", title: "Ficheiros e folhas", menuTitle: "Ficheiros e folhas", cardTitle: "Ficheiros e folhas", intro: "Criar, abrir, guardar e organizar livros e folhas de cálculo.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/ficheiros_folhas.html" },
-  { id: "celulas", title: "Células", menuTitle: "Células", cardTitle: "Células", intro: "Introduzir, editar, selecionar, copiar, mover e preencher dados nas células.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/celulas.html" },
-  { id: "formatacao-linhas-colunas", title: "Formatação", menuTitle: "Formatação", cardTitle: "Formatação de linhas e colunas", intro: "Formatar células, linhas e colunas e melhorar a apresentação da informação.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/formatacao_linhas_colunas.html" },
-  { id: "formulas", title: "Fórmulas", menuTitle: "Fórmulas", cardTitle: "Fórmulas", intro: "Construir fórmulas e utilizar referências relativas, absolutas e mistas.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/formulas.html" },
-  { id: "impressao", title: "Impressão", menuTitle: "Impressão", cardTitle: "Configuração e impressão", intro: "Definir área de impressão, orientação, margens, escala, cabeçalhos, rodapés e quebras de página.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/impressao.html" },
-  { id: "funcoes", title: "Funções", menuTitle: "Funções", cardTitle: "Funções", intro: "Utilizar funções para calcular, resumir, contar e interpretar informação.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/funcoes.html" },
-  { id: "graficos", title: "Gráficos", menuTitle: "Gráficos", cardTitle: "Gráficos", intro: "Escolher, criar, editar e interpretar gráficos adequados aos dados.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/graficos.html" },
-  { id: "desenho", title: "Desenho e objetos", menuTitle: "Desenho", cardTitle: "Desenho e objetos", intro: "Inserir e organizar formas, caixas de texto, imagens e outros objetos na folha de cálculo.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/desenho.html" },
-  { id: "listas-filtros", title: "Listas e filtros", menuTitle: "Listas e filtros", cardTitle: "Listas, ordenação e filtros", intro: "Estruturar listas, ordenar, filtrar, validar e analisar dados.", image: "../assets/img/ufcd0778-capa-site.png", url: "conteudos/listas_filtros.html" }
+  { id: "conceitos-gerais", title: "Conceitos gerais", cardTitle: "Conceitos gerais", intro: "Características, ferramentas e finalidade das apresentações gráficas.", url: "conteudos/apresentacoes.html#conceitos-gerais" },
+  { id: "ferramentas", title: "Ferramentas", cardTitle: "Ferramentas", intro: "Conhecer o ambiente de trabalho e as ferramentas do apresentador gráfico.", url: "conteudos/apresentacoes.html#ferramentas" },
+  { id: "apresentacoes-graficas", title: "Apresentações gráficas", cardTitle: "Apresentações gráficas", intro: "Planear a mensagem, o público e a sequência de diapositivos.", url: "conteudos/apresentacoes.html#apresentacoes-graficas" },
+  { id: "dispositivos-padrao", title: "Dispositivos padrão (master)", menuTitle: "Padrão (master)", cardTitle: "Dispositivos padrão (master)", intro: "Criar um modelo coerente para a apresentação.", url: "conteudos/apresentacoes.html#dispositivos-padrao" },
+  { id: "texto", title: "Texto", cardTitle: "Inserção e formatação de texto", intro: "Organizar e formatar texto legível nos diapositivos.", url: "conteudos/apresentacoes.html#texto" },
+  { id: "impressao", title: "Impressão", cardTitle: "Opções de impressão", intro: "Preparar a apresentação e os folhetos para impressão ou PDF.", url: "conteudos/apresentacoes.html#impressao" },
+  { id: "objetos-graficos", title: "Texto, desenho e gráficos", menuTitle: "Desenho e gráficos", cardTitle: "Ferramentas de texto, desenho e gráficos", intro: "Inserir e organizar formas, imagens e gráficos para comunicar ideias.", url: "conteudos/apresentacoes.html#objetos-graficos" },
+  { id: "efeitos-especiais", title: "Efeitos especiais", cardTitle: "Efeitos especiais", intro: "Animação de textos e objetos, associação de sons e transições.", url: "conteudos/apresentacoes.html#efeitos-especiais" },
+  { id: "difusao", title: "Difusão de dispositivos", cardTitle: "Difusão de dispositivos", intro: "Apresentar, partilhar e difundir os diapositivos.", url: "conteudos/apresentacoes.html#difusao" }
 ];
 
 const contentLessons = {
@@ -108,36 +107,41 @@ contentLessons["desenho"] = {
   practice: "Inserir uma forma, uma caixa de texto e uma imagem; alinhar os elementos, ajustar o tamanho e confirmar que não ocultam dados."
 };
 
-const contentMenuGroups = topics
-  .filter((topic) => topic.showInContents !== false)
-  .map((topic) => ({
-    title: topic.title,
+const contentMenuGroups = [
+  {
+    title: "Apresentador gráfico — conceitos gerais",
     theme: "representation",
-    children: [{ topicId: topic.id }]
-  }));
+    parentTopicId: "conceitos-gerais",
+    children: [{ topicId: "ferramentas" }, { topicId: "apresentacoes-graficas" }]
+  },
+  {
+    title: "Inserção e edição de documento modelo",
+    theme: "representation",
+    parentTopicId: "dispositivos-padrao",
+    children: ["texto", "impressao", "objetos-graficos", "efeitos-especiais", "difusao"].map((topicId) => ({ topicId }))
+  }
+];
 
-const DEFAULT_APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRu_6tZGkRsVmeIZVUTBN9S3j6o79krvKbHfQiHoz7wXXznhrehNedBRRldq-WtfD3/exec";
-const DEFAULT_APPS_SCRIPT_SPREADSHEET_ID = "14xWArQOzb-1fZ4QxZXjuoJK1dxhjWmbwWmF7lsK-a9o";
+const DEFAULT_APPS_SCRIPT_WEB_APP_URL = "";
+const DEFAULT_APPS_SCRIPT_SPREADSHEET_ID = "";
 const APPS_SCRIPT_WEB_APP_URL = window.UFCD0778_APPS_SCRIPT_URL || DEFAULT_APPS_SCRIPT_WEB_APP_URL;
 const APPS_SCRIPT_SPREADSHEET_ID = window.UFCD0778_SPREADSHEET_ID || DEFAULT_APPS_SCRIPT_SPREADSHEET_ID;
 
 const activities = [
   { id: "controlo-teams", title: "Partilha de ecrã", menuTitle: "Partilha de ecrã", intro: "Tabela simples para acompanhar a participação prática nas sessões síncronas.", url: "atividades/controlo-teams.html" },
-  { id: "mentimeter-inicial", title: "Escreve 3 palavras", menuTitle: "Brainstorming", intro: "Quando pensas numa folha de cálculo, que três palavras te vêm à cabeça?", url: "atividades/mentimeter-inicial.html", focus: "Nuvem de palavras inicial", duration: "", product: "Resposta no Mentimeter: três palavras associadas a folha de cálculo.", mentimeterUrl: pendingLinks.mentimeterEmbedUrl, participationUrl: pendingLinks.mentimeterParticipationUrl, qrCode: "assets/img/mentimeter_qr_code_0778.png", steps: [{ title: "Pergunta", text: "Quando pensas numa folha de cálculo, que três palavras te vêm à cabeça?" }], evidence: ["Nuvem de palavras inicial"] },
+  { id: "mentimeter-inicial", title: "Mentimeter inicial", menuTitle: "Brainstorming", intro: "Participa na atividade introdutória sobre apresentações gráficas.", url: "atividades/mentimeter-inicial.html", focus: "Exploração inicial", duration: "", product: "Resposta registada no Mentimeter da UFCD 0779.", mentimeterUrl: pendingLinks.mentimeterEmbedUrl, participationUrl: pendingLinks.mentimeterParticipationUrl, qrCode: "assets/img/mentimeter_qr_code_0779.png", steps: [{ title: "Participar", text: "Abre a apresentação ou utiliza a ligação de participação e responde à pergunta apresentada no Mentimeter." }], evidence: ["Participação na atividade inicial"] },
   { id: "tarefas-grupo", title: "Glossário - Tarefas de Grupo", menuTitle: "Tarefas de Grupo", intro: "Tarefas de grupo para construir vocabulário técnico no Glossário do Moodle.", url: "atividades/tarefas-grupo.html", focus: "Glossário colaborativo", duration: "A partir do segundo dia", product: "Definição curta e exemplo prático aplicado à folha de cálculo.", steps: [{ title: "Distribuir", text: "Cada grupo trabalha o termo atribuído." }, { title: "Definir", text: "Escrever uma definição simples e correta." }, { title: "Exemplificar", text: "Acrescentar um exemplo aplicado ao Excel." }, { title: "Publicar", text: "Rever e publicar no Glossário do Moodle." }], evidence: ["Entrada no glossário", "Exemplo prático", "Revisão pelos colegas"] },
   { id: "tarefas-individuais", title: "Tarefas Individuais", intro: "Resumo das tarefas práticas realizadas nos livros Excel; as instruções completas são disponibilizadas em PDF.", url: "atividades/tarefas-individuais.html", focus: "Trabalho individual", duration: "A partir do segundo dia", product: "Livros Excel concluídos e guardados na Drive.", steps: [{ title: "Ler", text: "Consultar o enunciado e o PDF da tarefa." }, { title: "Realizar", text: "Aplicar os procedimentos no livro indicado." }, { title: "Verificar", text: "Confirmar fórmulas, resultados e apresentação." }, { title: "Guardar", text: "Guardar com o nome e na pasta definidos." }], evidence: ["Livro Excel atualizado", "Versão guardada na Drive"] },
-  { id: "resolucoes-livros", parentId: "tarefas-individuais", title: "Resoluções dos Livros", menuTitle: "Resoluções dos livros", intro: "Resoluções demonstrativas dos livros práticos 1 a 3.", url: "atividades/resolucoes-livros.html" },
   { id: "projeto-final-apresentacao", title: "Projeto Final - Solução em Folha de Cálculo", menuTitle: "Projeto Final", intro: "Livro Excel funcional que integra organização, cálculos, análise, apresentação e preparação para impressão.", url: "atividades/projeto-final-apresentacao.html", focus: "Projeto individual", duration: "TI08 a TI12", product: "Livro Excel final, PDF, reflexão final e apresentação breve.", steps: [{ title: "Planear", text: "Escolher e estruturar o contexto do projeto." }, { title: "Construir", text: "Organizar dados e aplicar fórmulas, funções, formatação e análise." }, { title: "Rever", text: "Validar dados, cálculos, gráficos e impressão." }, { title: "Partilhar", text: "Guardar, apresentar e refletir sobre o resultado." }], evidence: ["XLSX final", "PDF final", "Reflexão final", "Apresentação individual"] },
-  { id: "alternativas-projeto", parentId: "projeto-final-apresentacao", title: "Alternativas de Projeto", menuTitle: "Outras alternativas", intro: "Contextos alternativos para desenvolver o Projeto Final com os mesmos requisitos técnicos.", url: "atividades/alternativas-projeto.html" }
 ];
 
 const evaluations = [
-  { id: "avaliacao-diagnostica", title: "Avaliação Diagnóstica", menuTitle: "Diagnóstica", intro: "Avaliação inicial dos conhecimentos sobre folha de cálculo, dados, fórmulas e funções.", url: "avaliacoes/avaliacao-diagnostica.html", children: ["resultados-diagnostica"], embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0778/00-diagnostico.html", embedTitle: "DIAG_1" },
+  { id: "avaliacao-diagnostica", title: "Avaliação Diagnóstica", menuTitle: "Diagnóstica", intro: "Avaliação inicial dos conhecimentos sobre apresentações gráficas.", url: "avaliacoes/avaliacao-diagnostica.html", children: ["resultados-diagnostica"], embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/00-diagnostico.html", embedTitle: "Avaliação diagnóstica — UFCD 0779" },
   { id: "resultados-diagnostica", parentId: "avaliacao-diagnostica", title: "Resultados da Avaliação Diagnóstica", menuTitle: "Resultados", intro: "Leitura global das respostas recolhidas na avaliação diagnóstica.", url: "avaliacoes/resultados-diagnostica.html" },
-  { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0778.", url: "avaliacoes/avaliacao-sumativa.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0778/02-sumativa.html", embedTitle: "SUM_1" },
-  { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0778/04-autoavaliacao-final.html", embedTitle: "AUTO_1" },
-  { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares - Auditoria", menuTitle: "Entre pares", intro: "Auditoria de qualidade ao projeto final de um colega.", url: "avaliacoes/avaliacao-entre-pares.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0778/03-entre-pares.html", embedTitle: "Auditoria de qualidade" },
-  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação, separado da autoavaliação das aprendizagens.", url: "avaliacoes/avaliacao-formacao.html", embedUrl: "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html?codigo_ufcd=0778", embedTitle: "Avaliação da formação" }
+  { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0779, em preparação.", url: "avaliacoes/avaliacao-sumativa.html" },
+  { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/04-autoavaliacao-final.html", embedTitle: "Autoavaliação final — UFCD 0779" },
+  { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares", menuTitle: "Entre pares", intro: "Avaliação do projeto de um colega, em preparação.", url: "avaliacoes/avaliacao-entre-pares.html" },
+  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação, em preparação.", url: "avaliacoes/avaliacao-formacao.html" }
 ];
 
 const groupTasks = [
@@ -749,36 +753,17 @@ const individualTasks = [
     "moodleRecord": "Publicar a ligação de leitura do PDF final, confirmar que foi testada e registar uma síntese das principais correções aplicadas após a revisão entre pares."
   }
 ];
-const optionalExcelMaterials = [];
 const resources = [
+  { id: "manual", title: "Manual de formação", intro: "Espaço reservado para o manual da UFCD 0779.", url: "recursos/manual.html" },
   {
-    id: "videos-excel", title: "Vídeos",
-    intro: "Vídeos de apoio para compreender as funcionalidades essenciais da folha de cálculo e desmistificar a utilização de fórmulas.",
-    url: "recursos/videos-excel.html",
-    videos: [
-      { id: "dominar-folha-calculo", title: "Dominar a Folha de Cálculo", description: "Uma apresentação orientada das principais possibilidades da folha de cálculo e da sua utilização prática.", path: "assets/videos/Dominar_a_Folha_de_Cálculo.mp4" },
-      { id: "desmistificar-formulas-excel", title: "Desmistificar Fórmulas Excel", description: "Explicação acessível para compreender a lógica das fórmulas e começar a utilizá-las com confiança.", path: "assets/videos/Desmistificar_Fórmulas_Excel.mp4" }
-    ]
-  },
-  { id: "manual", title: "Manual de formação", intro: "Manual de Formação da UFCD 0778 em PDF.", url: "recursos/manual.html", pdfUrl: "assets/pdfs/UFCD0778_Manual.pdf" },
-  {
-    id: "ficheiros-excel", title: "Ficheiros Excel",
-    intro: "Livros de Excel para explorar funcionalidades, acompanhar demonstrações e praticar os conteúdos da UFCD.",
-    url: "recursos/ficheiros-excel.html",
+    id: "ficheiros-powerpoint", title: "Ficheiros PowerPoint",
+    intro: "Apresentações para explorar o PowerPoint e acompanhar as demonstrações da UFCD 0779.",
+    url: "recursos/ficheiros-powerpoint.html",
     downloadFiles: [
-      { id: "novo-bem-vindo-excel", title: "Novo Bem-vindo ao Excel", description: "Livro introdutório para conhecer o ambiente de trabalho e começar a utilizar o Excel.", path: "assets/ficheiros/Excel/Novo Bem-vindo ao Excel.xlsx", firstSheet: "Início" },
-      { id: "web-bem-vindo-excel", title: "Bem-vindo ao Excel — versão Web", description: "Livro de apoio para explorar o Excel na versão utilizada através do navegador.", path: "assets/ficheiros/Excel/Web_Bem-vindo ao Excel.xlsx", firstSheet: "Bem-vindo ao Excel" },
-      { id: "formulas-excel", title: "Tutorial de Fórmulas", description: "Livro de apoio para explorar, compreender e praticar fórmulas no Excel.", path: "assets/ficheiros/Excel/Fórmulas.xlsx", firstSheet: "Início" },
-      { id: "resumo-conceitos", title: "Resumo de conceitos", description: "Livro de consulta rápida para rever e consolidar os principais conceitos de folha de cálculo.", path: "assets/ficheiros/Excel/Novo Resumo de conceitos.xlsx", firstSheet: "Referencias" },
+      { id: "bem-vindo-powerpoint", title: "Bem-vindo ao PowerPoint", description: "Apresentação introdutória para explorar o ambiente e as possibilidades do PowerPoint.", path: "assets/ficheiros/PowerPoint/Bem-vindo ao PowerPoint.pptx" },
+      { id: "modelos-3d", title: "Apresentações com Modelos 3D", description: "Apresentação de apoio para explorar objetos e modelos 3D.", path: "assets/ficheiros/PowerPoint/Apresentações com Modelos 3D.pptx" },
     ]
-  },
-  {
-    id: "assistentes-gpt", title: "Assistentes GPT", displayTitle: "Instrutor de Folha de Cálculo",
-    intro: "Assistente de apoio ao estudo e à realização das atividades de folha de cálculo.",
-    url: "recursos/assistentes-gpt.html",
-    gptUrl: "https://chatgpt.com/g/g-68fb60e069748191baa5d607b926b5e0-instrutor-de-folha-de-calculo"
-  },
-  { id: "suporte-excel", title: "Suporte Microsoft Excel", menuTitle: "Suporte Excel", intro: "Página oficial de ajuda e suporte da Microsoft para o Excel.", url: "recursos/suporte-excel.html", externalUrl: "https://support.microsoft.com/pt-pt/excel" }
+  }
 ];
 const mainMenuItems = [
   { key: "inicio", label: "Início" },
@@ -788,16 +773,16 @@ const mainMenuItems = [
   { key: "atividades", label: "Atividades" },
   { key: "avaliacao", label: "Avaliação" },
   { key: "recursos", label: "Recursos" },
-  { key: "eportfolio", label: "Site dos E-Portefólios" }
+  { key: "eportfolio", label: "E-Portefólio" }
 ];
 
 const siteVisibility = {
   menuPrincipal: Object.fromEntries(mainMenuItems.map((item) => [item.key, true])),
   conteudos: Object.fromEntries(topics.map((topic) => [topic.id, true])),
-  atividades: Object.fromEntries(activities.map((activity) => [activity.id, true])),
-  avaliacao: Object.fromEntries(evaluations.map((evaluation) => [evaluation.id, true])),
+  atividades: Object.fromEntries(activities.map((activity) => [activity.id, !["tarefas-grupo", "tarefas-individuais", "projeto-final-apresentacao"].includes(activity.id)])),
+  avaliacao: Object.fromEntries(evaluations.map((evaluation) => [evaluation.id, Boolean(evaluation.embedUrl)])),
   recursos: Object.fromEntries(resources.map((resource) => [resource.id, true])),
-  ficheirosExcel: Object.fromEntries(resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).map((file) => [file.id, true])),
+  ficheirosPowerPoint: Object.fromEntries(resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).map((file) => [file.id, true])),
   assistentesGpt: Object.fromEntries(resources.filter((resource) => resource.gptUrl).map((resource) => [resource.id, true])),
   tarefasGrupo: Object.fromEntries(groupTasks.map((task) => [task.title, true])),
   tarefasIndividuais: Object.fromEntries(individualTasks.flatMap((task) => [[task.id, true], [task.title, true]]))
@@ -809,7 +794,7 @@ const siteVisibilitySections = {
   atividades: true,
   avaliacao: true,
   recursos: true,
-  ficheirosExcel: true,
+  ficheirosPowerPoint: true,
   assistentesGpt: true,
   tarefasGrupo: true,
   tarefasIndividuais: true
@@ -821,14 +806,14 @@ const siteVisibilitySectionMeta = {
   atividades: { secao: "atividades", chave: "secao-atividades", titulo: "Atividades", tipo: "secao", ordem: 20 },
   avaliacao: { secao: "avaliacao", chave: "secao-avaliacao", titulo: "Avaliação", tipo: "secao", ordem: 30 },
   recursos: { secao: "recursos", chave: "secao-recursos", titulo: "Recursos", tipo: "secao", ordem: 40 },
-  ficheirosExcel: { secao: "ficheiros_excel", chave: "secao-ficheiros-excel", titulo: "Ficheiros Excel", tipo: "secao", ordem: 45 },
+  ficheirosPowerPoint: { secao: "ficheiros_powerpoint", chave: "secao-ficheiros-powerpoint", titulo: "Ficheiros PowerPoint", tipo: "secao", ordem: 45 },
   assistentesGpt: { secao: "assistentes_gpt", chave: "secao-assistentes-gpt", titulo: "Assistentes GPT", tipo: "secao", ordem: 48 },
   tarefasGrupo: { secao: "tarefas_grupo", chave: "secao-tarefas-grupo", titulo: "Tarefas de grupo", tipo: "secao", ordem: 50 },
   tarefasIndividuais: { secao: "tarefas_individuais", chave: "secao-tarefas-individuais", titulo: "Tarefas individuais", tipo: "secao", ordem: 60 }
 };
 
-const SITE_VISIBILITY_STORAGE_KEY = "ufcd0778-site-visibility-v1";
-const SITE_VISIBILITY_REMOTE_CACHE_KEY = "ufcd0778-site-visibility-remote-cache-v1";
+const SITE_VISIBILITY_STORAGE_KEY = "ufcd0779-site-visibility-v1";
+const SITE_VISIBILITY_REMOTE_CACHE_KEY = "ufcd0779-site-visibility-remote-cache-v1";
 const SITE_LINKS_STORAGE_KEY = "ufcd0778-site-links-v1";
 const APPS_SCRIPT_SPREADSHEET_GID = "1240441816";
 const SITE_CONTROL_KEY_PREFIX = `ufcd-${UFCD.code}-`;
@@ -894,7 +879,7 @@ function getBasePath() {
 }
 
 function construirUrlEmbedAvaliacao(embedUrl) {
-  if (/\/ufcd-0778\//.test(embedUrl)) return embedUrl;
+  if (/\/ufcd-0779\//.test(embedUrl)) return embedUrl;
   if (!embedUrl || !APPS_SCRIPT_SPREADSHEET_ID) return embedUrl;
 
   try {
@@ -922,6 +907,15 @@ function isItemVisible(section, key) {
   return isSectionVisible(section) && siteVisibility[section]?.[key] !== false;
 }
 
+function atualizarBotoesAvaliacaoPaginaInicial() {
+  document.querySelectorAll("[data-evaluation-link]").forEach((link) => {
+    link.hidden = !isItemVisible("avaliacao", link.dataset.evaluationLink);
+  });
+  document.querySelectorAll(".assessment-actions").forEach((actions) => {
+    actions.hidden = !actions.querySelector("[data-evaluation-link]:not([hidden])");
+  });
+}
+
 function renderPortfolioMenuLink() {
   document.querySelectorAll(".side-nav").forEach((menu) => {
     menu.querySelectorAll(".portfolio-site-link").forEach((link) => link.remove());
@@ -930,13 +924,11 @@ function renderPortfolioMenuLink() {
 
     const link = document.createElement("a");
     link.className = "portfolio-site-link";
-    link.href = "https://26109-e-portfolio.netlify.app/";
-    link.textContent = "Site dos E-Portefólios";
-    link.target = "_top";
+    link.href = `${getBasePath()}e-portfolio.html`;
+    link.textContent = "E-Portefólio";
 
-    if (window.location.pathname.endsWith("/atividades/identidade-visual.html")) {
+    if (window.location.pathname.endsWith("/e-portfolio.html")) {
       link.classList.add("active");
-      link.href = "https://26109-e-portfolio.netlify.app/";
     }
 
     menu.appendChild(link);
@@ -995,7 +987,7 @@ function obterConstituicaoVisibilidadeSite() {
 
   adicionarSecao("menuPrincipal");
   mainMenuItems.forEach((item, index) => {
-    const url = item.key === "inicio" ? "index.html#inicio" : item.key === "eportfolio" ? "https://26109-e-portfolio.netlify.app/" : `index.html#${item.key}`;
+    const url = item.key === "inicio" ? "index.html#inicio" : item.key === "eportfolio" ? "e-portfolio.html" : `index.html#${item.key}`;
     adicionarItem("menuPrincipal", `menu-${item.key}`, item.label, url, "menu", 2 + index);
   });
 
@@ -1015,8 +1007,8 @@ function obterConstituicaoVisibilidadeSite() {
   adicionarSecao("recursos");
   resources.forEach((resource, index) => adicionarItem("recursos", `recurso-${resource.id}`, resource.title, resource.url, "recurso", 41 + index));
 
-  adicionarSecao("ficheirosExcel");
-  resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).forEach((file, index) => adicionarItem("ficheirosExcel", `ficheiro-excel-${file.id}`, file.title, file.path, file.path.endsWith(".mp4") ? "video_excel" : "ficheiro_excel", 45.1 + index));
+  adicionarSecao("ficheirosPowerPoint");
+  resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).forEach((file, index) => adicionarItem("ficheirosPowerPoint", `ficheiro-powerpoint-${file.id}`, file.title, file.path, "ficheiro_powerpoint", 45.1 + index));
 
   adicionarSecao("assistentesGpt");
   resources.filter((resource) => resource.gptUrl).forEach((resource, index) => adicionarItem("assistentesGpt", `assistente-gpt-${resource.id}`, resource.displayTitle || resource.title, resource.gptUrl, "assistente_gpt", 48.1 + index));
@@ -1422,7 +1414,7 @@ function renderResourceMenus() {
 
         if (!children.length) {
           if (resource.gptUrl) {
-            return `<a href="${resource.gptUrl}" target="_blank" rel="noopener noreferrer">${resource.title}</a>`;
+            return `<a href="${resource.gptUrl}">${resource.title}</a>`;
           }
           return `<a href="${getBasePath()}${resource.url}" class="${isActive ? "active" : ""}">${resource.title}</a>`;
         }
@@ -1442,7 +1434,7 @@ function renderHomeCards() {
   if (!grid) return;
 
   grid.innerHTML = topics.filter((topic) => topic.showInContents !== false).map((topic) => `
-    <article class="content-card ${topic.id === "pesquisa-avancada-web" ? "database-card" : "spreadsheet-card"}">
+    <article class="content-card presentation-card">
       <a href="${topic.url}"><h3>${topic.cardTitle}</h3>
         <p>${topic.intro}</p>
       </a>
@@ -1636,7 +1628,7 @@ function aplicarItemVisibilidadeRemota(item) {
     { prefix: "atividade-", section: "atividades" },
     { prefix: "avaliacao-", section: "avaliacao" },
     { prefix: "recurso-", section: "recursos" },
-    { prefix: "ficheiro-excel-", section: "ficheirosExcel" },
+    { prefix: "ficheiro-powerpoint-", section: "ficheirosPowerPoint" },
     { prefix: "assistente-gpt-", section: "assistentesGpt" },
     { prefix: "tarefa-grupo-", section: "tarefasGrupo" },
     { prefix: "tarefa-individual-", section: "tarefasIndividuais" }
@@ -1677,6 +1669,7 @@ function aplicarItensVisibilidadeRemota(itens) {
 
 function atualizarSuperficiesVisiveisDoSite() {
   renderPortfolioMenuLink();
+  atualizarBotoesAvaliacaoPaginaInicial();
   renderContentMenus();
   renderActivityMenus();
   renderEvaluationMenus();
@@ -2022,7 +2015,7 @@ function renderSiteVisibilityControls() {
   const activityItems = activities.map((activity) => ({ key: activity.id, label: activity.menuTitle || activity.title }));
   const evaluationItems = evaluations.map((evaluation) => ({ key: evaluation.id, label: evaluation.menuTitle || evaluation.title }));
   const resourceItems = resources.map((resource) => ({ key: resource.id, label: resource.title }));
-  const excelFileItems = resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).map((file) => ({ key: file.id, label: file.title }));
+  const powerpointFileItems = resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).map((file) => ({ key: file.id, label: file.title }));
   const gptItems = resources.filter((resource) => resource.gptUrl).map((resource) => ({ key: resource.id, label: resource.title }));
   const groupItems = groupTasks.map((task) => ({ key: task.title, label: task.title }));
   const glossaryField = renderStandaloneLink({
@@ -2073,7 +2066,7 @@ function renderSiteVisibilityControls() {
         ${renderGroup("Atividades", "atividades", activityItems)}
         ${renderGroup("Avaliação", "avaliacao", evaluationItems)}
         ${renderGroup("Recursos", "recursos", resourceItems)}
-        ${renderGroup("Ficheiros Excel", "ficheirosExcel", excelFileItems)}
+        ${renderGroup("Ficheiros PowerPoint", "ficheirosPowerPoint", powerpointFileItems)}
         ${renderGroup("Assistentes GPT", "assistentesGpt", gptItems)}
         ${renderGroup("Tarefas de Grupo", "tarefasGrupo", groupItems, { before: glossaryField })}
         ${renderGroup("Tarefas Individuais", "tarefasIndividuais", individualItems, { before: renderTiMaterialsStatus() })}
@@ -2729,7 +2722,7 @@ function renderActivityPage() {
     || evaluations.find((item) => item.id === evaluationId)
     || activities[0];
   const isEvaluation = evaluations.some((item) => item.id === activity.id);
-  document.title = `UFCD 0778 | ${activity.title}`;
+  document.title = `UFCD 0779 | ${activity.title}`;
 
   const activeSubmenu = document.getElementById(isEvaluation ? "submenu-avaliacao" : "submenu-atividades");
   activeSubmenu?.querySelectorAll("a").forEach((link) => {
@@ -2745,7 +2738,32 @@ function renderActivityPage() {
     return;
   }
 
+  if (["tarefas-grupo", "tarefas-individuais", "projeto-final-apresentacao"].includes(activity.id)) {
+    root.innerHTML = `
+      <section class="section task-page-section">
+        <div class="section-inner">
+          <div class="section-heading task-page-heading">
+            <h1>${activity.title}</h1>
+            <p class="lead">Esta atividade da UFCD 0779 está em preparação.</p>
+          </div>
+        </div>
+      </section>
+    `;
+    return;
+  }
+
   if (activity.id === "resultados-diagnostica") {
+    root.innerHTML = `
+      <section class="section task-page-section">
+        <div class="section-inner">
+          <div class="section-heading task-page-heading">
+            <h1>Resultados da Avaliação Diagnóstica</h1>
+            <p class="lead">Os resultados da UFCD 0779 serão apresentados aqui quando estiverem disponíveis.</p>
+          </div>
+        </div>
+      </section>
+    `;
+    return;
     const strengths = [
       "Finalidade de uma folha de cálculo",
       "Diferença entre livro e folha",
@@ -2953,7 +2971,7 @@ function renderActivityPage() {
                 <li>Revisão entre pares, reflexão individual final e apresentação individual até 5 minutos.</li>
               </ul>
               <div class="embed-fallback resource-action-row align-right">
-                <a class="small-button" href="${getBasePath()}assets/ficheiros/Excel/UFCD0778_Base_Projeto_Final.xlsx" target="_top" download>Descarregar base do projeto XLSX</a>
+                <span class="task-link-pending">Base de projeto da UFCD 0779 em preparação.</span>
 
               </div>
             </div>
@@ -3009,7 +3027,6 @@ function renderActivityPage() {
           </article>
 
           <div class="embed-fallback resource-action-row align-right project-alternatives-link">
-            <a class="small-button" href="alternativas-projeto.html">Preferes outro contexto? Consulta as Alternativas de Projeto</a>
           </div>
         </div>
       </section>
@@ -3131,7 +3148,7 @@ function renderActivityPage() {
       const files = (task.workFiles || []).filter((file) => file.excelUrl || file.available !== false);
       return files.map((file) => {
         const label = `${file.number ? `${file.number}  ` : ""}${file.title}`;
-        return file.available && file.excelUrl
+        return file.available && file.excelUrl && !file.excelUrl.startsWith("assets/ficheiros/Excel/")
           ? `<a class="small-button" href="${getBasePath()}${file.excelUrl}" target="_top" download>Descarregar ${label}</a>`
           : `<span class="task-link-pending">${label}: ficheiro brevemente disponível</span>`;
       }).join("");
@@ -3203,29 +3220,6 @@ function renderActivityPage() {
               </ul>
               <div class="embed-fallback resource-action-row align-right">
                 <a class="small-button" href="${getBasePath()}assets/pdfs/TI00.pdf" target="_top">Abrir instruções gerais — TI00</a>
-              </div>
-            </div>
-          </details>
-
-          <details class="task-overview-card optional-materials-card">
-            <summary>
-              <span class="task-module-copy">
-                <strong>Materiais opcionais</strong>
-                <small>Complementos para exploração autónoma; não são necessários para concluir as TI nem entram nos critérios de avaliação.</small>
-              </span>
-              <span class="task-module-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="task-module-body">
-              <ul class="moodle-like-list">
-                <li>Os materiais 17 e 18 são opcionais.</li>
-                <li>Não fazem parte dos requisitos do Projeto Final.</li>
-                <li>Não substituem nenhuma tarefa obrigatória.</li>
-              </ul>
-              <div class="embed-fallback resource-action-row align-right">
-                ${optionalExcelMaterials.map((file) => file.available && file.excelUrl
-                  ? `<a class="small-button secondary-link" href="${getBasePath()}${file.excelUrl}" target="_top" download>Descarregar ${file.number}  ${file.title}</a>`
-                  : `<span class="task-link-pending">${file.number}  ${file.title}: ficheiro brevemente disponível</span>`
-                ).join("")}
               </div>
             </div>
           </details>
@@ -3325,6 +3319,12 @@ function renderActivityPage() {
 
           ${activity.mentimeterUrl ? `
             <section class="embedded-page-shell mentimeter-embed-block" aria-label="Mentimeter - ${activity.title}">
+              <div class="embed-fallback">
+                <a class="small-button" href="${activity.mentimeterUrl}">Abrir apresentação</a>
+                ${activity.participationUrl ? `<a class="small-button orange" href="${activity.participationUrl}">Participar</a>` : ""}
+                ${activity.qrCode ? `<button class="small-button" type="button" data-modal-open="mentimeter-qr-modal">Mostrar QR Code</button>` : ""}
+              </div>
+              <p class="resource-preview-note">Se a apresentação não aparecer na pré-visualização local, usa «Abrir apresentação» numa nova aba.</p>
               <div class="mentimeter-frame-wrap">
                 <iframe
                   class="mentimeter-frame"
@@ -3333,12 +3333,7 @@ function renderActivityPage() {
                   allowtransparency="true"
                   frameborder="0"
                   src="${activity.mentimeterUrl}"
-                  title="Mentimeter - Escreve 3 palavras"></iframe>
-              </div>
-              <div class="embed-fallback">
-                <a class="small-button" href="${activity.mentimeterUrl}">Abrir apresentação</a>
-                ${activity.participationUrl ? `<a class="small-button orange" href="${activity.participationUrl}">Participar</a>` : ""}
-                ${activity.qrCode ? `<button class="small-button" type="button" data-modal-open="mentimeter-qr-modal">Mostrar QR Code</button>` : ""}
+                  title="Mentimeter — atividade inicial UFCD 0779"></iframe>
               </div>
               ${activity.qrCode ? `
                 <div class="modal-backdrop qr-modal-backdrop" id="mentimeter-qr-modal" hidden>
@@ -3454,7 +3449,7 @@ function renderResourcePage() {
           <div class="section-heading task-page-heading">
             <p class="eyebrow">Recursos</p>
             <h1 class="resource-title-with-icon">
-              <a href="${resource.gptUrl}" target="_blank" rel="noopener noreferrer">
+              <a href="${resource.gptUrl}">
                 ${resource.menuIcon ? `<img src="${getBasePath()}${resource.menuIcon}" alt="" aria-hidden="true">` : ""}
                 <span>${resource.displayTitle || resource.title}</span>
               </a>
@@ -3485,10 +3480,29 @@ function renderResourcePage() {
               <h3>Abrir assistente</h3>
               <p>O assistente abre numa nova aba do navegador. Poderá ser necessário iniciar sessão no ChatGPT.</p>
               <div class="embed-fallback resource-action-row align-right">
-                <a class="small-button" href="${resource.gptUrl}" target="_blank" rel="noopener noreferrer">Abrir assistente</a>
+                <a class="small-button" href="${resource.gptUrl}">Abrir assistente</a>
               </div>
             </article>
           </div>
+        </div>
+      </section>
+    `;
+    return;
+  }
+
+  if (resource.id === "manual" && !resource.pdfUrl) {
+    root.innerHTML = `
+      <section class="section task-page-section">
+        <div class="section-inner">
+          <div class="section-heading task-page-heading">
+            <p class="eyebrow">Recursos · UFCD 0779</p>
+            <h1>Manual de formação</h1>
+            <p class="lead">Esta página fica reservada para o manual da UFCD 0779.</p>
+          </div>
+          <article class="card group-task-card">
+            <h2>Manual em preparação</h2>
+            <p>O PDF será apresentado aqui assim que estiver disponível. Ainda não existe um manual da 0779 associado a esta página.</p>
+          </article>
         </div>
       </section>
     `;
@@ -3499,15 +3513,15 @@ function renderResourcePage() {
     const pdfUrl = `${getBasePath()}${resource.pdfUrl}`;
     root.innerHTML = `
       <section class="pdf-reader-shell" aria-label="Leitor do manual em PDF">
-        <iframe class="pdf-frame native-pdf-frame" src="${pdfUrl}#view=FitH" title="Manual de Formação da UFCD 0778"></iframe>
+        <iframe class="pdf-frame native-pdf-frame" src="${pdfUrl}#view=FitH" title="Manual de Formação da UFCD 0779"></iframe>
       </section>
     `;
     return;
   }
 
   if (resource.downloadFiles || resource.videos) {
-    const visibleVideos = (resource.videos || []).filter((video) => isItemVisible("ficheirosExcel", video.id));
-    const visibleFiles = (resource.downloadFiles || []).filter((file) => isItemVisible("ficheirosExcel", file.id));
+    const visibleVideos = (resource.videos || []).filter((video) => isItemVisible("ficheirosPowerPoint", video.id));
+    const visibleFiles = (resource.downloadFiles || []).filter((file) => isItemVisible("ficheirosPowerPoint", file.id));
     root.innerHTML = `
       <section class="section task-page-section">
         <div class="section-inner">
@@ -3541,9 +3555,6 @@ function renderResourcePage() {
           <div class="download-resource-list">
             ${visibleFiles.length ? visibleFiles.map((file, index) => {
               const fileUrl = `${getBasePath()}${file.path}`;
-              const publicFileUrl = new URL(file.path, "https://ufcd0778.netlify.app/").href;
-              const activeCell = `'${file.firstSheet}'!A1`;
-              const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicFileUrl)}&ActiveCell=${encodeURIComponent(activeCell)}`;
               return `
                 <article class="card download-resource-card">
                   <span class="download-resource-number">${index + 1}</span>
@@ -3552,14 +3563,7 @@ function renderResourcePage() {
                     <p>${file.description}</p>
                   </div>
                   <a class="small-button" href="${fileUrl}" download>Descarregar ficheiro</a>
-                  <div class="excel-viewer-wrap">
-                    <iframe
-                      class="excel-viewer-frame"
-                      data-src="${viewerUrl}"
-                      title="Visualização — ${file.title}"
-                      loading="lazy"
-                      referrerpolicy="no-referrer"></iframe>
-                  </div>
+                  <p class="resource-preview-note">Para visualizar ou editar, descarrega e abre o PPTX no PowerPoint. A pré-visualização incorporada só poderá ser testada depois de os ficheiros estarem alojados num endereço público.</p>
                 </article>
               `;
             }).join("") : `
@@ -3573,7 +3577,6 @@ function renderResourcePage() {
         </div>
       </section>
     `;
-    setupLazyExcelViewers(root);
     return;
   }
 
@@ -3591,7 +3594,7 @@ function renderResourcePage() {
             <h3>Ajuda oficial do Excel</h3>
             <p>A Microsoft pode bloquear a visualização dentro da página por política de segurança. Se a área abaixo não carregar, abre o recurso diretamente.</p>
             <div class="embed-fallback resource-action-row align-right">
-              <a class="small-button" href="${resource.externalUrl}" target="_blank" rel="noopener">Abrir suporte Microsoft Excel</a>
+              <a class="small-button" href="${resource.externalUrl}">Abrir suporte Microsoft Excel</a>
             </div>
           </article>
         </div>
@@ -3661,6 +3664,7 @@ function inicializarSite() {
   renderEvaluationMenus();
   renderResourceMenus();
   renderPortfolioMenuLink();
+  atualizarBotoesAvaliacaoPaginaInicial();
   setupMenu();
   setupFloatingActions();
   renderHomeCards();
