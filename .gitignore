@@ -4,6 +4,5 @@ Thumbs.db
 *.bak
 .netlify/
 .clasp.json
-moodle.html
 tmp/
 assets/ficheiros/*.zip

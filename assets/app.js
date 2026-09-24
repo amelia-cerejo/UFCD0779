@@ -7,15 +7,15 @@ const UFCD = {
 };
 
 const pendingLinks = {
-  appsScriptUrl: window.UFCD0778_PENDING_LINKS?.appsScriptUrl || "PENDENTE_UFCD0778_APPS_SCRIPT_URL",
-  spreadsheetId: window.UFCD0778_PENDING_LINKS?.spreadsheetId || "PENDENTE_UFCD0778_SPREADSHEET_ID",
-  mentimeterEmbedUrl: window.UFCD0778_PENDING_LINKS?.mentimeterEmbedUrl || "https://www.mentimeter.com/app/presentation/al8dp9dgyeb4gv33qy4c6tezkvgoq63r/embed",
-  mentimeterParticipationUrl: window.UFCD0778_PENDING_LINKS?.mentimeterUrl || "https://www.menti.com/al9tm8ir6gkm",
-  glossaryUrl: /^https?:\/\//i.test(window.UFCD0778_PENDING_LINKS?.glossaryUrl || "") ? window.UFCD0778_PENDING_LINKS.glossaryUrl : "",
-  individualTaskForumUrls: Array.isArray(window.UFCD0778_PENDING_LINKS?.individualTaskForumUrls)
-    ? window.UFCD0778_PENDING_LINKS.individualTaskForumUrls.filter((url) => /^https?:\/\//i.test(url))
+  appsScriptUrl: window.UFCD0779_PENDING_LINKS?.appsScriptUrl || "",
+  spreadsheetId: window.UFCD0779_PENDING_LINKS?.spreadsheetId || "",
+  mentimeterEmbedUrl: window.UFCD0779_PENDING_LINKS?.mentimeterEmbedUrl || "https://www.mentimeter.com/app/presentation/al8dp9dgyeb4gv33qy4c6tezkvgoq63r/embed",
+  mentimeterParticipationUrl: window.UFCD0779_PENDING_LINKS?.mentimeterUrl || "https://www.menti.com/al9tm8ir6gkm",
+  glossaryUrl: /^https?:\/\//i.test(window.UFCD0779_PENDING_LINKS?.glossaryUrl || "") ? window.UFCD0779_PENDING_LINKS.glossaryUrl : "",
+  individualTaskForumUrls: Array.isArray(window.UFCD0779_PENDING_LINKS?.individualTaskForumUrls)
+    ? window.UFCD0779_PENDING_LINKS.individualTaskForumUrls.filter((url) => /^https?:\/\//i.test(url))
     : [],
-  manualPdf: window.UFCD0778_PENDING_LINKS?.manualPdf || ""
+  manualPdf: window.UFCD0779_PENDING_LINKS?.manualPdf || ""
 };
 
 const topics = [
@@ -124,14 +124,14 @@ const contentMenuGroups = [
 
 const DEFAULT_APPS_SCRIPT_WEB_APP_URL = "";
 const DEFAULT_APPS_SCRIPT_SPREADSHEET_ID = "";
-const APPS_SCRIPT_WEB_APP_URL = window.UFCD0778_APPS_SCRIPT_URL || DEFAULT_APPS_SCRIPT_WEB_APP_URL;
-const APPS_SCRIPT_SPREADSHEET_ID = window.UFCD0778_SPREADSHEET_ID || DEFAULT_APPS_SCRIPT_SPREADSHEET_ID;
+const APPS_SCRIPT_WEB_APP_URL = window.UFCD0779_APPS_SCRIPT_URL || DEFAULT_APPS_SCRIPT_WEB_APP_URL;
+const APPS_SCRIPT_SPREADSHEET_ID = window.UFCD0779_SPREADSHEET_ID || DEFAULT_APPS_SCRIPT_SPREADSHEET_ID;
 
 const activities = [
   { id: "controlo-teams", title: "Partilha de ecrã", menuTitle: "Partilha de ecrã", intro: "Tabela simples para acompanhar a participação prática nas sessões síncronas.", url: "atividades/controlo-teams.html" },
   { id: "mentimeter-inicial", title: "Mentimeter inicial", menuTitle: "Brainstorming", intro: "Participa na atividade introdutória sobre apresentações gráficas.", url: "atividades/mentimeter-inicial.html", focus: "Exploração inicial", duration: "", product: "Resposta registada no Mentimeter da UFCD 0779.", mentimeterUrl: pendingLinks.mentimeterEmbedUrl, participationUrl: pendingLinks.mentimeterParticipationUrl, qrCode: "assets/img/mentimeter_qr_code_0779.png", steps: [{ title: "Participar", text: "Abre a apresentação ou utiliza a ligação de participação e responde à pergunta apresentada no Mentimeter." }], evidence: ["Participação na atividade inicial"] },
-  { id: "tarefas-grupo", title: "Glossário - Tarefas de Grupo", menuTitle: "Tarefas de Grupo", intro: "Tarefas de grupo para construir vocabulário técnico no Glossário do Moodle.", url: "atividades/tarefas-grupo.html", focus: "Glossário colaborativo", duration: "A partir do segundo dia", product: "Definição curta e exemplo prático aplicado à folha de cálculo.", steps: [{ title: "Distribuir", text: "Cada grupo trabalha o termo atribuído." }, { title: "Definir", text: "Escrever uma definição simples e correta." }, { title: "Exemplificar", text: "Acrescentar um exemplo aplicado ao Excel." }, { title: "Publicar", text: "Rever e publicar no Glossário do Moodle." }], evidence: ["Entrada no glossário", "Exemplo prático", "Revisão pelos colegas"] },
-  { id: "tarefas-individuais", title: "Tarefas Individuais", intro: "Resumo das tarefas práticas realizadas nos livros Excel; as instruções completas são disponibilizadas em PDF.", url: "atividades/tarefas-individuais.html", focus: "Trabalho individual", duration: "A partir do segundo dia", product: "Livros Excel concluídos e guardados na Drive.", steps: [{ title: "Ler", text: "Consultar o enunciado e o PDF da tarefa." }, { title: "Realizar", text: "Aplicar os procedimentos no livro indicado." }, { title: "Verificar", text: "Confirmar fórmulas, resultados e apresentação." }, { title: "Guardar", text: "Guardar com o nome e na pasta definidos." }], evidence: ["Livro Excel atualizado", "Versão guardada na Drive"] },
+  { id: "tarefas-grupo", title: "Glossário — Tarefas de Grupo", menuTitle: "Tarefas de Grupo", intro: "Glossário colaborativo de conceitos de apresentações gráficas, desenvolvido em cinco dias.", url: "atividades/tarefas-grupo.html", focus: "Glossário colaborativo", duration: "Cinco dias", product: "Termo, definição, finalidade e exemplo de utilização no PowerPoint.", steps: [{ title: "Identificar", text: "Consultar o conceito atribuído ao grupo em cada dia." }, { title: "Definir", text: "Escrever uma definição clara por palavras próprias." }, { title: "Exemplificar", text: "Indicar para que serve e apresentar um exemplo no PowerPoint." }, { title: "Publicar", text: "Rever e publicar a contribuição no Glossário do Moodle." }], evidence: ["Entrada no glossário", "Exemplo prático"] },
+  { id: "tarefas-individuais", title: "Tarefas Individuais", intro: "Sete tarefas progressivas para criar apresentações e construir o e-portfólio da Ação 26109.", url: "atividades/tarefas-individuais.html", focus: "Apresentação gráfica e e-portfólio", duration: "Ao longo da UFCD", product: "Apresentações, evidências e reflexão organizadas no e-portfólio.", steps: [{ title: "Preparar", text: "Ler a tarefa e reunir as evidências na sua Drive." }, { title: "Criar", text: "Realizar o trabalho no PowerPoint e na aplicação do e-portfólio." }, { title: "Registar", text: "Publicar no fórum do Moodle apenas o registo pedido para cada TI." }, { title: "Rever", text: "Verificar ficheiros, ligações e partilha da pasta com a formadora." }], evidence: ["Apresentações PowerPoint", "E-portfólio", "Registos no fórum"] },
   { id: "projeto-final-apresentacao", title: "Projeto Final - Solução em Folha de Cálculo", menuTitle: "Projeto Final", intro: "Livro Excel funcional que integra organização, cálculos, análise, apresentação e preparação para impressão.", url: "atividades/projeto-final-apresentacao.html", focus: "Projeto individual", duration: "TI08 a TI12", product: "Livro Excel final, PDF, reflexão final e apresentação breve.", steps: [{ title: "Planear", text: "Escolher e estruturar o contexto do projeto." }, { title: "Construir", text: "Organizar dados e aplicar fórmulas, funções, formatação e análise." }, { title: "Rever", text: "Validar dados, cálculos, gráficos e impressão." }, { title: "Partilhar", text: "Guardar, apresentar e refletir sobre o resultado." }], evidence: ["XLSX final", "PDF final", "Reflexão final", "Apresentação individual"] },
 ];
 
@@ -144,7 +144,7 @@ const evaluations = [
   { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação, em preparação.", url: "avaliacoes/avaliacao-formacao.html" }
 ];
 
-const groupTasks = [
+const legacyGroupTasks = [
   { title: "TG01 - Ambiente da folha de cálculo", topic: "Ambiente", url: "atividades/tarefas-grupo.html", intro: "Conceitos fundamentais do ambiente de trabalho.", words: [["Livro", "Grupo 1"], ["Folha", "Grupo 2"], ["Célula", "Grupo 3"], ["Intervalo", "Grupo 4"]] },
   { title: "TG02 - Introdução de dados", topic: "Dados", url: "atividades/tarefas-grupo.html", intro: "Tipos de dados e preenchimento.", words: [["Texto", "Grupo 1"], ["Número", "Grupo 2"], ["Data", "Grupo 3"], ["Série", "Grupo 4"]] },
   { title: "TG03 - Formatação", topic: "Formatação", url: "atividades/tarefas-grupo.html", intro: "Apresentação e leitura da informação.", words: [["Formato numérico", "Grupo 1"], ["Alinhamento", "Grupo 2"], ["Limite", "Grupo 3"], ["Preenchimento", "Grupo 4"]] },
@@ -162,7 +162,7 @@ const groupTasks = [
 const glossaryUrl = pendingLinks.glossaryUrl;
 const individualTaskForumUrls = pendingLinks.individualTaskForumUrls;
 
-const individualTasks = [
+const legacyIndividualTasks = [
   {
     "id": "tarefa-individual-1",
     "url": "atividades/tarefas-individuais.html",
@@ -753,6 +753,67 @@ const individualTasks = [
     "moodleRecord": "Publicar a ligação de leitura do PDF final, confirmar que foi testada e registar uma síntese das principais correções aplicadas após a revisão entre pares."
   }
 ];
+
+const groupTasks = [
+  { title: "Dia 1 — Conceitos gerais", day: 1, words: [["Apresentação gráfica", "Grupo 1"], ["Diapositivo", "Grupo 2"], ["Friso", "Grupo 3"], ["Separador", "Grupo 4"], ["Esquema de diapositivo", "Grupo 5"]] },
+  { title: "Dia 2 — Tema e modelo", day: 2, words: [["Tema", "Grupo 1"], ["Modelo", "Grupo 2"], ["Diapositivo Mestre", "Grupo 3"], ["Caixa de texto", "Grupo 4"], ["Formatação de texto", "Grupo 5"]] },
+  { title: "Dia 3 — Elementos gráficos", day: 3, words: [["Forma", "Grupo 1"], ["Imagem", "Grupo 2"], ["Gráfico", "Grupo 3"], ["Alinhamento", "Grupo 4"], ["Agrupamento", "Grupo 5"]] },
+  { title: "Dia 4 — Efeitos especiais", day: 4, words: [["Animação", "Grupo 1"], ["Transição", "Grupo 2"], ["Som", "Grupo 3"], ["Efeito", "Grupo 4"], ["Temporização", "Grupo 5"]] },
+  { title: "Dia 5 — Apresentar e partilhar", day: 5, words: [["Apresentação de diapositivos", "Grupo 1"], ["Notas do orador", "Grupo 2"], ["Folheto", "Grupo 3"], ["Exportação", "Grupo 4"], ["Partilha", "Grupo 5"]] }
+];
+
+const individualTasks = [
+  {
+    id: "ti01", code: "TI01", title: "TI01 — O meu e-portfólio começa aqui", pdfUrl: "assets/pdfs/TI01.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57096",
+    objective: "Iniciar a organização do e-portfólio, registar as expectativas iniciais e aplicar os primeiros conceitos de apresentações gráficas.",
+    steps: ["Aceder à aplicação do e-portfólio e criar ou completar a informação inicial.", "Personalizar a apresentação com nome, Ação 26109, breve apresentação pessoal e, se adequado, uma imagem.", "Registar as expectativas iniciais: aprendizagens esperadas, competências a desenvolver e utilização futura.", "Explorar as áreas da aplicação e identificar as secções para o percurso, trabalhos e aprendizagens.", "Criar no PowerPoint um diapositivo de apresentação do e-portfólio e guardar o ficheiro com um nome claro.", "Criar ou identificar na sua Drive a pasta do projeto do e-portfólio da Ação 26109 e partilhá-la com a formadora."],
+    outcome: ["E-portfólio iniciado e informação inicial organizada.", "Expectativas registadas.", "Primeira apresentação gráfica criada e guardada."],
+    moodleRecord: ["Confirmar que iniciou o e-portfólio.", "Indicar uma expectativa relativamente à Ação 26109.", "Referir uma competência ou conhecimento que gostaria de desenvolver."]
+  },
+  {
+    id: "ti02", code: "TI02", title: "TI02 — Identidade visual do meu percurso", pdfUrl: "assets/pdfs/TI02.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57097",
+    objective: "Aplicar temas, modelos, esquemas e formatação numa identidade visual coerente para o e-portfólio.",
+    steps: ["Pensar na imagem que pretende transmitir no e-portfólio.", "Criar no PowerPoint uma proposta visual de 2 a 3 diapositivos.", "Usar tema adequado, letras legíveis, cores coerentes, esquemas diferentes e texto bem formatado.", "Incluir diapositivos de apresentação, de aprendizagem ou atividade e de evidência.", "Comparar os diapositivos e usar a proposta como referência para o e-portfólio."],
+    outcome: ["Linha visual definida para as evidências e trabalhos do e-portfólio."],
+    moodleRecord: ["Indicar o tema ou estilo visual escolhido.", "Referir uma decisão sobre cores, tipos de letra ou organização e justificar a escolha.", "Se adequado, acrescentar uma captura de ecrã de um diapositivo."]
+  },
+  {
+    id: "ti03", code: "TI03", title: "TI03 — Uma aprendizagem em destaque", pdfUrl: "assets/pdfs/TI03.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57098",
+    objective: "Utilizar texto, imagens, formas e outros elementos gráficos para apresentar uma evidência de aprendizagem.",
+    steps: ["Escolher uma atividade ou trabalho de uma UFCD anterior da Ação 26109.", "Criar no PowerPoint um ou mais diapositivos sobre essa aprendizagem.", "Identificar a UFCD, o trabalho, uma imagem ou captura da evidência, o que foi feito e o que aprendeu.", "Aplicar formatação, imagens, formas, alinhamento e organização visual; usar gráficos ou tabelas quando adequado.", "Adicionar a evidência à área correspondente do e-portfólio."],
+    outcome: ["Evidência que responde claramente: o que fiz, o que aprendi e que competência desenvolvi."],
+    moodleRecord: ["Indicar a UFCD ou atividade escolhida.", "Explicar por que selecionou essa evidência.", "Referir a principal aprendizagem ou competência demonstrada."]
+  },
+  {
+    id: "ti04", code: "TI04", title: "TI04 — Dar movimento à apresentação", pdfUrl: "assets/pdfs/TI04.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57099",
+    objective: "Aplicar efeitos especiais e elementos dinâmicos de forma adequada numa apresentação gráfica.",
+    steps: ["Escolher um trabalho ou aprendizagem a destacar no e-portfólio.", "Criar uma pequena apresentação gráfica sobre esse conteúdo.", "Aplicar com equilíbrio animações, transições, temporização e, se fizer sentido, som ou outro elemento multimédia.", "Testar a apresentação do início ao fim e confirmar que os efeitos ajudam a compreender a informação.", "Registar o trabalho no e-portfólio como evidência nova ou associada à atividade correspondente."],
+    note: "O objetivo não é usar muitos efeitos: utilize apenas os que melhorem a comunicação.",
+    moodleRecord: ["Indicar o tipo de animação, transição ou elemento multimédia utilizado e onde foi aplicado.", "Explicar de que forma melhorou — ou não — a apresentação."]
+  },
+  {
+    id: "ti05", code: "TI05", title: "TI05 — Preparar, exportar e partilhar", pdfUrl: "assets/pdfs/TI05.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57100",
+    objective: "Preparar uma apresentação para diferentes formas de utilização, divulgação e partilha.",
+    steps: ["Escolher uma apresentação realizada nesta UFCD.", "Rever ortografia, organização, alinhamentos, legibilidade, imagens, animações e transições.", "Testar o modo de apresentação e explorar impressão, apresentação, exportação e partilha.", "Exportar a apresentação para um formato adequado à finalidade.", "Adicionar ou associar o resultado ao e-portfólio, identificado e com breve descrição."],
+    outcome: ["Explicar o formato escolhido, a sua finalidade e como o trabalho pode ser consultado ou partilhado."],
+    moodleRecord: ["Indicar o formato para o qual exportou a apresentação e a razão da escolha.", "Referir uma vantagem e, se existir, uma limitação dessa forma de partilha."]
+  },
+  {
+    id: "ti06", code: "TI06", title: "TI06 — Rever e completar o meu e-portfólio", pdfUrl: "assets/pdfs/TI06.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57101",
+    objective: "Consolidar o trabalho e completar a área da UFCD 0779 no e-portfólio.",
+    steps: ["Rever o trabalho realizado e completar a página «UFCD 0779 — Utilitário de apresentação gráfica».", "Registar o que aprendeu, atividades realizadas e evidências selecionadas.", "Identificar dificuldades, estratégias para as ultrapassar e competências desenvolvidas.", "Escrever um pequeno balanço da UFCD.", "Verificar organização, textos, imagens, ligações, coerência visual e informação incompleta.", "Confirmar que as evidências estão na sua própria Drive e que a pasta do projeto está partilhada com a formadora."],
+    moodleRecord: ["Indicar uma aprendizagem útil, uma dificuldade ultrapassada e uma competência em que evoluiu.", "Escolher a evidência que melhor representa o trabalho nesta UFCD e explicar porquê."]
+  },
+  {
+    id: "ti-final", code: "TI FINAL", title: "TI FINAL — O meu percurso na Ação 26109", pdfUrl: "assets/pdfs/TIFinal.pdf", forumUrl: "https://fad.iefp.pt/mod/forum/discuss.php?d=57102",
+    objective: "Refletir sobre o percurso na Ação 26109 — Ferramentas de Produtividade e Colaboração.",
+    steps: ["Na área «Reflexão Final» do e-portfólio, descrever os conhecimentos e expectativas do início da formação.", "Identificar as aprendizagens e atividades mais importantes, dificuldades encontradas e formas de as ultrapassar.", "Refletir sobre as competências em que mais evoluiu, ferramentas aprendidas e aplicações futuras.", "Escolher uma evidência representativa do percurso e explicar porquê."],
+    note: "A reflexão é pessoal e sintética; não é necessário descrever todas as atividades.",
+    moodleRecord: ["Publicar uma breve mensagem de encerramento: aprendizagem mais importante, competência com maior evolução e ferramenta ou conhecimento que continuará a usar.", "Terminar com uma palavra ou pequena frase que represente o percurso na Ação 26109."],
+    moodleNote: "Não é necessário repetir no fórum toda a reflexão do e-portfólio."
+  }
+];
+
 const resources = [
   { id: "manual", title: "Manual de formação", intro: "Espaço reservado para o manual da UFCD 0779.", url: "recursos/manual.html" },
   {
@@ -779,7 +840,7 @@ const mainMenuItems = [
 const siteVisibility = {
   menuPrincipal: Object.fromEntries(mainMenuItems.map((item) => [item.key, true])),
   conteudos: Object.fromEntries(topics.map((topic) => [topic.id, true])),
-  atividades: Object.fromEntries(activities.map((activity) => [activity.id, !["tarefas-grupo", "tarefas-individuais", "projeto-final-apresentacao"].includes(activity.id)])),
+  atividades: Object.fromEntries(activities.map((activity) => [activity.id, activity.id !== "projeto-final-apresentacao"])),
   avaliacao: Object.fromEntries(evaluations.map((evaluation) => [evaluation.id, Boolean(evaluation.embedUrl)])),
   recursos: Object.fromEntries(resources.map((resource) => [resource.id, true])),
   ficheirosPowerPoint: Object.fromEntries(resources.flatMap((resource) => [...(resource.videos || []), ...(resource.downloadFiles || [])]).map((file) => [file.id, true])),
@@ -814,13 +875,23 @@ const siteVisibilitySectionMeta = {
 
 const SITE_VISIBILITY_STORAGE_KEY = "ufcd0779-site-visibility-v1";
 const SITE_VISIBILITY_REMOTE_CACHE_KEY = "ufcd0779-site-visibility-remote-cache-v1";
-const SITE_LINKS_STORAGE_KEY = "ufcd0778-site-links-v1";
+const SITE_LINKS_STORAGE_KEY = "ufcd0779-site-links-v1";
 const APPS_SCRIPT_SPREADSHEET_GID = "1240441816";
 const SITE_CONTROL_KEY_PREFIX = `ufcd-${UFCD.code}-`;
 let siteControlItems = [];
 let siteControlItemsBuilding = false;
 let siteVisibilityRemoteLoading = null;
 let siteVisibilityRemoteReady = !APPS_SCRIPT_WEB_APP_URL;
+let siteVisibilityRemoteFresh = !APPS_SCRIPT_WEB_APP_URL;
+let siteVisibilityRemoteAttempted = !APPS_SCRIPT_WEB_APP_URL;
+let siteVisibilityRemoteItems = [];
+
+function ocultarVisibilidadeControlada() {
+  Object.keys(siteVisibilitySections).forEach((section) => { siteVisibilitySections[section] = false; });
+  Object.values(siteVisibility).forEach((items) => {
+    Object.keys(items).forEach((key) => { items[key] = false; });
+  });
+}
 
 const siteLinks = {
   gammas: Object.fromEntries(topics.map((topic) => [topic.id, topic.gammaUrl || ""])),
@@ -900,11 +971,11 @@ function topicById(id) {
 }
 
 function isSectionVisible(section) {
-  return siteVisibilitySections[section] !== false;
+  return siteVisibilityRemoteReady && siteVisibilitySections[section] === true;
 }
 
 function isItemVisible(section, key) {
-  return isSectionVisible(section) && siteVisibility[section]?.[key] !== false;
+  return isSectionVisible(section) && siteVisibility[section]?.[key] === true;
 }
 
 function atualizarBotoesAvaliacaoPaginaInicial() {
@@ -914,6 +985,67 @@ function atualizarBotoesAvaliacaoPaginaInicial() {
   document.querySelectorAll(".assessment-actions").forEach((actions) => {
     actions.hidden = !actions.querySelector("[data-evaluation-link]:not([hidden])");
   });
+  document.querySelectorAll("#avaliacao .assessment-row").forEach((row) => {
+    row.hidden = !row.querySelector(".assessment-actions [data-evaluation-link]:not([hidden])");
+  });
+}
+
+function atualizarMenuPrincipal() {
+  const keyBySubmenu = {
+    "submenu-conteudos": "conteudos",
+    "submenu-atividades": "atividades",
+    "submenu-avaliacao": "avaliacao",
+    "submenu-recursos": "recursos"
+  };
+  document.querySelectorAll(".side-nav").forEach((menu) => {
+    menu.querySelectorAll('a[href*="index.html#"]').forEach((link) => {
+      const key = link.getAttribute("href")?.split("#")[1];
+      if (key in siteVisibility.menuPrincipal) link.hidden = !isItemVisible("menuPrincipal", key);
+    });
+    menu.querySelectorAll(".nav-parent").forEach((button) => {
+      const submenuId = button.getAttribute("aria-controls");
+      const key = keyBySubmenu[submenuId];
+      if (!key) return;
+      button.hidden = !isItemVisible("menuPrincipal", key);
+      const submenu = document.getElementById(submenuId);
+      if (submenu) submenu.hidden = button.hidden;
+    });
+  });
+}
+
+function atualizarSecoesPaginaInicial() {
+  if (document.body.dataset.page !== "home") return;
+  ["conteudos", "atividades", "avaliacao", "recursos"].forEach((section) => {
+    const element = document.getElementById(section);
+    if (element) element.hidden = !isSectionVisible(section);
+  });
+  document.querySelectorAll("#atividades [data-activity-id]").forEach((card) => {
+    card.hidden = !isItemVisible("atividades", card.dataset.activityId);
+  });
+  document.querySelectorAll("#recursos [data-resource-id]").forEach((card) => {
+    card.hidden = !isItemVisible("recursos", card.dataset.resourceId);
+  });
+}
+
+function atualizarConteudosApresentacoes() {
+  if (document.body.dataset.page !== "conteudos") return;
+  document.querySelectorAll(".curriculum-card[id]").forEach((card) => {
+    card.hidden = !isItemVisible("conteudos", card.id);
+  });
+  document.querySelectorAll(".content-grid").forEach((grid) => {
+    const temItens = Boolean(grid.querySelector(".curriculum-card:not([hidden])"));
+    grid.hidden = !temItens;
+    if (grid.previousElementSibling?.tagName === "H2") grid.previousElementSibling.hidden = !temItens;
+  });
+}
+
+function atualizarPortfolioIncorporado() {
+  const frame = document.querySelector(".portfolio-embed-frame[data-src]");
+  if (!frame) return;
+  const visivel = isItemVisible("menuPrincipal", "eportfolio");
+  frame.closest("main").hidden = !visivel;
+  if (visivel && !frame.hasAttribute("src")) frame.src = frame.dataset.src;
+  if (!visivel) frame.removeAttribute("src");
 }
 
 function renderPortfolioMenuLink() {
@@ -982,7 +1114,7 @@ function obterConstituicaoVisibilidadeSite() {
   };
   const adicionarItem = (section, key, titulo, url, tipo, ordem, options = {}) => {
     const meta = siteVisibilitySectionMeta[section];
-    itens.push(criarItemVisibilidade(meta.secao, key, titulo, url, tipo, "item", siteVisibility[section]?.[key.replace(/^(menu|conteudo|atividade|avaliacao|recurso|ficheiro-excel|assistente-gpt|tarefa-grupo|tarefa-individual)-/, "")], ordem, options));
+    itens.push(criarItemVisibilidade(meta.secao, key, titulo, url, tipo, "item", siteVisibility[section]?.[key.replace(/^(menu|conteudo|atividade|avaliacao|recurso|ficheiro-powerpoint|assistente-gpt|tarefa-grupo|tarefa-individual)-/, "")], ordem, options));
   };
 
   adicionarSecao("menuPrincipal");
@@ -1067,8 +1199,6 @@ function normalizarItemControlo(item) {
 
 function filtrarItensControloDaUfcdAtual(remoteItems = []) {
   const itens = Array.isArray(remoteItems) ? remoteItems : [];
-  const temItensDaUfcdAtual = itens.some((item) => String(item?.chave || item?.key || "").startsWith(SITE_CONTROL_KEY_PREFIX));
-  if (!temItensDaUfcdAtual) return itens;
   return itens.filter((item) => String(item?.chave || item?.key || "").startsWith(SITE_CONTROL_KEY_PREFIX));
 }
 
@@ -1433,7 +1563,7 @@ function renderHomeCards() {
   const grid = document.getElementById("home-content-grid");
   if (!grid) return;
 
-  grid.innerHTML = topics.filter((topic) => topic.showInContents !== false).map((topic) => `
+  grid.innerHTML = topics.filter((topic) => topic.showInContents !== false && isItemVisible("conteudos", topic.id)).map((topic) => `
     <article class="content-card presentation-card">
       <a href="${topic.url}"><h3>${topic.cardTitle}</h3>
         <p>${topic.intro}</p>
@@ -1446,7 +1576,7 @@ function renderConteudosIndex() {
   const grid = document.getElementById("conteudos-index-grid");
   if (!grid) return;
 
-  grid.innerHTML = topics.filter((topic) => topic.showInContents !== false).map((topic) => `
+  grid.innerHTML = topics.filter((topic) => topic.showInContents !== false && isItemVisible("conteudos", topic.id)).map((topic) => `
     <article class="card">
       <h3><a href="${topic.url}">${topic.title}</a></h3>
       <p>${topic.intro}</p>
@@ -1539,9 +1669,13 @@ function guardarUltimaVisibilidadeRemotaDoSite(itens) {
 function carregarUltimaVisibilidadeRemotaDoSite() {
   try {
     const cached = JSON.parse(localStorage.getItem(SITE_VISIBILITY_REMOTE_CACHE_KEY) || "{}");
-    if (!Array.isArray(cached.itens) || !cached.itens.length) return false;
-    aplicarItensVisibilidadeRemota(cached.itens);
+    const itensDaUfcd = filtrarItensControloDaUfcdAtual(cached.itens);
+    if (!itensDaUfcd.length) return false;
+    ocultarVisibilidadeControlada();
+    aplicarItensVisibilidadeRemota(itensDaUfcd);
+    siteVisibilityRemoteItems = itensDaUfcd;
     siteVisibilityRemoteReady = true;
+    siteVisibilityRemoteAttempted = true;
     return true;
   } catch {
     return false;
@@ -1669,7 +1803,11 @@ function aplicarItensVisibilidadeRemota(itens) {
 
 function atualizarSuperficiesVisiveisDoSite() {
   renderPortfolioMenuLink();
+  atualizarMenuPrincipal();
   atualizarBotoesAvaliacaoPaginaInicial();
+  atualizarSecoesPaginaInicial();
+  atualizarConteudosApresentacoes();
+  atualizarPortfolioIncorporado();
   renderContentMenus();
   renderActivityMenus();
   renderEvaluationMenus();
@@ -1875,27 +2013,30 @@ async function carregarVisibilidadeRemotaDoSite(options = {}) {
     ufcd: UFCD.code,
     prefixo: SITE_CONTROL_KEY_PREFIX,
     campos: "essenciais"
-  }, { timeoutMs: 6000 })
+  }, { timeoutMs: 30000 })
     .then((dados) => {
-      if (dados?.sucesso && Array.isArray(dados.itens)) {
+      const itensDaUfcd = filtrarItensControloDaUfcdAtual(dados?.itens);
+      if (dados?.sucesso && itensDaUfcd.length) {
+        ocultarVisibilidadeControlada();
         aplicarItensVisibilidadeRemota(dados.itens);
         guardarUltimaVisibilidadeRemotaDoSite(dados.itens);
         limparEstadoLocalDoSite();
+        siteVisibilityRemoteItems = itensDaUfcd;
+        siteVisibilityRemoteReady = true;
+        siteVisibilityRemoteFresh = true;
         return true;
       }
-
-      if (dados?.sucesso && dados.visibilidade) {
-        aplicarVisibilidadeDoSite(dados.visibilidade);
-        limparEstadoLocalDoSite();
-        return true;
-      }
+      siteVisibilityRemoteItems = [];
+      siteVisibilityRemoteReady = false;
+      siteVisibilityRemoteFresh = false;
       return false;
     })
     .catch(() => {
+      siteVisibilityRemoteFresh = false;
       return false;
     })
     .finally(() => {
-      siteVisibilityRemoteReady = true;
+      siteVisibilityRemoteAttempted = true;
       siteVisibilityRemoteLoading = null;
     });
 
@@ -1903,7 +2044,7 @@ async function carregarVisibilidadeRemotaDoSite(options = {}) {
 }
 
 async function guardarVisibilidadeRemotaDoSite() {
-  if (!APPS_SCRIPT_WEB_APP_URL) return;
+  if (!APPS_SCRIPT_WEB_APP_URL || !siteVisibilityRemoteFresh) return false;
 
   try {
     const constituicao = obterConstituicaoVisibilidadeSite().map((item) => ({
@@ -1930,8 +2071,9 @@ async function guardarVisibilidadeRemotaDoSite() {
       mode: "no-cors",
       body: dados
     });
+    return true;
   } catch {
-    // Mantém a versão local se a ligação remota falhar.
+    return false;
   }
 }
 
@@ -1997,6 +2139,10 @@ function renderSiteVisibilityControls() {
       </summary>
       ${options.before ? `<div class="site-control-group-body">${options.before}</div>` : ""}
       <div class="site-control-options">
+        <label class="site-control-option">
+          <input type="checkbox" data-visibility-section="${section}" ${siteVisibilitySections[section] === true ? "checked" : ""}>
+          <span>Mostrar secção «${title}»</span>
+        </label>
         ${items.map((item) => renderOption(section, item)).join("")}
       </div>
     </details>
@@ -2034,20 +2180,6 @@ function renderSiteVisibilityControls() {
     linkValue: obterForumUrl(task),
     linkPlaceholder: "https://fad.iefp.pt/mod/forum/discuss.php?d=..."
   }));
-  const renderTiMaterialsStatus = () => `
-    <div class="site-control-materials-status">
-      <h3>Estado dos ficheiros das TIs</h3>
-      ${individualTasks.map((task) => {
-        const pdfStatus = task.pdfUrl ? "PDF OK" : "PDF em falta";
-        const excelFiles = task.workFiles || [];
-        const excelStatus = excelFiles.length
-          ? excelFiles.map((file) => `${file.title}: ${file.available && file.excelUrl ? "Excel OK" : "Excel em falta"}`).join(" · ")
-          : "Sem ficheiro Excel associado";
-        return `<p><strong>${task.title}</strong><br><span>${pdfStatus}</span><span>${excelStatus}</span></p>`;
-      }).join("")}
-    </div>
-  `;
-
   return `
     <div class="card site-control-card">
       <div class="site-control-heading">
@@ -2057,7 +2189,7 @@ function renderSiteVisibilityControls() {
         </div>
         <div>
           <p>Ativa conteúdos/tarefas e associa os links externos usados durante a formação.</p>
-        <button class="small-button" type="button" data-action="save-site-visibility">Guardar na Apps Script</button>
+        <button class="small-button" type="button" data-action="save-site-visibility" ${siteVisibilityRemoteFresh ? "" : "disabled"}>Guardar na Apps Script</button>
         </div>
       </div>
       <div class="site-control-grid">
@@ -2069,10 +2201,10 @@ function renderSiteVisibilityControls() {
         ${renderGroup("Ficheiros PowerPoint", "ficheirosPowerPoint", powerpointFileItems)}
         ${renderGroup("Assistentes GPT", "assistentesGpt", gptItems)}
         ${renderGroup("Tarefas de Grupo", "tarefasGrupo", groupItems, { before: glossaryField })}
-        ${renderGroup("Tarefas Individuais", "tarefasIndividuais", individualItems, { before: renderTiMaterialsStatus() })}
+        ${renderGroup("Tarefas Individuais", "tarefasIndividuais", individualItems)}
       </div>
       <div class="site-control-actions">
-          <button class="small-button" type="button" data-action="save-site-visibility">Guardar na Apps Script</button>
+          <button class="small-button" type="button" data-action="save-site-visibility" ${siteVisibilityRemoteFresh ? "" : "disabled"}>Guardar na Apps Script</button>
       </div>
       <p class="teams-control-status" data-site-control-status>Alterações guardadas neste browser.</p>
     </div>
@@ -2080,6 +2212,12 @@ function renderSiteVisibilityControls() {
 }
 
 function atualizarControlosVisibilidadeDoSite(root) {
+  root.querySelectorAll("[data-visibility-section]").forEach((input) => {
+    input.checked = siteVisibilitySections[input.dataset.visibilitySection] === true;
+  });
+  root.querySelectorAll('[data-action="save-site-visibility"]').forEach((button) => {
+    button.disabled = !siteVisibilityRemoteFresh;
+  });
   root.querySelectorAll("[data-visibility-control]").forEach((input) => {
     const section = input.dataset.section;
     const key = input.dataset.key;
@@ -2234,7 +2372,7 @@ async function setupTeamsControl(root) {
   if (controlStatus) {
     controlStatus.textContent = visibilidadeRemotaOk
       ? "Visibilidade e ligações carregadas da configuração central."
-      : "Alterações guardadas neste browser. A configuração central ainda não respondeu.";
+      : "Não foi possível carregar a configuração central da UFCD 0779. A gravação está bloqueada para evitar alterações incorretas.";
   }
 
   await carregarDadosTeams(root);
@@ -2247,15 +2385,35 @@ async function setupTeamsControl(root) {
     const saveVisibilityButton = event.target.closest('[data-action="save-site-visibility"]');
     if (saveVisibilityButton) {
       const controlStatus = root.querySelector("[data-site-control-status]");
+      if (!siteVisibilityRemoteFresh) {
+        if (controlStatus) controlStatus.textContent = "A configuração central não está disponível; nada foi enviado.";
+        return;
+      }
+      const esperado = new Map(obterConstituicaoVisibilidadeSite().map((item) => [obterChaveRemotaSite(item.chave), item]));
       if (controlStatus) controlStatus.textContent = "A enviar constituição e ligações do site para a Apps Script...";
-      await guardarVisibilidadeRemotaDoSite();
-      limparEstadoLocalDoSite();
+      const enviado = await guardarVisibilidadeRemotaDoSite();
+      if (!enviado) {
+        if (controlStatus) controlStatus.textContent = "Não foi possível enviar a configuração. Nada foi confirmado na Sheet.";
+        return;
+      }
       await aguardar(900);
-      await carregarVisibilidadeRemotaDoSite({ force: true });
+      let carregado = await carregarVisibilidadeRemotaDoSite({ force: true });
+      let remoto = new Map(siteVisibilityRemoteItems.map((item) => [String(item.chave), item]));
+      let confirmado = carregado && [...esperado].every(([chave, item]) => remoto.has(chave)
+        && normalizarVisivel(remoto.get(chave).visivel) === item.visivel);
+      if (!confirmado) {
+        await aguardar(1500);
+        carregado = await carregarVisibilidadeRemotaDoSite({ force: true });
+        remoto = new Map(siteVisibilityRemoteItems.map((item) => [String(item.chave), item]));
+        confirmado = carregado && [...esperado].every(([chave, item]) => remoto.has(chave)
+          && normalizarVisivel(remoto.get(chave).visivel) === item.visivel);
+      }
       atualizarSuperficiesVisiveisDoSite();
       atualizarControlosVisibilidadeDoSite(root);
       if (controlStatus) {
-        controlStatus.textContent = `Configuração recarregada da Sheet: ${obterConstituicaoVisibilidadeSite().length} itens e ligações do site.`;
+        controlStatus.textContent = confirmado
+          ? `Configuração confirmada na Sheet: ${esperado.size} itens da UFCD 0779.`
+          : "O pedido foi enviado, mas a gravação não ficou confirmada na Sheet. Verifica antes de continuar.";
       }
       return;
     }
@@ -2266,6 +2424,15 @@ async function setupTeamsControl(root) {
   });
 
   root.addEventListener("change", (event) => {
+    if (event.target.matches("[data-visibility-section]")) {
+      const section = event.target.dataset.visibilitySection;
+      if (section in siteVisibilitySections) {
+        siteVisibilitySections[section] = event.target.checked;
+        const controlStatus = root.querySelector("[data-site-control-status]");
+        if (controlStatus) controlStatus.textContent = "Visibilidade alterada neste ecrã. Usa Guardar para enviar para a Sheet.";
+      }
+      return;
+    }
     if (event.target.matches('[data-action="teams-show-inactive"]')) {
       root.dataset.showInactiveTeams = event.target.checked ? "true" : "false";
       carregarDadosTeams(root);
@@ -2609,11 +2776,25 @@ function renderGammaContentPage(root, topic, embedUrl) {
   `;
 }
 
+function mostrarEstadoVisibilidade(root, tipo = "Conteúdo", section = "", key = "") {
+  const ocultoPorDefeito = siteVisibilitySections[section] === false || siteVisibility[section]?.[key] === false;
+  const mensagem = !siteVisibilityRemoteAttempted
+    ? ocultoPorDefeito ? `${tipo} em preparação` : "A carregar a página…"
+    : !siteVisibilityRemoteReady
+      ? "Não foi possível confirmar a disponibilidade. Atualiza a página para tentar novamente."
+      : `${tipo} não disponível`;
+  root.innerHTML = `<section class="section task-page-section"><div class="section-inner"><h1>${mensagem}</h1></div></section>`;
+}
+
 function renderTopicPage() {
   const root = document.getElementById("topic-root");
   if (!root) return;
 
   const topic = topicById(document.body.dataset.topic) || topics[0];
+  if (!isItemVisible("conteudos", topic.id)) {
+    mostrarEstadoVisibilidade(root, "Conteúdo", "conteudos", topic.id);
+    return;
+  }
   const gammaUrl = obterGammaUrl(topic);
   const gammaDisponivel = Boolean(gammaUrl && isItemVisible("conteudos", topic.id));
   document.body.classList.toggle("gamma-view", gammaDisponivel);
@@ -2703,6 +2884,75 @@ function renderTopicPage() {
   `;
 }
 
+function renderGroupTasks0779(root) {
+  const dias = groupTasks.filter((task) => tarefaGrupoVisivel(task));
+  root.innerHTML = `
+    <section class="section task-page-section"><div class="section-inner">
+      <div class="section-heading task-page-heading">
+        <p class="eyebrow">Ação 26109 · UFCD 0779</p>
+        <h1>Tarefas de Grupo — Glossário Colaborativo</h1>
+        <p class="lead">Ao longo dos cinco dias, cada grupo contribui com um conceito diferente relacionado com apresentações gráficas.</p>
+      </div>
+      <article class="card activity-card">
+        <h2>Como realizar a tarefa</h2>
+        <p>Para o conceito atribuído ao grupo, registem o <strong>termo ou expressão</strong>, a <strong>definição</strong>, <strong>para que serve</strong> e um <strong>exemplo de utilização no PowerPoint</strong>.</p>
+        <p>O glossário é desenvolvido ao longo dos cinco dias, com um conceito diferente por grupo em cada dia.</p>
+        ${obterGlossarioUrl() ? `<a class="small-button orange" href="${escapeHtml(obterGlossarioUrl())}">Abrir glossário no Moodle</a>` : ""}
+      </article>
+      <div class="task-module-list">
+        ${dias.map((task) => `
+          <details class="task-module-card" ${task.day === 1 ? "open" : ""}>
+            <summary><span class="task-module-copy"><strong>${escapeHtml(task.title)}</strong><small>Cinco conceitos — um por grupo</small></span><span class="task-module-mark" aria-hidden="true">${task.day}</span></summary>
+            <div class="task-module-body">
+              <div class="task-block"><strong>Conceitos atribuídos</strong>
+                <div class="word-list">${task.words.map(([word, group]) => `<span><strong>${escapeHtml(group)}</strong> ${escapeHtml(word)}</span>`).join("")}</div>
+              </div>
+              <p><strong>Contributo de cada grupo:</strong> indicar o conceito, defini-lo, explicar a sua finalidade numa apresentação e dar um exemplo de utilização no PowerPoint.</p>
+            </div>
+          </details>`).join("") || '<p>Os conceitos de cada dia serão disponibilizados pela formadora.</p>'}
+      </div>
+    </div></section>`;
+}
+
+function renderIndividualTasks0779(root) {
+  const tarefas = individualTasks.filter((task) => tarefaIndividualVisivel(task));
+  root.innerHTML = `
+    <section class="section task-page-section"><div class="section-inner">
+      <div class="section-heading task-page-heading">
+        <p class="eyebrow">Ação 26109 · UFCD 0779</p>
+        <h1>Tarefas Individuais</h1>
+        <p class="lead">Crie apresentações no PowerPoint e utilize os trabalhos produzidos para construir e enriquecer o seu e-portfólio.</p>
+      </div>
+      <details class="task-overview-card" open>
+        <summary><span class="task-module-copy"><strong>Organização das evidências e partilha</strong><small>A Drive de cada formando é o local de referência para os ficheiros do projeto.</small></span><span class="task-module-mark" aria-hidden="true">TI</span></summary>
+        <div class="task-module-body">
+          <ul class="moodle-like-list">
+            <li>Guarde na sua própria Drive uma cópia de todas as evidências que pretende usar no e-portfólio, mesmo que já as tenha entregue à formadora.</li>
+            <li>Crie ou identifique a pasta do projeto do e-portfólio da Ação 26109 e mantenha aí os ficheiros do projeto.</li>
+            <li>Partilhe essa pasta com a formadora; não é necessário partilhar cada evidência individualmente, salvo indicação em contrário.</li>
+          </ul>
+          <a class="small-button orange" href="${getBasePath()}e-portfolio.html">Abrir página do e-portfólio</a>
+        </div>
+      </details>
+      <div class="task-module-list individual-task-list">
+        ${tarefas.map((task, index) => `
+          <details class="task-module-card individual-task-card" ${index === 0 ? "open" : ""}>
+            <summary><span class="task-module-copy"><strong>${escapeHtml(task.title)}</strong><small>${escapeHtml(task.objective)}</small></span><span class="task-module-mark" aria-hidden="true">${escapeHtml(task.code)}</span></summary>
+            <div class="task-module-body">
+              <div class="task-block"><strong>Objetivo</strong><p>${escapeHtml(task.objective)}</p></div>
+              <div class="task-block"><strong>O que fazer</strong><ol class="moodle-like-list">${task.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol></div>
+              ${task.outcome?.length ? `<div class="task-block"><strong>No final</strong><ul class="moodle-like-list">${task.outcome.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}
+              ${task.note ? `<aside class="task-note-box"><strong>Atenção</strong><p>${escapeHtml(task.note)}</p></aside>` : ""}
+              <div class="embed-fallback resource-action-row align-right">
+                <a class="small-button orange" href="${getBasePath()}${escapeHtml(task.pdfUrl)}">Abrir PDF da ${escapeHtml(task.code)}</a>
+                ${obterForumUrl(task) ? `<a class="small-button moodle-button" href="${escapeHtml(obterForumUrl(task))}">Abrir tópico no Moodle</a>` : ""}
+              </div>
+            </div>
+          </details>`).join("") || '<p>As tarefas serão disponibilizadas pela formadora.</p>'}
+      </div>
+    </div></section>`;
+}
+
 function renderActivityPage() {
   const root = document.getElementById("activity-root") || document.getElementById("evaluation-root");
   if (!root) return;
@@ -2724,6 +2974,11 @@ function renderActivityPage() {
   const isEvaluation = evaluations.some((item) => item.id === activity.id);
   document.title = `UFCD 0779 | ${activity.title}`;
 
+  if (!isItemVisible(isEvaluation ? "avaliacao" : "atividades", activity.id)) {
+    mostrarEstadoVisibilidade(root, isEvaluation ? "Avaliação" : "Atividade", isEvaluation ? "avaliacao" : "atividades", activity.id);
+    return;
+  }
+
   const activeSubmenu = document.getElementById(isEvaluation ? "submenu-avaliacao" : "submenu-atividades");
   activeSubmenu?.querySelectorAll("a").forEach((link) => {
     const active = link.getAttribute("href")?.endsWith(activity.url);
@@ -2738,7 +2993,16 @@ function renderActivityPage() {
     return;
   }
 
-  if (["tarefas-grupo", "tarefas-individuais", "projeto-final-apresentacao"].includes(activity.id)) {
+  if (activity.id === "tarefas-grupo") {
+    renderGroupTasks0779(root);
+    return;
+  }
+  if (activity.id === "tarefas-individuais") {
+    renderIndividualTasks0779(root);
+    return;
+  }
+
+  if (activity.id === "projeto-final-apresentacao") {
     root.innerHTML = `
       <section class="section task-page-section">
         <div class="section-inner">
@@ -3425,7 +3689,11 @@ function renderResourcePage() {
   if (!root) return;
 
   const resource = resources.find((item) => item.id === document.body.dataset.resource) || resources[0];
-  document.title = `UFCD 0778 | ${resource.title}`;
+  document.title = `UFCD 0779 | ${resource.title}`;
+  if (!isItemVisible("recursos", resource.id)) {
+    mostrarEstadoVisibilidade(root, "Recurso", "recursos", resource.id);
+    return;
+  }
 
   if (resource.gptUrl) {
     if (!isItemVisible("assistentesGpt", resource.id)) {
@@ -3628,7 +3896,7 @@ function renderStandaloneTeamsControlPage() {
   const root = document.getElementById("teams-control-root");
   if (!root) return;
 
-  document.title = "UFCD 0778 | Partilha de ecrã";
+  document.title = "UFCD 0779 | Controlo do site";
   renderTeamsControl(root, { compact: false, publicView: false });
 }
 
@@ -3664,7 +3932,11 @@ function inicializarSite() {
   renderEvaluationMenus();
   renderResourceMenus();
   renderPortfolioMenuLink();
+  atualizarMenuPrincipal();
   atualizarBotoesAvaliacaoPaginaInicial();
+  atualizarSecoesPaginaInicial();
+  atualizarConteudosApresentacoes();
+  atualizarPortfolioIncorporado();
   setupMenu();
   setupFloatingActions();
   renderHomeCards();
