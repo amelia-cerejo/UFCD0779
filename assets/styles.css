@@ -3039,7 +3039,7 @@ body.menu-open .sidebar {
   display: block;
   width: 100%;
   min-height: 900px;
-  border: 1px solid var(--cor-linha) !important;
+  border: 0 !important;
   border-radius: 8px;
   background: var(--cor-branco);
   box-shadow: 0 10px 24px rgba(0, 120, 212, 0.07);

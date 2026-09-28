@@ -2212,6 +2212,9 @@ function renderSiteVisibilityControls() {
 }
 
 function atualizarControlosVisibilidadeDoSite(root) {
+  root.querySelectorAll("[data-visibility-section], [data-visibility-control], [data-link-control]").forEach((input) => {
+    input.disabled = !siteVisibilityRemoteFresh;
+  });
   root.querySelectorAll("[data-visibility-section]").forEach((input) => {
     input.checked = siteVisibilitySections[input.dataset.visibilitySection] === true;
   });
@@ -2366,20 +2369,8 @@ async function setupTeamsControl(root) {
     }
   }
 
-  if (controlStatus) controlStatus.textContent = "A carregar visibilidade e ligações do site...";
-  const visibilidadeRemotaOk = await carregarVisibilidadeRemotaDoSite();
   atualizarControlosVisibilidadeDoSite(root);
-  if (controlStatus) {
-    controlStatus.textContent = visibilidadeRemotaOk
-      ? "Visibilidade e ligações carregadas da configuração central."
-      : "Não foi possível carregar a configuração central da UFCD 0779. A gravação está bloqueada para evitar alterações incorretas.";
-  }
-
-  await carregarDadosTeams(root);
-
-  if (APPS_SCRIPT_WEB_APP_URL) {
-    window.setInterval(() => carregarDadosTeams(root), 30000);
-  }
+  if (controlStatus) controlStatus.textContent = "A carregar visibilidade e ligações do site...";
 
   root.addEventListener("click", async (event) => {
     const saveVisibilityButton = event.target.closest('[data-action="save-site-visibility"]');
@@ -2485,6 +2476,19 @@ async function setupTeamsControl(root) {
       if (controlStatus) controlStatus.textContent = "Ligação alterada neste ecrã. Usa Guardar para enviar para a Sheet.";
     }
   });
+
+  // Ligar os comandos antes das consultas: os formandos não bloqueiam a gestão do site.
+  void carregarDadosTeams(root);
+  if (APPS_SCRIPT_WEB_APP_URL) {
+    window.setInterval(() => carregarDadosTeams(root), 30000);
+  }
+  const visibilidadeRemotaOk = await carregarVisibilidadeRemotaDoSite();
+  atualizarControlosVisibilidadeDoSite(root);
+  if (controlStatus) {
+    controlStatus.textContent = visibilidadeRemotaOk
+      ? "Visibilidade e ligações carregadas da configuração central."
+      : "Não foi possível carregar a configuração central da UFCD 0779. A gravação está bloqueada para evitar alterações incorretas.";
+  }
 }
 
 async function carregarDadosTeams(root) {
@@ -3924,7 +3928,16 @@ function inicializarSite() {
     carregarVisibilidadeDoSite();
     carregarLinksDoSite();
   } else {
-    carregarUltimaVisibilidadeRemotaDoSite();
+    if (!carregarUltimaVisibilidadeRemotaDoSite()) {
+      const snapshot = filtrarItensControloDaUfcdAtual(window.UFCD0779_VISIBILITY_SNAPSHOT);
+      if (snapshot.length) {
+        ocultarVisibilidadeControlada();
+        aplicarItensVisibilidadeRemota(snapshot);
+        siteVisibilityRemoteItems = snapshot;
+        siteVisibilityRemoteReady = true;
+        siteVisibilityRemoteAttempted = true;
+      }
+    }
   }
 
   renderContentMenus();
