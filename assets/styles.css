@@ -3535,6 +3535,12 @@ body.gamma-view .content-gamma-full {
   background: var(--cor-contraste);
 }
 
+.task-single-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
 .activity-card {
   border-left: 7px solid var(--cor-contraste);
 }

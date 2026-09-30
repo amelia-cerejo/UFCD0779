@@ -10,7 +10,7 @@ window.UFCD0779_PENDING_LINKS = {
   spreadsheetId: window.UFCD0779_SPREADSHEET_ID,
   mentimeterUrl: "https://www.menti.com/al9tm8ir6gkm",
   mentimeterEmbedUrl: "https://www.mentimeter.com/app/presentation/al8dp9dgyeb4gv33qy4c6tezkvgoq63r/embed",
-  glossaryUrl: "",
+  glossaryUrl: "https://fad.iefp.pt/mod/glossary/view.php?id=427149",
   individualTaskForumUrls: [],
   manualPdf: ""
 };

@@ -2901,7 +2901,7 @@ function renderGroupTasks0779(root) {
         <h2>Como realizar a tarefa</h2>
         <p>Para o conceito atribuído ao grupo, registem o <strong>termo ou expressão</strong>, a <strong>definição</strong>, <strong>para que serve</strong> e um <strong>exemplo de utilização no PowerPoint</strong>.</p>
         <p>O glossário é desenvolvido ao longo dos cinco dias, com um conceito diferente por grupo em cada dia.</p>
-        ${obterGlossarioUrl() ? `<a class="small-button orange" href="${escapeHtml(obterGlossarioUrl())}">Abrir glossário no Moodle</a>` : ""}
+        ${obterGlossarioUrl() ? `<div class="task-single-action"><a class="small-button orange" href="${escapeHtml(obterGlossarioUrl())}">Abrir glossário no Moodle</a></div>` : ""}
       </article>
       <div class="task-module-list">
         ${dias.map((task) => `
@@ -2926,6 +2926,7 @@ function renderIndividualTasks0779(root) {
         <p class="eyebrow">Ação 26109 · UFCD 0779</p>
         <h1>Tarefas Individuais</h1>
         <p class="lead">Crie apresentações no PowerPoint e utilize os trabalhos produzidos para construir e enriquecer o seu e-portfólio.</p>
+        <p>Os tópicos das TI estão no Moodle do IEFP. Se ainda não tiver uma sessão iniciada, o Moodle pedirá o login antes de apresentar o tópico, desde que tenha acesso à disciplina.</p>
       </div>
       <details class="task-overview-card" open>
         <summary><span class="task-module-copy"><strong>Organização das evidências e partilha</strong><small>A Drive de cada formando é o local de referência para os ficheiros do projeto.</small></span><span class="task-module-mark" aria-hidden="true">TI</span></summary>
@@ -2935,7 +2936,7 @@ function renderIndividualTasks0779(root) {
             <li>Crie ou identifique a pasta do projeto do e-portfólio da Ação 26109 e mantenha aí os ficheiros do projeto.</li>
             <li>Partilhe essa pasta com a formadora; não é necessário partilhar cada evidência individualmente, salvo indicação em contrário.</li>
           </ul>
-          <a class="small-button orange" href="${getBasePath()}e-portfolio.html">Abrir página do e-portfólio</a>
+          <div class="task-single-action"><a class="small-button orange" href="${getBasePath()}e-portfolio.html">Abrir página do e-portfólio</a></div>
         </div>
       </details>
       <div class="task-module-list individual-task-list">
