@@ -141,7 +141,7 @@ const evaluations = [
   { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0779.", url: "avaliacoes/avaliacao-sumativa.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/02-sumativa.html", embedTitle: "SUM_1" },
   { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/04-autoavaliacao-final.html", embedTitle: "AUTO_1" },
   { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares", menuTitle: "Entre pares", intro: "Avaliação colaborativa da UFCD 0779.", url: "avaliacoes/avaliacao-entre-pares.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/03-entre-pares.html", embedTitle: "Avaliação colaborativa" },
-  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação.", url: "avaliacoes/avaliacao-formacao.html", embedUrl: "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html", embedTitle: "Avaliação da Qualidade da Formação" }
+  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação.", url: "avaliacoes/avaliacao-formacao.html", embedUrl: "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html?codigo_ufcd=0779", embedTitle: "Avaliação da Qualidade da Formação" }
 ];
 
 const legacyGroupTasks = [
@@ -950,7 +950,7 @@ function getBasePath() {
 }
 
 function construirUrlEmbedAvaliacao(embedUrl) {
-  if (/\/ufcd-0779\//.test(embedUrl) || embedUrl === "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html") return embedUrl;
+  if (/\/ufcd-0779\//.test(embedUrl) || /https:\/\/avaliacoes-formacao\.netlify\.app\/avaliacao-formacao\.html(?:\?|$)/.test(embedUrl)) return embedUrl;
   if (!embedUrl || !APPS_SCRIPT_SPREADSHEET_ID) return embedUrl;
 
   try {
