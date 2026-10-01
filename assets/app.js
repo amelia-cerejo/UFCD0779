@@ -19,15 +19,15 @@ const pendingLinks = {
 };
 
 const topics = [
-  { id: "conceitos-gerais", title: "Conceitos gerais", cardTitle: "Conceitos gerais", intro: "Características, ferramentas e finalidade das apresentações gráficas.", url: "conteudos/apresentacoes.html#conceitos-gerais" },
-  { id: "ferramentas", title: "Ferramentas", cardTitle: "Ferramentas", intro: "Conhecer o ambiente de trabalho e as ferramentas do apresentador gráfico.", url: "conteudos/apresentacoes.html#ferramentas" },
-  { id: "apresentacoes-graficas", title: "Apresentações gráficas", cardTitle: "Apresentações gráficas", intro: "Planear a mensagem, o público e a sequência de diapositivos.", url: "conteudos/apresentacoes.html#apresentacoes-graficas" },
-  { id: "dispositivos-padrao", title: "Dispositivos padrão (master)", menuTitle: "Padrão (master)", cardTitle: "Dispositivos padrão (master)", intro: "Criar um modelo coerente para a apresentação.", url: "conteudos/apresentacoes.html#dispositivos-padrao" },
-  { id: "texto", title: "Texto", cardTitle: "Inserção e formatação de texto", intro: "Organizar e formatar texto legível nos diapositivos.", url: "conteudos/apresentacoes.html#texto" },
-  { id: "impressao", title: "Impressão", cardTitle: "Opções de impressão", intro: "Preparar a apresentação e os folhetos para impressão ou PDF.", url: "conteudos/apresentacoes.html#impressao" },
-  { id: "objetos-graficos", title: "Texto, desenho e gráficos", menuTitle: "Desenho e gráficos", cardTitle: "Ferramentas de texto, desenho e gráficos", intro: "Inserir e organizar formas, imagens e gráficos para comunicar ideias.", url: "conteudos/apresentacoes.html#objetos-graficos" },
-  { id: "efeitos-especiais", title: "Efeitos especiais", cardTitle: "Efeitos especiais", intro: "Animação de textos e objetos, associação de sons e transições.", url: "conteudos/apresentacoes.html#efeitos-especiais" },
-  { id: "difusao", title: "Difusão de dispositivos", cardTitle: "Difusão de dispositivos", intro: "Apresentar, partilhar e difundir os diapositivos.", url: "conteudos/apresentacoes.html#difusao" }
+  { id: "conceitos-gerais", title: "Conceitos gerais", cardTitle: "Conceitos gerais", intro: "Características, ferramentas e finalidade das apresentações gráficas.", url: "conteudos/guia-0779/index.html" },
+  { id: "ferramentas", title: "Ferramentas", cardTitle: "Ferramentas", intro: "Conhecer o ambiente de trabalho e as ferramentas do apresentador gráfico.", url: "conteudos/guia-0779/ferramentas.html" },
+  { id: "apresentacoes-graficas", title: "Apresentações gráficas", cardTitle: "Apresentações gráficas", intro: "Planear a mensagem, o público e a sequência de diapositivos.", url: "conteudos/guia-0779/apresentacoes.html" },
+  { id: "dispositivos-padrao", title: "Dispositivos padrão (master)", menuTitle: "Padrão (master)", cardTitle: "Dispositivos padrão (master)", intro: "Criar um modelo coerente para a apresentação.", url: "conteudos/guia-0779/master.html" },
+  { id: "texto", title: "Texto", cardTitle: "Inserção e formatação de texto", intro: "Organizar e formatar texto legível nos diapositivos.", url: "conteudos/guia-0779/texto.html" },
+  { id: "impressao", title: "Impressão", cardTitle: "Opções de impressão", intro: "Preparar a apresentação e os folhetos para impressão ou PDF.", url: "conteudos/guia-0779/impressao.html" },
+  { id: "objetos-graficos", title: "Texto, desenho e gráficos", menuTitle: "Desenho e gráficos", cardTitle: "Ferramentas de texto, desenho e gráficos", intro: "Inserir e organizar formas, imagens e gráficos para comunicar ideias.", url: "conteudos/guia-0779/desenho.html" },
+  { id: "efeitos-especiais", title: "Efeitos especiais", cardTitle: "Efeitos especiais", intro: "Animação de textos e objetos, associação de sons e transições.", url: "conteudos/guia-0779/efeitos.html" },
+  { id: "difusao", title: "Difusão de dispositivos", cardTitle: "Difusão de dispositivos", intro: "Apresentar, partilhar e difundir os diapositivos.", url: "conteudos/guia-0779/difusao.html" }
 ];
 
 const contentLessons = {
@@ -946,6 +946,7 @@ function tarefaIndividualVisivel(task) {
 }
 function getBasePath() {
   const path = window.location.pathname;
+  if (path.includes("/conteudos/guia-0779/")) return "../../";
   return path.includes("/conteudos/") || path.includes("/atividades/") || path.includes("/avaliacoes/") || path.includes("/recursos/") ? "../" : "";
 }
 

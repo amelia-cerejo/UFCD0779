@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ferramentas de Texto, Desenho e Gráficos — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.85rem;user-select:none;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:0 0 0.5rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;color:var(--text);}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  ul.content-list{list-style:none;padding:0;margin:0.75rem 0;}
+  ul.content-list li{padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--gray-bg);font-size:0.95rem;}
+  ul.content-list li::before{content:'▸';color:var(--orange);position:absolute;left:0;font-weight:700;}
+  ul.content-list li strong{color:var(--orange);}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .steps{margin:1rem 0;}
+  .step{display:flex;gap:1rem;margin-bottom:0.75rem;align-items:flex-start;}
+  .step-num{background:var(--orange);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;margin-top:0.1rem;}
+  .step-text{font-size:0.95rem;}
+  .step-text strong{color:var(--orange);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.25rem 0;}
+  .card{background:var(--white);border:1px solid var(--gray);border-radius:12px;padding:1.25rem;transition:box-shadow 0.2s,transform 0.2s;}
+  .card:hover{box-shadow:0 4px 16px rgba(210,71,38,0.12);transform:translateY(-2px);}
+  .card-icon{font-size:1.75rem;margin-bottom:0.5rem;}
+  .card h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .card p{font-size:0.88rem;color:var(--text-sec);margin:0;}
+  .img-block{margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--gray);box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+  .img-block img{width:100%;height:auto;display:block;max-height:380px;object-fit:cover;}
+  .img-caption{background:var(--gray-bg);padding:0.5rem 1rem;font-size:0.82rem;color:var(--text-sec);text-align:center;font-style:italic;}
+  .tool-row{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.1rem;background:var(--white);border:1px solid var(--gray);border-radius:10px;margin-bottom:0.75rem;transition:box-shadow 0.2s;}
+  .tool-row:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .tool-icon{font-size:1.75rem;flex-shrink:0;}
+  .tool-body h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.2rem;}
+  .tool-body p{font-size:0.87rem;color:var(--text-sec);margin:0;}
+  .tool-body code{background:var(--gray-bg);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.82rem;color:var(--orange);}
+  .page-nav-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--gray);flex-wrap:wrap;gap:1rem;}
+  .page-nav-bottom a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.1rem;border-radius:20px;text-decoration:none;font-size:0.88rem;font-weight:600;border:2px solid var(--orange);color:var(--orange);transition:all 0.2s;}
+  .page-nav-bottom a:hover{background:var(--orange);color:white;}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.cards{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a href="caracteristicas.html">⭐ Características</a>
+<a href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações</a>
+<a href="master.html">🎨 Master</a>
+<a href="texto.html">📝 Texto</a>
+<a href="impressao.html">🖨️ Impressão</a>
+<a class="active" href="desenho.html">✏️ Desenho</a>
+<a href="efeitos.html">✨ Efeitos</a>
+<a href="difusao.html">📡 Difusão</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#formas" onclick="closeSidebar()">🔷 Formas</a>
+<a href="#smartart" onclick="closeSidebar()">🧩 SmartArt</a>
+<a href="#imagens" onclick="closeSidebar()">🖼️ Imagens</a>
+<a href="#graficos" onclick="closeSidebar()">📊 Gráficos</a>
+<a href="#tabelas" onclick="closeSidebar()">📋 Tabelas</a>
+<a href="#organizar" onclick="closeSidebar()">📐 Organizar Objetos</a>
+<a href="#resumo" onclick="closeSidebar()">✅ Resumo</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 2.4 · Inserção e Edição de Documento Modelo</span>
+<h1>Ferramentas de Texto, Desenho e Gráficos</h1>
+<p>Explora as ferramentas de desenho, inserção de imagens, gráficos e tabelas do PowerPoint — enriquece visualmente os teus diapositivos com elementos profissionais.</p>
+<div class="hero-meta">
+<span>📚 UFCD 0779</span>
+<span>✏️ Desenho e gráficos</span>
+<span>⏱️ Sessões 9–10</span>
+<span>💻 Separador Inserir</span>
+</div>
+</div>
+<!-- INTRODUÇÃO -->
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>O PowerPoint disponibiliza um conjunto rico de ferramentas para enriquecer visualmente os diapositivos. Para além do texto, podes inserir <strong>formas, SmartArt, imagens, gráficos e tabelas</strong> — elementos que tornam a comunicação mais clara, visual e apelativa.</p>
+<p>Todas estas ferramentas estão disponíveis no separador <strong>Inserir</strong> do friso. Ao selecionar qualquer objeto, aparecem automaticamente separadores contextuais com opções de formatação específicas para esse elemento.</p>
+<div class="img-block">
+<img alt="Separador Inserir do PowerPoint" loading="lazy" src="https://empowerpoint.click/wp-content/uploads/2023/11/Interface-and-Tools-Ribbon-1024x576.jpg"/>
+<div class="img-caption">O separador Inserir contém todas as ferramentas de desenho e inserção de objetos</div>
+</div>
+<div class="tip">💡 Ao selecionar um objeto (imagem, forma, gráfico), aparecem automaticamente separadores contextuais no friso com opções específicas para esse elemento.</div>
+</section>
+<!-- FORMAS -->
+<section id="formas">
+<div class="section-header"><div class="section-icon">🔷</div><h2>Formas</h2></div>
+<p>As formas permitem criar elementos visuais — retângulos, círculos, setas, estrelas, balões de fala e muito mais. São ideais para destacar informação, criar diagramas simples ou adicionar elementos decorativos.</p>
+<h3>Como inserir uma forma</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Inserir &gt; Formas</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe a forma desejada da galeria.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Clica e arrasta no diapositivo para desenhar a forma.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Usa o separador <strong>Formato da Forma</strong> para personalizar preenchimento, contorno e efeitos.</div></div>
+</div>
+<h3>Categorias de formas disponíveis</h3>
+<div class="cards">
+<div class="card"><div class="card-icon">⬜</div><h4>Retângulos e Quadrados</h4><p>Formas básicas para caixas de texto, fundos e separadores visuais.</p></div>
+<div class="card"><div class="card-icon">⭕</div><h4>Elipses e Círculos</h4><p>Ideais para ícones, marcadores e elementos circulares.</p></div>
+<div class="card"><div class="card-icon">➡️</div><h4>Setas e Conectores</h4><p>Para indicar direções, fluxos e ligações entre elementos.</p></div>
+<div class="card"><div class="card-icon">💬</div><h4>Balões de Fala</h4><p>Para citações, comentários e elementos de diálogo.</p></div>
+<div class="card"><div class="card-icon">⭐</div><h4>Estrelas e Faixas</h4><p>Para destaques, prémios e elementos decorativos.</p></div>
+<div class="card"><div class="card-icon">📐</div><h4>Formas de Equação</h4><p>Símbolos matemáticos e operadores para apresentações técnicas.</p></div>
+</div>
+<div class="tip">💡 Mantém premida a tecla <strong>Shift</strong> ao desenhar para criar formas perfeitas (círculo perfeito, quadrado perfeito).</div>
+<h3>Adicionar texto a uma forma</h3>
+<p>Faz <strong>duplo clique</strong> numa forma para adicionar texto diretamente dentro dela. O texto fica centrado automaticamente e pode ser formatado como qualquer outro texto.</p>
+</section>
+<!-- SMARTART -->
+<section id="smartart">
+<div class="section-header"><div class="section-icon">🧩</div><h2>SmartArt</h2></div>
+<p>O <strong>SmartArt</strong> permite criar diagramas profissionais pré-formatados para representar listas, processos, hierarquias, ciclos e relações — sem necessidade de criar os elementos manualmente.</p>
+<h3>Como inserir SmartArt</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Inserir &gt; SmartArt</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe a categoria e o tipo de diagrama.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Clica em <strong>OK</strong> para inserir o diagrama.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Clica em cada elemento para escrever o texto.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Usa o separador <strong>Design do SmartArt</strong> para alterar o estilo e as cores.</div></div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Categoria</th><th>Para que serve</th><th>Exemplos de uso</th></tr></thead>
+<tbody>
+<tr><td>📋 <strong>Lista</strong></td><td>Apresentar itens sem ordem específica</td><td>Características, vantagens, recursos</td></tr>
+<tr><td>➡️ <strong>Processo</strong></td><td>Mostrar passos sequenciais</td><td>Fluxo de trabalho, procedimentos</td></tr>
+<tr><td>🔄 <strong>Ciclo</strong></td><td>Representar processos contínuos</td><td>Ciclo de vida, processos repetitivos</td></tr>
+<tr><td>🏗️ <strong>Hierarquia</strong></td><td>Mostrar estruturas organizacionais</td><td>Organogramas, estruturas de equipa</td></tr>
+<tr><td>🔗 <strong>Relação</strong></td><td>Mostrar ligações entre elementos</td><td>Comparações, conexões, dependências</td></tr>
+<tr><td>🔢 <strong>Matriz</strong></td><td>Mostrar relações em quadrantes</td><td>Análise SWOT, matrizes de decisão</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip">💡 O SmartArt é ideal para substituir listas de texto simples por representações visuais mais apelativas e fáceis de compreender.</div>
+</section>
+<!-- IMAGENS -->
+<section id="imagens">
+<div class="section-header"><div class="section-icon">🖼️</div><h2>Imagens</h2></div>
+<p>As imagens tornam as apresentações mais apelativas e facilitam a compreensão de conceitos complexos. O PowerPoint permite inserir imagens de várias fontes.</p>
+<div class="tool-row"><div class="tool-icon">💻</div><div class="tool-body"><h4>Imagens locais</h4><p>Insere imagens guardadas no teu computador. Caminho: <code>Inserir &gt; Imagens &gt; Este Dispositivo</code></p></div></div>
+<div class="tool-row"><div class="tool-icon">🌐</div><div class="tool-body"><h4>Imagens online</h4><p>Pesquisa e insere imagens diretamente da internet (requer ligação). Caminho: <code>Inserir &gt; Imagens &gt; Imagens Online</code></p></div></div>
+<div class="tool-row"><div class="tool-icon">📸</div><div class="tool-body"><h4>Captura de ecrã</h4><p>Captura e insere uma imagem de qualquer janela aberta no computador. Caminho: <code>Inserir &gt; Captura de Ecrã</code></p></div></div>
+<div class="tool-row"><div class="tool-icon">🎨</div><div class="tool-body"><h4>Ícones e Imagens de Stock</h4><p>Biblioteca de ícones e imagens profissionais incluída no Microsoft 365. Caminho: <code>Inserir &gt; Ícones</code> ou <code>Imagens de Stock</code></p></div></div>
+<h3>Formatar imagens</h3>
+<p>Ao selecionar uma imagem, o separador <strong>Formato da Imagem</strong> permite:</p>
+<ul class="content-list">
+<li><strong>Cortar:</strong> Remove partes indesejadas da imagem (Formato da Imagem &gt; Cortar).</li>
+<li><strong>Estilos de imagem:</strong> Aplica molduras, sombras e efeitos predefinidos.</li>
+<li><strong>Ajustar cor e brilho:</strong> Modifica a saturação, tom e brilho da imagem.</li>
+<li><strong>Remover fundo:</strong> Remove automaticamente o fundo de uma imagem (Formato da Imagem &gt; Remover Fundo).</li>
+<li><strong>Cortar para forma:</strong> Recorta a imagem no formato de uma forma geométrica.</li>
+</ul>
+<div class="note">📌 Usa sempre imagens com boa resolução. Evita esticar imagens além do seu tamanho original — ficam pixelizadas e prejudicam o aspeto profissional da apresentação.</div>
+</section>
+<!-- GRÁFICOS -->
+<section id="graficos">
+<div class="section-header"><div class="section-icon">📊</div><h2>Gráficos</h2></div>
+<p>Os gráficos permitem representar dados de forma visual e clara, facilitando a compreensão de tendências, comparações e distribuições.</p>
+<h3>Como inserir um gráfico</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Inserir &gt; Gráfico</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe o tipo de gráfico na galeria.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Clica em <strong>OK</strong> — abre uma folha de cálculo para introduzir os dados.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Introduz os dados na folha de cálculo. O gráfico atualiza-se automaticamente.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Fecha a folha de cálculo. Usa o separador <strong>Design do Gráfico</strong> para personalizar.</div></div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Tipo de gráfico</th><th>Melhor para</th></tr></thead>
+<tbody>
+<tr><td>📊 <strong>Colunas / Barras</strong></td><td>Comparar valores entre categorias</td></tr>
+<tr><td>📈 <strong>Linhas</strong></td><td>Mostrar tendências ao longo do tempo</td></tr>
+<tr><td>🥧 <strong>Circular (Pizza)</strong></td><td>Mostrar proporções de um todo</td></tr>
+<tr><td>📉 <strong>Área</strong></td><td>Mostrar volumes acumulados ao longo do tempo</td></tr>
+<tr><td>🔵 <strong>Dispersão (XY)</strong></td><td>Mostrar correlações entre duas variáveis</td></tr>
+<tr><td>🍩 <strong>Anel</strong></td><td>Comparar proporções de múltiplos conjuntos</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip">💡 Escolhe o tipo de gráfico em função da mensagem que queres transmitir — não do que parece mais bonito. Um gráfico de linhas para tendências, colunas para comparações, circular para proporções.</div>
+</section>
+<!-- TABELAS -->
+<section id="tabelas">
+<div class="section-header"><div class="section-icon">📋</div><h2>Tabelas</h2></div>
+<p>As tabelas são ideais para organizar e apresentar informação estruturada de forma clara e comparável.</p>
+<h3>Como inserir uma tabela</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Inserir &gt; Tabela</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Arrasta o cursor para selecionar o número de linhas e colunas, ou clica em <strong>Inserir Tabela</strong> para definir manualmente.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Clica em cada célula para introduzir o conteúdo. Usa <strong>Tab</strong> para avançar para a célula seguinte.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Usa os separadores <strong>Estrutura da Tabela</strong> e <strong>Esquema</strong> para formatar e ajustar a tabela.</div></div>
+</div>
+<h3>Dicas para tabelas eficazes</h3>
+<ul class="content-list">
+<li><strong>Cabeçalhos claros:</strong> A primeira linha deve identificar claramente o conteúdo de cada coluna.</li>
+<li><strong>Menos é mais:</strong> Evita tabelas com demasiadas colunas ou linhas — divide em várias tabelas se necessário.</li>
+<li><strong>Destaca a linha de cabeçalho:</strong> Usa uma cor de fundo diferente para a primeira linha.</li>
+<li><strong>Alinhamento consistente:</strong> Alinha os números à direita e o texto à esquerda.</li>
+<li><strong>Espaçamento adequado:</strong> Garante que o texto não fica demasiado próximo das bordas das células.</li>
+</ul>
+</section>
+<!-- ORGANIZAR OBJETOS -->
+<section id="organizar">
+<div class="section-header"><div class="section-icon">📐</div><h2>Organizar Objetos</h2></div>
+<p>Quando um diapositivo tem vários objetos, é essencial saber organizá-los com precisão para criar um layout profissional.</p>
+<div class="tool-row"><div class="tool-icon">📏</div><div class="tool-body"><h4>Alinhar e Distribuir</h4><p>Seleciona vários objetos e usa <code>Formato da Forma &gt; Organizar &gt; Alinhar</code> para os alinhar entre si ou em relação ao diapositivo. A opção <strong>Distribuir</strong> espaça os objetos de forma uniforme.</p></div></div>
+<div class="tool-row"><div class="tool-icon">🔼</div><div class="tool-body"><h4>Ordem de Sobreposição</h4><p>Controla qual objeto fica à frente ou atrás: clica com o botão direito &gt; <strong>Trazer para a Frente</strong> / <strong>Enviar para Trás</strong>.</p></div></div>
+<div class="tool-row"><div class="tool-icon">🔗</div><div class="tool-body"><h4>Agrupar</h4><p>Seleciona vários objetos e agrupa-os (botão direito &gt; <strong>Agrupar</strong>) para os mover e redimensionar em conjunto. Para desagrupar: botão direito &gt; <strong>Desagrupar</strong>.</p></div></div>
+<div class="tool-row"><div class="tool-icon">🗂️</div><div class="tool-body"><h4>Painel de Seleção</h4><p>Abre o Painel de Seleção (<code>Início &gt; Organizar &gt; Painel de Seleção</code>) para ver, selecionar, reordenar e ocultar objetos individualmente.</p></div></div>
+<div class="callout">
+<div class="callout-title">💡 Dica de produtividade</div>
+<p>Usa as <strong>guias inteligentes</strong> do PowerPoint — ao mover objetos, aparecem linhas de guia automáticas que ajudam a alinhar com outros elementos do diapositivo.</p>
+</div>
+</section>
+<!-- RESUMO -->
+<section id="resumo">
+<div class="section-header"><div class="section-icon">✅</div><h2>Resumo</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ferramenta</th><th>Como aceder</th><th>Para que serve</th></tr></thead>
+<tbody>
+<tr><td>🔷 <strong>Formas</strong></td><td>Inserir &gt; Formas</td><td>Elementos visuais, destaques, diagramas simples</td></tr>
+<tr><td>🧩 <strong>SmartArt</strong></td><td>Inserir &gt; SmartArt</td><td>Diagramas profissionais pré-formatados</td></tr>
+<tr><td>🖼️ <strong>Imagens</strong></td><td>Inserir &gt; Imagens</td><td>Fotografias, ilustrações, capturas de ecrã</td></tr>
+<tr><td>📊 <strong>Gráficos</strong></td><td>Inserir &gt; Gráfico</td><td>Representação visual de dados</td></tr>
+<tr><td>📋 <strong>Tabelas</strong></td><td>Inserir &gt; Tabela</td><td>Organização de informação estruturada</td></tr>
+<tr><td>📐 <strong>Alinhar</strong></td><td>Formato da Forma &gt; Organizar</td><td>Alinhamento e distribuição de objetos</td></tr>
+<tr><td>🔗 <strong>Agrupar</strong></td><td>Botão direito &gt; Agrupar</td><td>Mover e formatar vários objetos em conjunto</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<div class="page-nav-bottom">
+<a href="impressao.html">← Opções de Impressão</a>
+<a href="efeitos.html">✨ Efeitos Especiais →</a>
+</div>
+</main>
+<script>
+function toggleSidebar(){
+  const s=document.getElementById('sidebar');
+  const o=document.getElementById('overlay');
+  const b=document.getElementById('toggleBtn');
+  const open=s.classList.toggle('open');
+  o.classList.toggle('visible',open);
+  b.textContent=open?'✕':'☰';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('visible');
+  document.getElementById('toggleBtn').textContent='☰';
+}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);
+      if(active)active.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

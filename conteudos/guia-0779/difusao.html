@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Difusão de Dispositivos — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.85rem;user-select:none;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:0 0 0.5rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;color:var(--text);}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  ul.content-list{list-style:none;padding:0;margin:0.75rem 0;}
+  ul.content-list li{padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--gray-bg);font-size:0.95rem;}
+  ul.content-list li::before{content:'▸';color:var(--orange);position:absolute;left:0;font-weight:700;}
+  ul.content-list li strong{color:var(--orange);}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .steps{margin:1rem 0;}
+  .step{display:flex;gap:1rem;margin-bottom:0.75rem;align-items:flex-start;}
+  .step-num{background:var(--orange);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;margin-top:0.1rem;}
+  .step-text{font-size:0.95rem;}
+  .step-text strong{color:var(--orange);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.25rem 0;}
+  .card{background:var(--white);border:1px solid var(--gray);border-radius:12px;padding:1.25rem;transition:box-shadow 0.2s,transform 0.2s;}
+  .card:hover{box-shadow:0 4px 16px rgba(210,71,38,0.12);transform:translateY(-2px);}
+  .card-icon{font-size:1.75rem;margin-bottom:0.5rem;}
+  .card h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .card p{font-size:0.88rem;color:var(--text-sec);margin:0;}
+  .export-row{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.1rem;background:var(--white);border:1px solid var(--gray);border-radius:10px;margin-bottom:0.75rem;transition:box-shadow 0.2s;}
+  .export-row:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .export-icon{font-size:1.75rem;flex-shrink:0;}
+  .export-body h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.2rem;}
+  .export-body p{font-size:0.87rem;color:var(--text-sec);margin:0;}
+  .export-body code{background:var(--gray-bg);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.82rem;color:var(--orange);}
+  /* Checklist pré-apresentação */
+  .checklist{background:var(--violet-bg);border:2px solid var(--violet);border-radius:12px;padding:1.5rem;margin:1.5rem 0;}
+  .checklist h3{color:var(--violet);margin-top:0;margin-bottom:1rem;font-size:1rem;}
+  .check-item{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.6rem;font-size:0.92rem;}
+  .check-box{width:18px;height:18px;border:2px solid var(--violet);border-radius:4px;flex-shrink:0;margin-top:0.15rem;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--violet);}
+  /* Conclusão especial */
+  .conclusion{background:linear-gradient(135deg,var(--orange-bg),var(--violet-bg));border-radius:16px;padding:2rem;text-align:center;margin-top:2rem;border:1px solid var(--gray);}
+  .conclusion h2{color:var(--orange);font-size:1.5rem;margin-bottom:0.75rem;}
+  .conclusion p{color:var(--text-sec);max-width:600px;margin:0 auto 1rem;}
+  .conclusion .slogan{font-size:1.1rem;font-weight:700;color:var(--violet);font-style:italic;}
+  .page-nav-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--gray);flex-wrap:wrap;gap:1rem;}
+  .page-nav-bottom a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.1rem;border-radius:20px;text-decoration:none;font-size:0.88rem;font-weight:600;border:2px solid var(--orange);color:var(--orange);transition:all 0.2s;}
+  .page-nav-bottom a:hover{background:var(--orange);color:white;}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.cards{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a href="caracteristicas.html">⭐ Características</a>
+<a href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações</a>
+<a href="master.html">🎨 Master</a>
+<a href="texto.html">📝 Texto</a>
+<a href="impressao.html">🖨️ Impressão</a>
+<a href="desenho.html">✏️ Desenho</a>
+<a href="efeitos.html">✨ Efeitos</a>
+<a class="active" href="difusao.html">📡 Difusão</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#presencial" onclick="closeSidebar()">🎤 Apresentação Presencial</a>
+<a href="#modo-apresentador" onclick="closeSidebar()">👁️ Modo Apresentador</a>
+<a href="#exportar" onclick="closeSidebar()">📤 Exportar e Partilhar</a>
+<a href="#video" onclick="closeSidebar()">🎬 Exportar como Vídeo</a>
+<a href="#checklist" onclick="closeSidebar()">✅ Checklist Pré-Apresentação</a>
+<a href="#resumo" onclick="closeSidebar()">📋 Resumo Final</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 2.6 · Inserção e Edição de Documento Modelo</span>
+<h1>Difusão de Dispositivos</h1>
+<p>Aprende a apresentar, exportar e partilhar as tuas apresentações PowerPoint — presencialmente, online ou em formato digital — de forma profissional e eficaz.</p>
+<div class="hero-meta">
+<span>📚 UFCD 0779</span>
+<span>📡 Difusão e partilha</span>
+<span>⏱️ Sessões 19–20</span>
+<span>💻 Apresentação de Diapositivos</span>
+</div>
+</div>
+<!-- INTRODUÇÃO -->
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>A <strong>difusão de dispositivos</strong> refere-se ao conjunto de formas de apresentar, exportar e partilhar a apresentação com o público — seja presencialmente, à distância ou em formato digital. Em suma, é o processo de levar a apresentação do computador do autor até ao destinatário ou audiência, no formato mais adequado à finalidade.</p>
+<p>A escolha do formato de difusão deve depender sempre da finalidade:</p>
+<div class="cards">
+<div class="card"><div class="card-icon">🎤</div><h4>Apresentação ao vivo</h4><p>Usa o modo de apresentação do PowerPoint — F5 para iniciar.</p></div>
+<div class="card"><div class="card-icon">📄</div><h4>Consulta posterior</h4><p>Exporta para PDF — preserva o layout em qualquer dispositivo.</p></div>
+<div class="card"><div class="card-icon">🎬</div><h4>Partilha online</h4><p>Exporta como vídeo (.mp4) para publicar em plataformas digitais.</p></div>
+<div class="card"><div class="card-icon">☁️</div><h4>Colaboração</h4><p>Partilha via OneDrive para edição colaborativa em tempo real.</p></div>
+</div>
+</section>
+<!-- APRESENTAÇÃO PRESENCIAL -->
+<section id="presencial">
+<div class="section-header"><div class="section-icon">🎤</div><h2>Apresentação Presencial</h2></div>
+<p>A apresentação presencial é o modo mais comum de difusão — o apresentador projeta os diapositivos para o público enquanto faz a sua exposição oral.</p>
+<h3>Iniciar a apresentação</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Ação</th><th>Atalho</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>▶️ Iniciar desde o início</td><td><strong>F5</strong></td><td>Inicia a apresentação a partir do primeiro diapositivo</td></tr>
+<tr><td>▶️ Iniciar do diapositivo atual</td><td><strong>Shift+F5</strong></td><td>Inicia a partir do diapositivo selecionado</td></tr>
+<tr><td>⏸️ Ecrã preto (pausa)</td><td><strong>B</strong></td><td>Escurece o ecrã para focar a atenção no apresentador</td></tr>
+<tr><td>⏸️ Ecrã branco</td><td><strong>W</strong></td><td>Torna o ecrã branco</td></tr>
+<tr><td>⏭️ Avançar diapositivo</td><td><strong>→ / ↓ / Enter</strong></td><td>Passa para o diapositivo seguinte</td></tr>
+<tr><td>⏮️ Recuar diapositivo</td><td><strong>← / ↑</strong></td><td>Volta ao diapositivo anterior</td></tr>
+<tr><td>🔢 Ir para diapositivo</td><td><strong>Número + Enter</strong></td><td>Vai diretamente para o diapositivo com esse número</td></tr>
+<tr><td>🚪 Sair da apresentação</td><td><strong>Esc</strong></td><td>Termina a apresentação e regressa à edição</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Ferramentas durante a apresentação</h3>
+<ul class="content-list">
+<li><strong>Ponteiro laser:</strong> Simula um ponteiro laser vermelho para destacar elementos no ecrã.</li>
+<li><strong>Caneta:</strong> Permite desenhar e anotar diretamente no diapositivo durante a apresentação.</li>
+<li><strong>Marcador:</strong> Realça elementos com uma cor de destaque.</li>
+<li><strong>Apagar anotações (E):</strong> Remove todas as anotações feitas durante a apresentação.</li>
+<li><strong>Ver todos os diapositivos (G):</strong> Mostra uma grelha com todos os diapositivos para navegação rápida.</li>
+</ul>
+<div class="tip">💡 Clica com o botão direito do rato durante a apresentação para aceder a um menu com todas as opções de navegação e ferramentas de anotação.</div>
+</section>
+<!-- MODO APRESENTADOR -->
+<section id="modo-apresentador">
+<div class="section-header"><div class="section-icon">👁️</div><h2>Modo Apresentador</h2></div>
+<p>O <strong>Modo Apresentador</strong> é uma funcionalidade especial que requer dois ecrãs (computador + projetor/ecrã externo). Permite ao apresentador ver informação adicional enquanto o público vê apenas o diapositivo atual.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>O apresentador vê (ecrã do computador)</th><th>O público vê (projetor/ecrã externo)</th></tr></thead>
+<tbody>
+<tr><td>✅ Diapositivo atual</td><td>✅ Diapositivo atual</td></tr>
+<tr><td>✅ Diapositivo seguinte (pré-visualização)</td><td>❌ Não vê</td></tr>
+<tr><td>✅ Notas do apresentador</td><td>❌ Não vê</td></tr>
+<tr><td>✅ Temporizador</td><td>❌ Não vê</td></tr>
+<tr><td>✅ Ferramentas de anotação</td><td>❌ Não vê</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Como ativar o Modo Apresentador</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Liga o projetor ou ecrã externo ao computador.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Vai a <strong>Apresentação de Diapositivos &gt; Configurar Apresentação de Diapositivos</strong>.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Ativa a opção <strong>Utilizar Vista do Apresentador</strong>.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Inicia a apresentação com <strong>F5</strong> — o Modo Apresentador ativa-se automaticamente.</div></div>
+</div>
+<div class="note">📌 Se o Modo Apresentador não ativar automaticamente, clica com o botão direito do rato durante a apresentação e seleciona <strong>Mostrar Vista do Apresentador</strong>.</div>
+</section>
+<!-- EXPORTAR E PARTILHAR -->
+<section id="exportar">
+<div class="section-header"><div class="section-icon">📤</div><h2>Exportar e Partilhar</h2></div>
+<p>A escolha do formato de exportação deve ser feita em função da finalidade e do destinatário:</p>
+<div class="export-row"><div class="export-icon">📁</div><div class="export-body"><h4>Guardar como .pptx (editável)</h4><p>Formato padrão para partilha e edição colaborativa. Caminho: <code>Ficheiro &gt; Guardar Como &gt; .pptx</code></p></div></div>
+<div class="export-row"><div class="export-icon">📄</div><div class="export-body"><h4>Exportar para PDF</h4><p>Preserva o layout em qualquer dispositivo. Ideal para partilha e impressão. Caminho: <code>Ficheiro &gt; Exportar &gt; Criar Documento PDF/XPS</code></p></div></div>
+<div class="export-row"><div class="export-icon">🎬</div><div class="export-body"><h4>Exportar como Vídeo (.mp4)</h4><p>Cria um vídeo da apresentação com animações e transições. Caminho: <code>Ficheiro &gt; Exportar &gt; Criar um Vídeo</code></p></div></div>
+<div class="export-row"><div class="export-icon">☁️</div><div class="export-body"><h4>Partilhar via OneDrive</h4><p>Partilha um link para colaboração em tempo real. Caminho: <code>Ficheiro &gt; Partilhar</code> ou botão <strong>Partilhar</strong> no friso</p></div></div>
+<div class="export-row"><div class="export-icon">📦</div><div class="export-body"><h4>Empacotar para CD/USB</h4><p>Inclui todos os ficheiros multimédia para apresentar noutro computador. Caminho: <code>Ficheiro &gt; Exportar &gt; Empacotar Apresentação para CD</code></p></div></div>
+<div class="export-row"><div class="export-icon">🖼️</div><div class="export-body"><h4>Exportar como Imagens</h4><p>Guarda cada diapositivo como imagem (.png ou .jpg). Caminho: <code>Ficheiro &gt; Exportar &gt; Alterar Tipo de Ficheiro</code></p></div></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Formato</th><th>Finalidade</th><th>Vantagem</th></tr></thead>
+<tbody>
+<tr><td>📁 <strong>.pptx</strong></td><td>Edição e colaboração</td><td>Totalmente editável</td></tr>
+<tr><td>📄 <strong>PDF</strong></td><td>Partilha e impressão</td><td>Layout preservado em qualquer dispositivo</td></tr>
+<tr><td>🎬 <strong>.mp4</strong></td><td>Publicação online</td><td>Funciona sem PowerPoint instalado</td></tr>
+<tr><td>☁️ <strong>OneDrive</strong></td><td>Colaboração em tempo real</td><td>Acesso de qualquer dispositivo</td></tr>
+<tr><td>📦 <strong>Pacote CD</strong></td><td>Apresentar noutro computador</td><td>Inclui todos os ficheiros multimédia</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- EXPORTAR COMO VÍDEO -->
+<section id="video">
+<div class="section-header"><div class="section-icon">🎬</div><h2>Exportar como Vídeo</h2></div>
+<p>Exportar a apresentação como vídeo é ideal para publicar em plataformas digitais, enviar por email ou apresentar em quiosques — sem necessidade de ter o PowerPoint instalado.</p>
+<h3>Como exportar para vídeo</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Ficheiro &gt; Exportar &gt; Criar um Vídeo</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe a <strong>qualidade do vídeo</strong>: Ultra HD (4K), Full HD (1080p), HD (720p) ou Padrão (480p).</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Define se queres <strong>incluir narrações e intervalos gravados</strong> ou usar um tempo fixo por diapositivo.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Define o <strong>tempo por diapositivo</strong> (em segundos) se não tiveres intervalos gravados.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Clica em <strong>Criar Vídeo</strong>, escolhe a localização e o nome do ficheiro.</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text">Aguarda a exportação — pode demorar alguns minutos dependendo da duração e complexidade da apresentação.</div></div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Qualidade</th><th>Resolução</th><th>Quando usar</th></tr></thead>
+<tbody>
+<tr><td>🔵 <strong>Ultra HD (4K)</strong></td><td>3840 × 2160 px</td><td>Ecrãs 4K, arquivo de alta qualidade</td></tr>
+<tr><td>🟢 <strong>Full HD (1080p)</strong></td><td>1920 × 1080 px</td><td>Publicação online, apresentações profissionais</td></tr>
+<tr><td>🟡 <strong>HD (720p)</strong></td><td>1280 × 720 px</td><td>Partilha por email, plataformas de e-learning</td></tr>
+<tr><td>🔴 <strong>Padrão (480p)</strong></td><td>852 × 480 px</td><td>Ficheiros pequenos, ligações lentas</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip">💡 Para a maioria das situações, <strong>Full HD (1080p)</strong> é a melhor escolha — boa qualidade com tamanho de ficheiro razoável.</div>
+</section>
+<!-- CHECKLIST PRÉ-APRESENTAÇÃO -->
+<section id="checklist">
+<div class="section-header"><div class="section-icon">✅</div><h2>Checklist Pré-Apresentação</h2></div>
+<p>Antes de qualquer apresentação, verifica estes pontos para garantir que tudo corre bem:</p>
+<div class="checklist">
+<h3>✅ Checklist Pré-Apresentação</h3>
+<div class="check-item"><div class="check-box">☐</div><span>Testei a apresentação completa com F5 no computador que vou usar.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>Todos os vídeos e áudios reproduzem corretamente.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>Todas as animações e transições funcionam como esperado.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>As hiperligações (links) estão a funcionar.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>O projetor ou ecrã externo está ligado e configurado.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>O Modo Apresentador está ativado (se necessário).</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>Tenho uma cópia de segurança da apresentação (USB, OneDrive, email).</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>O computador está carregado ou ligado à corrente.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>O protetor de ecrã e as notificações estão desativados.</span></div>
+<div class="check-item"><div class="check-box">☐</div><span>Conheço os atalhos de teclado essenciais (F5, B, Esc, →, ←).</span></div>
+</div>
+<div class="callout">
+<div class="callout-title">🚨 Plano B</div>
+<p>Tem sempre um plano alternativo: uma cópia em PDF no email ou USB, e a apresentação guardada no OneDrive. Se o PowerPoint falhar, o PDF garante que consegues apresentar na mesma.</p>
+</div>
+</section>
+<!-- RESUMO FINAL -->
+<section id="resumo">
+<div class="section-header"><div class="section-icon">📋</div><h2>Resumo Final da UFCD 0779</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Conteúdo</th><th>Conceito-chave</th></tr></thead>
+<tbody>
+<tr><td>🏠 <strong>Conceitos Gerais</strong></td><td>Apresentador gráfico, diapositivo, friso, interface do PowerPoint</td></tr>
+<tr><td>⭐ <strong>Características</strong></td><td>Interface intuitiva, compatibilidade, colaboração, multimédia, Modo Apresentador</td></tr>
+<tr><td>🔧 <strong>Ferramentas</strong></td><td>8 separadores do friso, áreas da interface, atalhos de teclado</td></tr>
+<tr><td>📊 <strong>Apresentações Gráficas</strong></td><td>Criar, estruturar, princípios de design, erros a evitar</td></tr>
+<tr><td>🎨 <strong>Slide Master</strong></td><td>Dispositivo padrão, esquemas de diapositivo, consistência visual</td></tr>
+<tr><td>📝 <strong>Texto</strong></td><td>Inserir, formatar, hierarquia tipográfica, WordArt</td></tr>
+<tr><td>🖨️ <strong>Impressão</strong></td><td>Esquemas de impressão, exportar para PDF, configurar página</td></tr>
+<tr><td>✏️ <strong>Desenho e Gráficos</strong></td><td>Formas, SmartArt, imagens, gráficos, tabelas, organizar objetos</td></tr>
+<tr><td>✨ <strong>Efeitos Especiais</strong></td><td>Animações (entrada/saída/ênfase/trajetória), sons, transições</td></tr>
+<tr><td>📡 <strong>Difusão</strong></td><td>Apresentação presencial, Modo Apresentador, exportar, partilhar</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- CONCLUSÃO -->
+<div class="conclusion">
+<h2>🎉 Parabéns! Concluíste a UFCD 0779</h2>
+<p>Exploraste todos os conteúdos do referencial — desde os conceitos gerais do PowerPoint até à difusão final das apresentações. Estás preparado para criar, editar e apresentar conteúdos visuais de forma profissional e eficaz.</p>
+<p class="slogan">"Transformar ideias em apresentações que comunicam."</p>
+</div>
+<div class="page-nav-bottom">
+<a href="efeitos.html">← Efeitos Especiais</a>
+<a href="index.html">🏠 Início do módulo</a>
+</div>
+</main>
+<script>
+function toggleSidebar(){
+  const s=document.getElementById('sidebar');
+  const o=document.getElementById('overlay');
+  const b=document.getElementById('toggleBtn');
+  const open=s.classList.toggle('open');
+  o.classList.toggle('visible',open);
+  b.textContent=open?'✕':'☰';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('visible');
+  document.getElementById('toggleBtn').textContent='☰';
+}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);
+      if(active)active.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

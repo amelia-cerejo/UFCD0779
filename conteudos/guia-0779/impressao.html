@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Opções de Impressão — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.85rem;user-select:none;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:0 0 0.5rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;color:var(--text);}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .steps{margin:1rem 0;}
+  .step{display:flex;gap:1rem;margin-bottom:0.75rem;align-items:flex-start;}
+  .step-num{background:var(--orange);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;margin-top:0.1rem;}
+  .step-text{font-size:0.95rem;}
+  .step-text strong{color:var(--orange);}
+  /* Layout cards de impressão */
+  .print-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.25rem 0;}
+  .print-card{background:var(--white);border:2px solid var(--gray);border-radius:12px;padding:1.25rem;text-align:center;transition:all 0.2s;cursor:default;}
+  .print-card:hover{border-color:var(--orange);box-shadow:0 4px 12px rgba(210,71,38,0.1);}
+  .print-card .print-icon{font-size:2.5rem;margin-bottom:0.75rem;}
+  .print-card h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .print-card p{font-size:0.85rem;color:var(--text-sec);margin:0;}
+  .print-card .print-badge{display:inline-block;background:var(--orange-bg);color:var(--orange);font-size:0.75rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:10px;margin-top:0.5rem;}
+  /* Exportação */
+  .export-row{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;background:var(--white);border:1px solid var(--gray);border-radius:10px;margin-bottom:0.75rem;transition:box-shadow 0.2s;}
+  .export-row:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .export-icon{font-size:1.75rem;flex-shrink:0;}
+  .export-body h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.2rem;}
+  .export-body p{font-size:0.87rem;color:var(--text-sec);margin:0;}
+  .page-nav-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--gray);flex-wrap:wrap;gap:1rem;}
+  .page-nav-bottom a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.1rem;border-radius:20px;text-decoration:none;font-size:0.88rem;font-weight:600;border:2px solid var(--orange);color:var(--orange);transition:all 0.2s;}
+  .page-nav-bottom a:hover{background:var(--orange);color:white;}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.print-grid{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a href="caracteristicas.html">⭐ Características</a>
+<a href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações</a>
+<a href="master.html">🎨 Master</a>
+<a href="texto.html">📝 Texto</a>
+<a class="active" href="impressao.html">🖨️ Impressão</a>
+<a href="desenho.html">✏️ Desenho</a>
+<a href="efeitos.html">✨ Efeitos</a>
+<a href="difusao.html">📡 Difusão</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#como-imprimir" onclick="closeSidebar()">🖨️ Como Imprimir</a>
+<a href="#esquemas" onclick="closeSidebar()">📄 Esquemas de Impressão</a>
+<a href="#configurar" onclick="closeSidebar()">⚙️ Configurar Página</a>
+<a href="#exportar" onclick="closeSidebar()">📤 Exportar para PDF</a>
+<a href="#dicas" onclick="closeSidebar()">💡 Dicas Práticas</a>
+<a href="#resumo" onclick="closeSidebar()">✅ Resumo</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 2.3 · Inserção e Edição de Documento Modelo</span>
+<h1>Opções de Impressão</h1>
+<p>Aprende a imprimir e exportar apresentações PowerPoint nos diferentes formatos disponíveis — diapositivos, notas, folhetos e PDF.</p>
+<div class="hero-meta">
+<span>📚 UFCD 0779</span>
+<span>🖨️ Impressão e exportação</span>
+<span>💻 Ficheiro &gt; Imprimir</span>
+</div>
+</div>
+<!-- INTRODUÇÃO -->
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>O PowerPoint permite imprimir as apresentações em vários formatos, adaptados a diferentes necessidades e contextos. Podes imprimir os diapositivos completos, apenas as notas do apresentador, folhetos para o público ou uma vista em miniatura de todos os diapositivos.</p>
+<p>Além da impressão em papel, o PowerPoint permite também <strong>exportar para PDF</strong> — um formato ideal para partilhar apresentações garantindo que o layout se mantém igual em qualquer dispositivo.</p>
+<div class="note">📌 Antes de imprimir, usa sempre a <strong>pré-visualização</strong> para verificar o aspeto final e evitar desperdício de papel e tinta.</div>
+</section>
+<!-- COMO IMPRIMIR -->
+<section id="como-imprimir">
+<div class="section-header"><div class="section-icon">🖨️</div><h2>Como Imprimir</h2></div>
+<p>Para aceder às opções de impressão do PowerPoint:</p>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Ficheiro &gt; Imprimir</strong> (ou usa o atalho <strong>Ctrl+P</strong>).</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe a <strong>impressora</strong> e o <strong>número de cópias</strong>.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Define o <strong>intervalo de impressão</strong>: todos os diapositivos, diapositivo atual ou um intervalo específico (ex: 1-5).</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Seleciona o <strong>esquema de impressão</strong> (ver secção seguinte).</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Verifica a <strong>pré-visualização</strong> no lado direito do ecrã.</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text">Clica em <strong>Imprimir</strong>.</div></div>
+</div>
+<div class="callout">
+<div class="callout-title">⌨️ Atalho rápido</div>
+<p><strong>Ctrl+P</strong> — abre diretamente o painel de impressão com pré-visualização.</p>
+</div>
+</section>
+<!-- ESQUEMAS DE IMPRESSÃO -->
+<section id="esquemas">
+<div class="section-header"><div class="section-icon">📄</div><h2>Esquemas de Impressão</h2></div>
+<p>O PowerPoint oferece vários esquemas de impressão, cada um adequado a um contexto diferente:</p>
+<div class="print-grid">
+<div class="print-card">
+<div class="print-icon">🖼️</div>
+<h4>Diapositivos de Página Inteira</h4>
+<p>Um diapositivo por página, no tamanho completo. Ideal para apresentações de alta qualidade.</p>
+<span class="print-badge">1 por página</span>
+</div>
+<div class="print-card">
+<div class="print-icon">📝</div>
+<h4>Notas</h4>
+<p>Diapositivo em miniatura na parte superior e as notas do apresentador em baixo.</p>
+<span class="print-badge">1 por página</span>
+</div>
+<div class="print-card">
+<div class="print-icon">📋</div>
+<h4>Folheto — 2 por página</h4>
+<p>Dois diapositivos por página, com linhas para anotações ao lado. Ideal para formação.</p>
+<span class="print-badge">2 por página</span>
+</div>
+<div class="print-card">
+<div class="print-icon">📄</div>
+<h4>Folheto — 3 por página</h4>
+<p>Três diapositivos por página com linhas para anotações. O mais usado em formação.</p>
+<span class="print-badge">3 por página</span>
+</div>
+<div class="print-card">
+<div class="print-icon">🗂️</div>
+<h4>Folheto — 4, 6 ou 9 por página</h4>
+<p>Vários diapositivos por página em miniatura. Ideal para revisão ou distribuição compacta.</p>
+<span class="print-badge">4 / 6 / 9 por página</span>
+</div>
+<div class="print-card">
+<div class="print-icon">📃</div>
+<h4>Destaque</h4>
+<p>Imprime apenas o texto dos diapositivos, sem imagens, permitindo obter uma visão estruturada do conteúdo da apresentação.</p>
+<span class="print-badge">Só texto</span>
+</div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Esquema</th><th>Melhor para</th><th>Diapositivos por página</th></tr></thead>
+<tbody>
+<tr><td>🖼️ <strong>Página inteira</strong></td><td>Impressão de alta qualidade, arquivo</td><td>1</td></tr>
+<tr><td>📝 <strong>Notas</strong></td><td>Guia do apresentador durante a apresentação</td><td>1 + notas</td></tr>
+<tr><td>📋 <strong>Folheto 2</strong></td><td>Distribuição com espaço para anotações</td><td>2</td></tr>
+<tr><td>📄 <strong>Folheto 3</strong></td><td>Formação — o mais comum para formandos</td><td>3</td></tr>
+<tr><td>🗂️ <strong>Folheto 4/6/9</strong></td><td>Revisão compacta, distribuição económica</td><td>4, 6 ou 9</td></tr>
+<tr><td>📃 <strong>Destaque</strong></td><td>Impressão só do texto, sem imagens</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip">💡 O <strong>Folheto de 3 diapositivos por página</strong> é o mais utilizado em contextos de formação — inclui linhas para os formandos tomarem notas ao lado de cada diapositivo.</div>
+</section>
+<!-- CONFIGURAR PÁGINA -->
+<section id="configurar">
+<div class="section-header"><div class="section-icon">⚙️</div><h2>Configurar Página</h2></div>
+<p>Antes de imprimir, podes configurar o tamanho e a orientação da página:</p>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai ao separador <strong>Design &gt; Tamanho do Diapositivo</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Escolhe <strong>Tamanho de Diapositivo Padrão</strong> (4:3) ou <strong>Widescreen</strong> (16:9) — ou define um tamanho personalizado.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Para configurar as margens e a orientação de impressão, acede a <strong>Ficheiro &gt; Imprimir</strong> e ajusta as opções disponíveis.</div></div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Formato</th><th>Proporção</th><th>Quando usar</th></tr></thead>
+<tbody>
+<tr><td>📺 <strong>Widescreen (16:9)</strong></td><td>33,87 × 19,05 cm</td><td>Projeção em ecrãs modernos — o mais comum atualmente</td></tr>
+<tr><td>📐 <strong>Padrão (4:3)</strong></td><td>25,4 × 19,05 cm</td><td>Projeção em ecrãs mais antigos ou impressão</td></tr>
+<tr><td>📄 <strong>A4</strong></td><td>21 × 29,7 cm</td><td>Impressão em papel A4</td></tr>
+<tr><td>📏 <strong>Personalizado</strong></td><td>Definido pelo utilizador</td><td>Necessidades específicas (banners, cartazes, etc.)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">📌 O formato <strong>Widescreen (16:9)</strong> é o padrão atual do PowerPoint e o mais adequado para projeção em ecrãs modernos.</div>
+</section>
+<!-- EXPORTAR PARA PDF -->
+<section id="exportar">
+<div class="section-header"><div class="section-icon">📤</div><h2>Exportar para PDF</h2></div>
+<p>O PDF é o formato ideal para partilhar apresentações quando queres garantir que o layout, as fontes e as cores se mantêm iguais em qualquer dispositivo ou sistema operativo.</p>
+<h3>Como exportar para PDF</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Ficheiro &gt; Exportar</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Clica em <strong>Criar Documento PDF/XPS</strong>.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Escolhe a localização e o nome do ficheiro.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Clica em <strong>Opções</strong> para definir o intervalo de diapositivos e o esquema de publicação.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Clica em <strong>Publicar</strong>.</div></div>
+</div>
+<h3>Alternativa rápida</h3>
+<div class="export-row"><div class="export-icon">🖨️</div><div class="export-body"><h4>Imprimir para PDF</h4><p>Em <strong>Ficheiro &gt; Imprimir</strong>, seleciona <strong>Microsoft Print to PDF</strong> como impressora e clica em Imprimir.</p></div></div>
+<div class="export-row"><div class="export-icon">💾</div><div class="export-body"><h4>Guardar Como PDF</h4><p>Em <strong>Ficheiro &gt; Guardar Como</strong>, seleciona <strong>PDF (*.pdf)</strong> no menu de tipo de ficheiro.</p></div></div>
+<div class="tip">💡 Ao exportar para PDF, podes escolher exportar como <strong>diapositivos</strong>, <strong>folheto</strong> ou <strong>notas</strong> — as mesmas opções disponíveis na impressão.</div>
+</section>
+<!-- DICAS PRÁTICAS -->
+<section id="dicas">
+<div class="section-header"><div class="section-icon">💡</div><h2>Dicas Práticas</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Situação</th><th>Recomendação</th></tr></thead>
+<tbody>
+<tr><td>Distribuir aos formandos</td><td>Folheto de 3 diapositivos por página — inclui linhas para anotações</td></tr>
+<tr><td>Guia do apresentador</td><td>Esquema de Notas — diapositivo + notas na mesma página</td></tr>
+<tr><td>Partilhar digitalmente</td><td>Exportar para PDF — preserva o layout em qualquer dispositivo</td></tr>
+<tr><td>Visão estruturada do conteúdo</td><td>Destaque — imprime apenas o texto, sem imagens</td></tr>
+<tr><td>Impressão de alta qualidade</td><td>Diapositivos de página inteira — um por página</td></tr>
+<tr><td>Poupar papel</td><td>Folheto de 6 ou 9 por página — mais compacto</td></tr>
+<tr><td>Apresentação em ecrã</td><td>Não imprimir — usar o modo de apresentação do PowerPoint</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout">
+<div class="callout-title">🌱 Dica de sustentabilidade</div>
+<p>Antes de imprimir, pergunta-te: <em>é mesmo necessário imprimir?</em> Partilha a apresentação em PDF por email ou plataforma digital sempre que possível — poupa papel, tinta e recursos.</p>
+</div>
+</section>
+<!-- RESUMO -->
+<section id="resumo">
+<div class="section-header"><div class="section-icon">✅</div><h2>Resumo</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Conceito</th><th>Descrição resumida</th></tr></thead>
+<tbody>
+<tr><td>🖨️ <strong>Aceder à impressão</strong></td><td>Ficheiro &gt; Imprimir ou Ctrl+P</td></tr>
+<tr><td>📄 <strong>Esquemas disponíveis</strong></td><td>Página inteira · Notas · Folheto (2/3/4/6/9) · Destaque</td></tr>
+<tr><td>📋 <strong>Folheto mais usado</strong></td><td>3 diapositivos por página — com linhas para anotações</td></tr>
+<tr><td>📤 <strong>Exportar para PDF</strong></td><td>Ficheiro &gt; Exportar &gt; Criar Documento PDF/XPS</td></tr>
+<tr><td>⚙️ <strong>Tamanho do diapositivo</strong></td><td>Design &gt; Tamanho do Diapositivo (16:9 é o padrão atual)</td></tr>
+<tr><td>💡 <strong>Boa prática</strong></td><td>Usar sempre a pré-visualização antes de imprimir</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<div class="page-nav-bottom">
+<a href="texto.html">← Inserção e Formatação de Texto</a>
+<a href="desenho.html">✏️ Ferramentas de Texto, Desenho e Gráficos →</a>
+</div>
+</main>
+<script>
+function toggleSidebar(){
+  const s=document.getElementById('sidebar');
+  const o=document.getElementById('overlay');
+  const b=document.getElementById('toggleBtn');
+  const open=s.classList.toggle('open');
+  o.classList.toggle('visible',open);
+  b.textContent=open?'✕':'☰';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('visible');
+  document.getElementById('toggleBtn').textContent='☰';
+}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);
+      if(active)active.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Efeitos Especiais — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.85rem;user-select:none;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:0 0 0.5rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;color:var(--text);}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  ul.content-list{list-style:none;padding:0;margin:0.75rem 0;}
+  ul.content-list li{padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--gray-bg);font-size:0.95rem;}
+  ul.content-list li::before{content:'▸';color:var(--orange);position:absolute;left:0;font-weight:700;}
+  ul.content-list li strong{color:var(--orange);}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .steps{margin:1rem 0;}
+  .step{display:flex;gap:1rem;margin-bottom:0.75rem;align-items:flex-start;}
+  .step-num{background:var(--orange);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;margin-top:0.1rem;}
+  .step-text{font-size:0.95rem;}
+  .step-text strong{color:var(--orange);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.25rem 0;}
+  .card{background:var(--white);border:1px solid var(--gray);border-radius:12px;padding:1.25rem;transition:box-shadow 0.2s,transform 0.2s;}
+  .card:hover{box-shadow:0 4px 16px rgba(210,71,38,0.12);transform:translateY(-2px);}
+  .card-icon{font-size:1.75rem;margin-bottom:0.5rem;}
+  .card h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .card p{font-size:0.88rem;color:var(--text-sec);margin:0;}
+  /* Distinção animação vs transição */
+  .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0;}
+  .vs-box{border-radius:12px;padding:1.25rem;border:2px solid;}
+  .vs-box.anim{border-color:var(--orange);background:var(--orange-bg);}
+  .vs-box.trans{border-color:var(--violet);background:var(--violet-bg);}
+  .vs-box h4{font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
+  .vs-box.anim h4{color:var(--orange);}
+  .vs-box.trans h4{color:var(--violet);}
+  .vs-box p{font-size:0.88rem;margin:0;}
+  /* Tipos de animação */
+  .anim-type{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:var(--white);border:1px solid var(--gray);border-radius:10px;margin-bottom:0.6rem;}
+  .anim-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .anim-dot.entrada{background:#16a34a;}
+  .anim-dot.saida{background:#dc2626;}
+  .anim-dot.enfase{background:var(--orange);}
+  .anim-dot.traj{background:var(--violet);}
+  .anim-body h4{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:0.1rem;}
+  .anim-body p{font-size:0.83rem;color:var(--text-sec);margin:0;}
+  .page-nav-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--gray);flex-wrap:wrap;gap:1rem;}
+  .page-nav-bottom a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.1rem;border-radius:20px;text-decoration:none;font-size:0.88rem;font-weight:600;border:2px solid var(--orange);color:var(--orange);transition:all 0.2s;}
+  .page-nav-bottom a:hover{background:var(--orange);color:white;}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.cards{grid-template-columns:1fr;}.vs-grid{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a href="caracteristicas.html">⭐ Características</a>
+<a href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações</a>
+<a href="master.html">🎨 Master</a>
+<a href="texto.html">📝 Texto</a>
+<a href="impressao.html">🖨️ Impressão</a>
+<a href="desenho.html">✏️ Desenho</a>
+<a class="active" href="efeitos.html">✨ Efeitos</a>
+<a href="difusao.html">📡 Difusão</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#diferenca" onclick="closeSidebar()">⚡ Animação vs Transição</a>
+<a href="#animacoes" onclick="closeSidebar()">✨ Animações</a>
+<a href="#como-animar" onclick="closeSidebar()">🖱️ Como Aplicar</a>
+<a href="#sons" onclick="closeSidebar()">🔊 Associação de Sons</a>
+<a href="#transicoes" onclick="closeSidebar()">🔄 Transições</a>
+<a href="#boas-praticas" onclick="closeSidebar()">✅ Boas Práticas</a>
+<a href="#resumo" onclick="closeSidebar()">📋 Resumo</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 2.5 · Inserção e Edição de Documento Modelo</span>
+<h1>Efeitos Especiais</h1>
+<p>Aprende a aplicar animações a textos e objetos, associar sons e configurar transições entre diapositivos — torna as tuas apresentações mais dinâmicas e envolventes.</p>
+<div class="hero-meta">
+<span>📚 UFCD 0779</span>
+<span>✨ Animações e transições</span>
+<span>⏱️ Sessões 13–15</span>
+<span>💻 Separadores Animações e Transições</span>
+</div>
+</div>
+<!-- INTRODUÇÃO -->
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>Os efeitos especiais tornam as apresentações mais dinâmicas e apelativas. O PowerPoint oferece dois tipos principais de efeitos visuais: <strong>animações</strong> (aplicadas a objetos dentro de um diapositivo) e <strong>transições</strong> (aplicadas na passagem entre diapositivos).</p>
+<p>Usados com moderação e propósito, estes efeitos podem melhorar significativamente a comunicação — revelando informação progressivamente, guiando a atenção do público e tornando a apresentação mais fluida.</p>
+<div class="note">📌 A regra de ouro dos efeitos especiais: usa-os com <strong>moderação e propósito</strong>. Cada efeito deve ter uma razão de ser — não deve existir apenas para impressionar.</div>
+</section>
+<!-- ANIMAÇÃO VS TRANSIÇÃO -->
+<section id="diferenca">
+<div class="section-header"><div class="section-icon">⚡</div><h2>Animação vs. Transição</h2></div>
+<p>É fundamental compreender a diferença entre estes dois conceitos — são configurados em separadores diferentes do friso e têm funções distintas:</p>
+<div class="vs-grid">
+<div class="vs-box anim">
+<h4>✨ Animação</h4>
+<p>Efeito aplicado a um <strong>objeto dentro de um diapositivo</strong> — texto, imagem, forma, gráfico, etc. Controla como o objeto aparece, desaparece ou se move.</p>
+<p style="margin-top:0.5rem;font-size:0.82rem;"><strong>Separador:</strong> Animações</p>
+</div>
+<div class="vs-box trans">
+<h4>🔄 Transição</h4>
+<p>Efeito visual que ocorre na <strong>passagem de um diapositivo para o seguinte</strong>. Controla como o diapositivo entra e sai do ecrã.</p>
+<p style="margin-top:0.5rem;font-size:0.82rem;"><strong>Separador:</strong> Transições</p>
+</div>
+</div>
+<div class="callout">
+<div class="callout-title">💡 Como distinguir facilmente</div>
+<p><strong>Animação</strong> = o que acontece <em>dentro</em> do diapositivo · <strong>Transição</strong> = o que acontece <em>entre</em> diapositivos</p>
+</div>
+</section>
+<!-- ANIMAÇÕES -->
+<section id="animacoes">
+<div class="section-header"><div class="section-icon">✨</div><h2>Animação de Textos e Objetos</h2></div>
+<p>As animações controlam como os elementos aparecem, desaparecem ou se movem dentro de um diapositivo. Existem quatro tipos principais:</p>
+<div class="anim-type">
+<div class="anim-dot entrada"></div>
+<div class="anim-body"><h4>🟢 Entrada</h4><p>O objeto aparece no diapositivo. Exemplos: Aparecer, Voar para Dentro, Zoom, Dissolver.</p></div>
+</div>
+<div class="anim-type">
+<div class="anim-dot saida"></div>
+<div class="anim-body"><h4>🔴 Saída</h4><p>O objeto desaparece do diapositivo. Exemplos: Desaparecer, Voar para Fora, Dissolver para Fora.</p></div>
+</div>
+<div class="anim-type">
+<div class="anim-dot enfase"></div>
+<div class="anim-body"><h4>🟠 Ênfase</h4><p>O objeto chama a atenção sem entrar ou sair. Exemplos: Pulsar, Girar, Mudar Cor, Aumentar/Diminuir.</p></div>
+</div>
+<div class="anim-type">
+<div class="anim-dot traj"></div>
+<div class="anim-body"><h4>🟣 Trajetórias de Movimento</h4><p>O objeto move-se ao longo de um caminho definido. Exemplos: Linha, Arco, Círculo, Forma personalizada.</p></div>
+</div>
+<h3>Opções de temporização</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Opção</th><th>Descrição</th><th>Quando usar</th></tr></thead>
+<tbody>
+<tr><td>🖱️ <strong>Ao Clicar</strong></td><td>A animação inicia quando o apresentador clica</td><td>Controlo manual do ritmo da apresentação</td></tr>
+<tr><td>⏩ <strong>Com Anterior</strong></td><td>A animação inicia ao mesmo tempo que a anterior</td><td>Animações simultâneas de vários objetos</td></tr>
+<tr><td>⏭️ <strong>Após Anterior</strong></td><td>A animação inicia automaticamente após a anterior terminar</td><td>Sequências automáticas de animações</td></tr>
+<tr><td>⏱️ <strong>Duração</strong></td><td>Tempo que a animação demora a completar</td><td>Controlar a velocidade do efeito</td></tr>
+<tr><td>⏳ <strong>Atraso</strong></td><td>Tempo de espera antes de a animação iniciar</td><td>Criar pausas entre animações</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- COMO APLICAR ANIMAÇÕES -->
+<section id="como-animar">
+<div class="section-header"><div class="section-icon">🖱️</div><h2>Como Aplicar uma Animação</h2></div>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Seleciona o objeto que queres animar (texto, imagem, forma, etc.).</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Vai ao separador <strong>Animações</strong> no friso.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Clica em <strong>Adicionar Animação</strong> e escolhe o efeito desejado.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Configura as opções: <strong>Início</strong> (Ao Clicar / Com Anterior / Após Anterior), <strong>Duração</strong> e <strong>Atraso</strong>.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Clica em <strong>Painel de Animação</strong> para ver e gerir todas as animações do diapositivo.</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text">Usa o botão <strong>Pré-visualizar</strong> para ver o resultado antes de apresentar.</div></div>
+</div>
+<div class="tip">💡 O <strong>Painel de Animação</strong> (Animações &gt; Painel de Animação) mostra todas as animações do diapositivo em ordem — podes reordenar, editar e eliminar animações diretamente neste painel.</div>
+<h3>Adicionar múltiplas animações ao mesmo objeto</h3>
+<p>Para adicionar mais do que uma animação ao mesmo objeto, usa sempre o botão <strong>Adicionar Animação</strong> — nunca cliques diretamente na galeria de animações, pois isso substitui a animação existente em vez de adicionar uma nova.</p>
+</section>
+<!-- SONS -->
+<section id="sons">
+<div class="section-header"><div class="section-icon">🔊</div><h2>Associação de Sons</h2></div>
+<p>É possível associar sons às animações ou inserir áudio diretamente nos diapositivos para tornar a apresentação mais dinâmica e envolvente.</p>
+<h3>Associar som a uma animação</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Abre o <strong>Painel de Animação</strong>.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Clica com o botão direito do rato na animação desejada.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Seleciona <strong>Opções de Efeito</strong>.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">No separador <strong>Efeito</strong>, escolhe um som na lista <strong>Som</strong> ou clica em <strong>Outro Som...</strong> para usar um ficheiro de áudio próprio (.wav).</div></div>
+</div>
+<h3>Inserir áudio no diapositivo</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Vai a <strong>Inserir &gt; Áudio &gt; Áudio neste Computador</strong> (ficheiro local) ou <strong>Gravar Áudio</strong> (gravação direta).</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Seleciona o ficheiro de áudio e clica em <strong>Inserir</strong>.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Usa o separador <strong>Reprodução</strong> para configurar as opções: automática, ao clicar, em loop, ocultar ícone durante a apresentação.</div></div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Opção de reprodução</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>▶️ <strong>Automaticamente</strong></td><td>O áudio inicia quando o diapositivo aparece</td></tr>
+<tr><td>🖱️ <strong>Ao Clicar</strong></td><td>O áudio inicia quando o utilizador clica no ícone</td></tr>
+<tr><td>🔁 <strong>Repetir até parar</strong></td><td>O áudio repete em loop até avançar para o diapositivo seguinte</td></tr>
+<tr><td>👁️ <strong>Ocultar durante apresentação</strong></td><td>O ícone de áudio fica invisível durante a apresentação</td></tr>
+<tr><td>📢 <strong>Reproduzir em todos os diapositivos</strong></td><td>O áudio continua a tocar ao avançar para outros diapositivos</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">📌 Os formatos de áudio suportados incluem .mp3, .wav, .wma, .m4a e .aac. O formato .mp3 é o mais recomendado pela sua compatibilidade e tamanho reduzido.</div>
+</section>
+<!-- TRANSIÇÕES -->
+<section id="transicoes">
+<div class="section-header"><div class="section-icon">🔄</div><h2>Transições — Efeitos de Passagem de Dispositivos</h2></div>
+<p>As transições são efeitos visuais que ocorrem quando se passa de um diapositivo para o seguinte. Contribuem para a fluidez e o dinamismo da apresentação.</p>
+<h3>Como aplicar transições</h3>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><div class="step-text">Seleciona o diapositivo (ou vários) no painel de miniaturas.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Vai ao separador <strong>Transições</strong> no friso.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Escolhe um efeito da galeria (Subtil, Chamativo ou Dinâmico).</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Configura a <strong>Duração</strong> e o <strong>Som</strong> da transição.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Em <strong>Avançar Diapositivo</strong>, escolhe <strong>Ao Clicar com o Rato</strong> ou define um tempo automático (em segundos).</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text">Clica em <strong>Aplicar a Todos</strong> para aplicar a mesma transição a toda a apresentação.</div></div>
+</div>
+<h3>Categorias de transições</h3>
+<div class="cards">
+<div class="card"><div class="card-icon">🌫️</div><h4>Subtil</h4><p>Efeitos discretos e elegantes — Aparecer, Dissolver, Empurrar, Revelar. Ideais para apresentações profissionais.</p></div>
+<div class="card"><div class="card-icon">💥</div><h4>Chamativo</h4><p>Efeitos mais visíveis e dinâmicos — Cortina, Caixa, Xadrez, Ondas. Para apresentações mais criativas.</p></div>
+<div class="card"><div class="card-icon">🎬</div><h4>Dinâmico</h4><p>Efeitos 3D e de movimento — Cubo, Galeria, Conveyor. Criam uma sensação de profundidade e movimento.</p></div>
+</div>
+<h3>Avançar diapositivo automaticamente</h3>
+<p>A opção <strong>Avançar Diapositivo</strong> permite definir um tempo automático (em segundos) após o qual o diapositivo avança sem necessidade de clique. Esta funcionalidade é essencial em:</p>
+<ul class="content-list">
+<li><strong>Apresentações automáticas:</strong> Quiosques, exposições, ecrãs de informação.</li>
+<li><strong>Apresentações cronometradas:</strong> Quando cada diapositivo tem um tempo fixo.</li>
+<li><strong>Ensaio de intervalos:</strong> Usa <strong>Apresentação de Diapositivos &gt; Ensaiar Intervalos</strong> para gravar o tempo real de cada diapositivo.</li>
+</ul>
+</section>
+<!-- BOAS PRÁTICAS -->
+<section id="boas-praticas">
+<div class="section-header"><div class="section-icon">✅</div><h2>Boas Práticas</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>✅ Fazer</th><th>❌ Evitar</th></tr></thead>
+<tbody>
+<tr><td>Usar animações simples e discretas (Aparecer, Dissolver)</td><td>Usar animações complexas e chamativas sem propósito</td></tr>
+<tr><td>Aplicar a mesma transição em toda a apresentação</td><td>Misturar muitos tipos de transição diferentes</td></tr>
+<tr><td>Usar animações para revelar informação progressivamente</td><td>Animar todos os elementos de um diapositivo</td></tr>
+<tr><td>Manter durações curtas (0,5 a 1 segundo)</td><td>Usar durações longas que atrasam a apresentação</td></tr>
+<tr><td>Pré-visualizar antes de apresentar</td><td>Apresentar sem testar os efeitos</td></tr>
+<tr><td>Usar sons com moderação e propósito</td><td>Adicionar sons a todas as animações</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout">
+<div class="callout-title">🎯 Regra de ouro</div>
+<p>Se um efeito não acrescenta valor à comunicação da mensagem, não o uses. O público deve focar-se no conteúdo — não nos efeitos.</p>
+</div>
+</section>
+<!-- RESUMO -->
+<section id="resumo">
+<div class="section-header"><div class="section-icon">📋</div><h2>Resumo</h2></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Conceito</th><th>Descrição resumida</th></tr></thead>
+<tbody>
+<tr><td>✨ <strong>Animação</strong></td><td>Efeito aplicado a um objeto dentro de um diapositivo (entrada, saída, ênfase, trajetória).</td></tr>
+<tr><td>🔄 <strong>Transição</strong></td><td>Efeito visual na passagem entre diapositivos (subtil, chamativo, dinâmico).</td></tr>
+<tr><td>🖱️ <strong>Aplicar animação</strong></td><td>Selecionar objeto &gt; Animações &gt; Adicionar Animação</td></tr>
+<tr><td>🔄 <strong>Aplicar transição</strong></td><td>Selecionar diapositivo &gt; Transições &gt; escolher efeito</td></tr>
+<tr><td>🔊 <strong>Associar som</strong></td><td>Painel de Animação &gt; botão direito &gt; Opções de Efeito &gt; Som</td></tr>
+<tr><td>⏱️ <strong>Temporização</strong></td><td>Ao Clicar / Com Anterior / Após Anterior + Duração + Atraso</td></tr>
+<tr><td>✅ <strong>Boa prática</strong></td><td>Moderação, propósito, consistência e pré-visualização antes de apresentar.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<div class="page-nav-bottom">
+<a href="desenho.html">← Ferramentas de Desenho e Gráficos</a>
+<a href="difusao.html">📡 Difusão de Dispositivos →</a>
+</div>
+</main>
+<script>
+function toggleSidebar(){
+  const s=document.getElementById('sidebar');
+  const o=document.getElementById('overlay');
+  const b=document.getElementById('toggleBtn');
+  const open=s.classList.toggle('open');
+  o.classList.toggle('visible',open);
+  b.textContent=open?'✕':'☰';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('visible');
+  document.getElementById('toggleBtn').textContent='☰';
+}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);
+      if(active)active.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

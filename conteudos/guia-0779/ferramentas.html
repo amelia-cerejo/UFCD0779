@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ferramentas — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  .module-bar-label{font-size:0.78rem;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;padding-right:1rem;border-right:1px solid var(--gray);margin-right:0.5rem;flex-shrink:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.8rem;user-select:none;writing-mode:vertical-rl;letter-spacing:0.05em;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);box-shadow:2px 0 12px rgba(124,58,237,0.3);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar .sidebar-header{display:none;}
+  nav.sidebar .sidebar-title{display:none;}
+  nav.sidebar .sidebar-close{display:none;}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:1rem 0 0.4rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  nav.sidebar .nav-divider{display:none;}
+  nav.sidebar .nav-page-link{display:none;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  ul.content-list{list-style:none;padding:0;margin:0.75rem 0;}
+  ul.content-list li{padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--gray-bg);font-size:0.95rem;}
+  ul.content-list li::before{content:'▸';color:var(--orange);position:absolute;left:0;font-weight:700;}
+  ul.content-list li strong{color:var(--orange);}
+  .img-block{margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--gray);box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+  .img-block img{width:100%;height:auto;display:block;max-height:380px;object-fit:cover;}
+  .img-caption{background:var(--gray-bg);padding:0.5rem 1rem;font-size:0.82rem;color:var(--text-sec);text-align:center;font-style:italic;}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .tab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.75rem;margin:1.25rem 0;}
+  .tab-card{background:var(--white);border:2px solid var(--gray);border-radius:12px;padding:1rem 1.1rem;transition:all 0.2s;}
+  .tab-card:hover{border-color:var(--orange);box-shadow:0 4px 12px rgba(210,71,38,0.1);}
+  .tab-card .tab-name{font-weight:700;color:var(--orange);font-size:0.95rem;margin-bottom:0.3rem;}
+  .tab-card .tab-desc{font-size:0.83rem;color:var(--text-sec);}
+  .shortcut-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.75rem;margin:1rem 0;}
+  .shortcut{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:var(--white);border:1px solid var(--gray);border-radius:10px;}
+  .shortcut kbd{background:var(--text);color:white;padding:0.2rem 0.5rem;border-radius:5px;font-family:monospace;font-size:0.85rem;font-weight:700;white-space:nowrap;}
+  .shortcut span{font-size:0.9rem;color:var(--text);}
+  .zone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.25rem 0;}
+  .zone{background:var(--white);border:2px solid var(--orange);border-radius:12px;padding:1.25rem;text-align:center;}
+  .zone-icon{font-size:2rem;margin-bottom:0.5rem;}
+  .zone h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .zone p{font-size:0.83rem;color:var(--text-sec);margin:0;}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.zone-grid{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a href="caracteristicas.html">⭐ Características</a>
+<a class="active" href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações Gráficas</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="openSidebar()" title="Abrir navegação">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><span class="sidebar-title">Navegação</span><span class="sidebar-close" onclick="closeSidebar()">✕</span></div>
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#interface" onclick="closeSidebar()">🖥️ Áreas da Interface</a>
+<a href="#friso" onclick="closeSidebar()">📋 Separadores do Friso</a>
+<a href="#atalhos" onclick="closeSidebar()">⌨️ Atalhos de Teclado</a>
+<a href="#painel-selecao" onclick="closeSidebar()">🗂️ Painel de Seleção</a>
+<a href="#resumo" onclick="closeSidebar()">✅ Resumo</a>
+<div class="nav-divider"></div>
+<h3>Módulo 1</h3>
+<a class="nav-page-link" href="index.html">🏠 Conceitos Gerais</a>
+<a class="nav-page-link" href="caracteristicas.html">⭐ Características</a>
+<a class="nav-page-link current-page" href="ferramentas.html">🔧 Ferramentas</a>
+<a class="nav-page-link" href="apresentacoes.html">📊 Apresentações Gráficas</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 1.2 · Ferramentas</span>
+<h1>Ferramentas do PowerPoint</h1>
+<p>Explora as ferramentas do Microsoft PowerPoint — o friso, os separadores, as áreas da interface e os atalhos de teclado essenciais para trabalhar de forma eficiente.</p>
+<div class="hero-meta"><span>📚 UFCD 0779</span><span>🔧 8 separadores do friso</span><span>⌨️ Atalhos essenciais</span></div>
+</div>
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>O PowerPoint disponibiliza um conjunto rico de ferramentas organizadas no <strong>friso (ribbon)</strong>. Conhecer a localização de cada ferramenta é essencial para trabalhar de forma eficiente e rápida.</p>
+<div class="img-block"><img alt="Friso do PowerPoint com separadores" loading="lazy" src="https://empowerpoint.click/wp-content/uploads/2023/11/Interface-and-Tools-Ribbon-1024x576.jpg"/><div class="img-caption">O friso (ribbon) do PowerPoint — organizado em separadores temáticos</div></div>
+<div class="tip">💡 O friso adapta-se automaticamente ao contexto: ao selecionar uma imagem, uma tabela ou uma forma, aparecem separadores adicionais específicos para esse elemento.</div>
+</section>
+<section id="interface">
+<div class="section-header"><div class="section-icon">🖥️</div><h2>Áreas da Interface</h2></div>
+<p>A interface do PowerPoint divide-se em <strong>três áreas principais</strong> de trabalho:</p>
+<div class="zone-grid">
+<div class="zone"><div class="zone-icon">📋</div><h4>Painel de Miniaturas</h4><p>Esquerda — mostra todos os diapositivos em miniatura. Permite reordenar, duplicar, eliminar e navegar.</p></div>
+<div class="zone"><div class="zone-icon">✏️</div><h4>Área de Edição</h4><p>Centro — espaço principal de edição do diapositivo atual: texto, imagens, formas, gráficos.</p></div>
+<div class="zone"><div class="zone-icon">📝</div><h4>Painel de Notas</h4><p>Inferior — permite adicionar notas de apoio associadas ao diapositivo, que podem ser consultadas pelo apresentador durante a apresentação.</p></div>
+</div>
+<div class="img-block"><img alt="Tour pela interface do PowerPoint" loading="lazy" src="https://itech.erickuha.com/book/ch4-presentation/images/tour/powerpoint_tour.png"/><div class="img-caption">As três áreas principais da interface do PowerPoint</div></div>
+</section>
+<section id="friso">
+<div class="section-header"><div class="section-icon">📋</div><h2>Separadores do Friso</h2></div>
+<p>O friso está organizado em <strong>8 separadores principais</strong>, cada um com um conjunto de ferramentas relacionadas:</p>
+<div class="tab-grid">
+<div class="tab-card"><div class="tab-name">🏠 Início</div><div class="tab-desc">Área de transferência, tipos de letra, parágrafo, desenho e edição.</div></div>
+<div class="tab-card"><div class="tab-name">➕ Inserir</div><div class="tab-desc">Tabelas, imagens, formas, SmartArt, gráficos, hiperligações, vídeo e áudio.</div></div>
+<div class="tab-card"><div class="tab-name">🎨 Design</div><div class="tab-desc">Temas, variantes e personalização do fundo dos diapositivos.</div></div>
+<div class="tab-card"><div class="tab-name">🔄 Transições</div><div class="tab-desc">Efeitos de passagem entre diapositivos, duração e som.</div></div>
+<div class="tab-card"><div class="tab-name">✨ Animações</div><div class="tab-desc">Efeitos de entrada, saída, ênfase e trajetórias de movimento para objetos.</div></div>
+<div class="tab-card"><div class="tab-name">▶️ Apresentação</div><div class="tab-desc">Iniciar apresentação, configurar, ensaiar intervalos e gravar narração.</div></div>
+<div class="tab-card"><div class="tab-name">🔍 Rever</div><div class="tab-desc">Verificação ortográfica, comentários e comparação de versões.</div></div>
+<div class="tab-card"><div class="tab-name">👁️ Ver</div><div class="tab-desc">Modos de visualização (Normal, Classificador, Notas, Leitura), zoom e janelas.</div></div>
+</div>
+<h3>Separadores contextuais</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Elemento selecionado</th><th>Separador contextual</th><th>O que permite fazer</th></tr></thead>
+<tbody>
+<tr><td>🖼️ Imagem</td><td>Formato da Imagem</td><td>Cortar, ajustar cor, brilho, contraste, aplicar estilos</td></tr>
+<tr><td>🔷 Forma</td><td>Formato da Forma</td><td>Preenchimento, contorno, efeitos, organizar</td></tr>
+<tr><td>📊 Gráfico</td><td>Design do Gráfico + Formato</td><td>Tipo de gráfico, dados, estilos, layout</td></tr>
+<tr><td>📋 Tabela</td><td>Estrutura da Tabela + Esquema</td><td>Estilos, bordas, linhas, colunas, células</td></tr>
+<tr><td>🎥 Vídeo</td><td>Formato do Vídeo + Reprodução</td><td>Cortar, marcadores, opções de reprodução</td></tr>
+</tbody>
+</table></div>
+<div class="note">📌 Os separadores contextuais desaparecem quando clicas fora do elemento selecionado — é normal! Clica novamente no elemento para os ver de novo.</div>
+</section>
+<section id="atalhos">
+<div class="section-header"><div class="section-icon">⌨️</div><h2>Atalhos de Teclado Essenciais</h2></div>
+<p>Os atalhos de teclado permitem trabalhar de forma mais rápida e eficiente, sem precisar de usar o rato para aceder ao friso.</p>
+<h3>Atalhos gerais</h3>
+<div class="shortcut-grid">
+<div class="shortcut"><kbd>Ctrl+C</kbd><span>Copiar</span></div>
+<div class="shortcut"><kbd>Ctrl+V</kbd><span>Colar</span></div>
+<div class="shortcut"><kbd>Ctrl+X</kbd><span>Cortar</span></div>
+<div class="shortcut"><kbd>Ctrl+Z</kbd><span>Desfazer</span></div>
+</div>
+</section>
+<section id="painel-selecao">
+<div class="section-header"><div class="section-icon">🗂️</div><h2>Painel de Seleção</h2></div>
+<p>O <strong>Painel de Seleção</strong> é uma ferramenta muito útil quando tens muitos objetos sobrepostos num diapositivo. Permite ver, selecionar, reordenar e ocultar objetos individualmente.</p>
+<div class="callout"><div class="callout-title">🚀 Como abrir o Painel de Seleção</div><p><strong>Início &gt; Organizar &gt; Painel de Seleção</strong> — ou clica com o botão direito do rato num objeto e seleciona <strong>Painel de Seleção</strong>.</p></div>
+<ul class="content-list">
+<li><strong>Ver todos os objetos:</strong> Lista todos os elementos do diapositivo com os seus nomes.</li>
+<li><strong>Selecionar objetos ocultos:</strong> Clica no nome do objeto para o selecionar, mesmo que esteja por baixo de outros.</li>
+<li><strong>Reordenar a sobreposição:</strong> Arrasta os objetos na lista para alterar a ordem de sobreposição.</li>
+<li><strong>Ocultar/mostrar objetos:</strong> Clica no ícone do olho para ocultar temporariamente um objeto.</li>
+<li><strong>Renomear objetos:</strong> Faz duplo clique no nome para renomear — facilita a identificação em apresentações complexas.</li>
+</ul>
+<div class="tip">💡 O Painel de Seleção é especialmente útil quando trabalhas com animações — permite identificar facilmente cada objeto pelo nome.</div>
+</section>
+<section id="resumo">
+<div class="section-header"><div class="section-icon">✅</div><h2>Resumo das Ferramentas</h2></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Ferramenta / Área</th><th>Localização</th><th>Para que serve</th></tr></thead>
+<tbody>
+<tr><td>🏠 <strong>Friso (Ribbon)</strong></td><td>Topo da janela</td><td>Acesso a todas as ferramentas, organizado em separadores</td></tr>
+<tr><td>📋 <strong>Painel de Miniaturas</strong></td><td>Esquerda</td><td>Navegar, reordenar e gerir diapositivos</td></tr>
+<tr><td>✏️ <strong>Área de Edição</strong></td><td>Centro</td><td>Editar o conteúdo do diapositivo atual</td></tr>
+<tr><td>📝 <strong>Painel de Notas</strong></td><td>Inferior</td><td>Notas do apresentador (invisíveis para o público)</td></tr>
+<tr><td>🗂️ <strong>Painel de Seleção</strong></td><td>Início &gt; Organizar</td><td>Gerir objetos sobrepostos num diapositivo</td></tr>
+<tr><td>⌨️ <strong>Atalhos de teclado</strong></td><td>Teclado</td><td>Trabalhar mais rápido sem usar o rato</td></tr>
+</tbody>
+</table></div>
+</section>
+</main>
+<script>
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('visible');document.getElementById('toggleBtn').textContent='✕';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('visible');document.getElementById('toggleBtn').textContent='☰';}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(a=>a.classList.remove('active'));const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

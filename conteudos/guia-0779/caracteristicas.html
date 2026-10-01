@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Características — UFCD 0779</title>
+<style>
+  :root{--orange:#D24726;--orange-bg:#FFF7ED;--violet:#7C3AED;--violet-bg:#F5F3FF;--text:#374151;--text-sec:#6B7280;--gray:#D1D5DB;--gray-bg:#F9FAFB;--white:#FFFFFF;--sidebar-w:220px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;}
+  header.main-header{background:var(--white);border-bottom:3px solid var(--orange);padding:0 2rem;position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+  .header-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .header-badge{background:var(--orange);color:white;font-weight:700;font-size:0.85rem;padding:0.25rem 0.6rem;border-radius:6px;white-space:nowrap;}
+  .header-title{font-size:0.95rem;font-weight:600;color:var(--text);}
+  nav.module-bar{background:var(--gray-bg);border-bottom:1px solid var(--gray);padding:0 2rem;position:sticky;top:60px;z-index:290;}
+  .module-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:44px;overflow-x:auto;gap:0;}
+  .module-bar-label{font-size:0.78rem;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;padding-right:1rem;border-right:1px solid var(--gray);margin-right:0.5rem;flex-shrink:0;}
+  nav.module-bar a{display:inline-flex;align-items:center;gap:0.35rem;padding:0 0.9rem;height:44px;text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--text-sec);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;}
+  nav.module-bar a:hover{color:var(--orange);border-bottom-color:#F97316;}
+  nav.module-bar a.active{color:var(--orange);border-bottom-color:var(--orange);font-weight:700;}
+  .sidebar-toggle{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:400;}
+  .toggle-btn{display:flex;align-items:center;justify-content:center;width:24px;height:56px;background:var(--orange);color:white;border-radius:0 8px 8px 0;cursor:pointer;box-shadow:2px 0 8px rgba(0,0,0,0.15);transition:all 0.2s;font-size:0.8rem;user-select:none;writing-mode:vertical-rl;letter-spacing:0.05em;font-weight:700;}
+  .toggle-btn:hover{background:var(--violet);box-shadow:2px 0 12px rgba(124,58,237,0.3);}
+  .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:350;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+  .sidebar-overlay.visible{opacity:1;pointer-events:all;}
+  nav.sidebar{position:fixed;left:0;top:0;height:100%;width:var(--sidebar-w);background:var(--white);border-right:2px solid var(--orange);z-index:360;padding:1.5rem 1rem;overflow-y:auto;transform:translateX(-100%);transition:transform 0.3s ease;box-shadow:4px 0 20px rgba(0,0,0,0.12);}
+  nav.sidebar.open{transform:translateX(0);}
+  nav.sidebar .sidebar-header{display:none;}
+  nav.sidebar .sidebar-title{display:none;}
+  nav.sidebar .sidebar-close{display:none;}
+  nav.sidebar h3{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin:1rem 0 0.4rem;padding:0 0.25rem;}
+  nav.sidebar a{display:block;padding:0.4rem 0.6rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:all 0.2s;border-left:3px solid transparent;margin-bottom:0.1rem;}
+  nav.sidebar a:hover,nav.sidebar a.active{background:var(--orange-bg);color:var(--orange);border-left-color:var(--orange);font-weight:600;}
+  nav.sidebar .nav-divider{display:none;}
+  nav.sidebar .nav-page-link{display:none;}
+  main{max-width:1100px;margin:0 auto;padding:2rem 2rem 2rem 2.5rem;}
+  .hero{background:linear-gradient(135deg,var(--orange-bg) 0%,var(--violet-bg) 100%);border-radius:16px;padding:2.5rem 2rem;margin-bottom:2.5rem;border:1px solid var(--gray);}
+  .hero-tag{display:inline-block;background:var(--orange);color:white;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .hero h1{font-size:1.9rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem;line-height:1.2;}
+  .hero p{color:var(--text-sec);font-size:1rem;max-width:600px;}
+  .hero-meta{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .hero-meta span{background:white;border:1px solid var(--gray);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.82rem;color:var(--text-sec);}
+  section{margin-bottom:3rem;scroll-margin-top:116px;}
+  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--orange-bg);}
+  .section-icon{width:40px;height:40px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .section-header h2{font-size:1.35rem;font-weight:700;color:var(--orange);}
+  h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.6rem;}
+  p{margin-bottom:0.9rem;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.25rem 0;}
+  .card{background:var(--white);border:1px solid var(--gray);border-radius:12px;padding:1.25rem;transition:box-shadow 0.2s,transform 0.2s;}
+  .card:hover{box-shadow:0 4px 16px rgba(210,71,38,0.12);transform:translateY(-2px);}
+  .card-icon{font-size:1.75rem;margin-bottom:0.5rem;}
+  .card h4{font-size:0.95rem;font-weight:700;color:var(--orange);margin-bottom:0.4rem;}
+  .card p{font-size:0.88rem;color:var(--text-sec);margin:0;}
+  .tip{background:var(--violet-bg);border-left:4px solid var(--violet);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--violet);font-style:italic;}
+  .note{background:var(--orange-bg);border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;color:var(--orange);font-style:italic;}
+  .table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:10px;border:1px solid var(--gray);}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  thead tr{background:var(--orange);color:white;}
+  thead th{padding:0.75rem 1rem;text-align:left;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--gray-bg);}
+  tbody td{padding:0.65rem 1rem;border-bottom:1px solid var(--gray);}
+  tbody tr:last-child td{border-bottom:none;}
+  ul.content-list{list-style:none;padding:0;margin:0.75rem 0;}
+  ul.content-list li{padding:0.5rem 0 0.5rem 1.5rem;position:relative;border-bottom:1px solid var(--gray-bg);font-size:0.95rem;}
+  ul.content-list li::before{content:'▸';color:var(--orange);position:absolute;left:0;font-weight:700;}
+  ul.content-list li strong{color:var(--orange);}
+  .img-block{margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--gray);box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+  .img-block img{width:100%;height:auto;display:block;max-height:380px;object-fit:cover;}
+  .img-caption{background:var(--gray-bg);padding:0.5rem 1rem;font-size:0.82rem;color:var(--text-sec);text-align:center;font-style:italic;}
+  .callout{background:var(--orange-bg);border:1px solid var(--orange);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+  .callout-title{font-weight:700;color:var(--orange);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+  .callout p{margin:0;font-size:0.93rem;}
+  .feature{display:flex;gap:1.25rem;align-items:flex-start;padding:1.25rem;background:var(--white);border:1px solid var(--gray);border-radius:12px;margin-bottom:1rem;transition:box-shadow 0.2s;}
+  .feature:hover{box-shadow:0 4px 16px rgba(210,71,38,0.1);}
+  .feature-icon{font-size:2rem;flex-shrink:0;}
+  .feature-body h4{font-size:1rem;font-weight:700;color:var(--orange);margin-bottom:0.3rem;}
+  .feature-body p{font-size:0.9rem;color:var(--text-sec);margin:0;}
+  .badge{display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.78rem;font-weight:700;margin-right:0.3rem;}
+  .badge-orange{background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange);}
+  .badge-violet{background:var(--violet-bg);color:var(--violet);border:1px solid var(--violet);}
+  @media(max-width:768px){.hero h1{font-size:1.4rem;}.cards{grid-template-columns:1fr;}main{padding:1.5rem 1rem;}}
+</style>
+<link rel="stylesheet" href="../../assets/styles.css"/>
+<link rel="stylesheet" href="guia-site.css"/>
+<script src="guia-site.js" defer></script>
+<script src="../../assets/config.js" defer></script>
+<script src="../../assets/app.js?v=20261001-0779-guias" defer></script>
+</head>
+<body>
+<header class="main-header">
+<div class="header-inner">
+<a class="header-brand" href="index.html"><span class="header-badge">UFCD 0779</span><span class="header-title">Utilitário de Apresentação Gráfica</span></a>
+<span style="font-size:0.82rem;color:var(--text-sec);white-space:nowrap;">Criar · Organizar · Comunicar · Apresentar</span>
+</div>
+</header>
+<nav class="module-bar">
+<div class="module-bar-inner">
+<a href="index.html">🏠 Conceitos Gerais</a>
+<a class="active" href="caracteristicas.html">⭐ Características</a>
+<a href="ferramentas.html">🔧 Ferramentas</a>
+<a href="apresentacoes.html">📊 Apresentações Gráficas</a>
+</div>
+</nav>
+<div class="sidebar-toggle"><div class="toggle-btn" id="toggleBtn" onclick="openSidebar()" title="Abrir navegação">☰</div></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><span class="sidebar-title">Navegação</span><span class="sidebar-close" onclick="closeSidebar()">✕</span></div>
+<h3>Nesta página</h3>
+<a href="#intro" onclick="closeSidebar()">📖 Introdução</a>
+<a href="#interface" onclick="closeSidebar()">🖥️ Interface Intuitiva</a>
+<a href="#compatibilidade" onclick="closeSidebar()">📁 Compatibilidade</a>
+<a href="#colaboracao" onclick="closeSidebar()">👥 Colaboração</a>
+<a href="#modelos" onclick="closeSidebar()">🎨 Modelos e Temas</a>
+<a href="#multimedia" onclick="closeSidebar()">🎬 Multimédia</a>
+<a href="#apresentador" onclick="closeSidebar()">🎤 Modo Apresentador</a>
+<a href="#resumo" onclick="closeSidebar()">✅ Resumo</a>
+<div class="nav-divider"></div>
+<h3>Módulo 1</h3>
+<a class="nav-page-link" href="index.html">🏠 Conceitos Gerais</a>
+<a class="nav-page-link current-page" href="caracteristicas.html">⭐ Características</a>
+<a class="nav-page-link" href="ferramentas.html">🔧 Ferramentas</a>
+<a class="nav-page-link" href="apresentacoes.html">📊 Apresentações Gráficas</a>
+</nav>
+<main>
+<div class="hero">
+<span class="hero-tag">Conteúdo 1.1 · Características</span>
+<h1>Características do PowerPoint</h1>
+<p>Descobre as principais características que tornam o Microsoft PowerPoint uma ferramenta versátil, acessível e profissional para criar apresentações gráficas.</p>
+<div class="hero-meta"><span>📚 UFCD 0779</span><span>⭐ 6 características principais</span><span>💻 Microsoft 365</span></div>
+</div>
+<section id="intro">
+<div class="section-header"><div class="section-icon">📖</div><h2>Introdução</h2></div>
+<p>O Microsoft PowerPoint distingue-se de outros apresentadores gráficos por um conjunto de características que o tornam uma ferramenta <strong>versátil, intuitiva e profissional</strong>.</p>
+<div class="img-block"><img alt="Interface completa do Microsoft PowerPoint" loading="lazy" src="https://slidemodel.com/wp-content/uploads/01-powerpoint-ui-structure-showcasing-the-ribbon.png"/><div class="img-caption">Interface completa do Microsoft PowerPoint — friso, painel de miniaturas e área de edição</div></div>
+</section>
+<section id="interface">
+<div class="section-header"><div class="section-icon">🖥️</div><h2>Interface Intuitiva</h2></div>
+<p>O PowerPoint utiliza um <strong>friso (ribbon)</strong> organizado por separadores temáticos. A interface divide-se em três áreas principais:</p>
+<div class="feature"><div class="feature-icon">📋</div><div class="feature-body"><h4>Painel de Miniaturas (esquerda)</h4><p>Mostra todos os diapositivos em miniatura, permitindo reordenar, duplicar, eliminar e navegar rapidamente entre eles.</p></div></div>
+<div class="feature"><div class="feature-icon">✏️</div><div class="feature-body"><h4>Área de Edição (centro)</h4><p>Espaço principal onde se edita o conteúdo de cada diapositivo — texto, imagens, formas, gráficos e multimédia.</p></div></div>
+<div class="feature"><div class="feature-icon">📝</div><div class="feature-body"><h4>Painel de Notas (inferior)</h4><p>Permite adicionar notas de apoio associadas a cada diapositivo, que podem ser consultadas pelo apresentador durante a apresentação.</p></div></div>
+<div class="tip">💡 O friso adapta-se ao contexto: quando selecionas uma imagem, aparecem automaticamente separadores específicos para edição de imagens.</div>
+</section>
+<section id="compatibilidade">
+<div class="section-header"><div class="section-icon">📁</div><h2>Compatibilidade de Formatos</h2></div>
+<p>O PowerPoint suporta múltiplos formatos de ficheiro, o que facilita a partilha e a utilização em diferentes contextos e dispositivos.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Formato</th><th>Extensão</th><th>Utilização</th><th>Editável?</th></tr></thead>
+<tbody>
+<tr><td><strong>Apresentação PowerPoint</strong></td><td><span class="badge badge-orange">.pptx</span></td><td>Formato padrão editável</td><td>✅ Sim</td></tr>
+<tr><td><strong>Apresentação de Diapositivos</strong></td><td><span class="badge badge-orange">.ppsx</span></td><td>Abre diretamente em modo apresentação; pode ser editado quando aberto no PowerPoint</td><td>✅ Sim</td></tr>
+<tr><td><strong>Modelo PowerPoint</strong></td><td><span class="badge badge-orange">.potx</span></td><td>Modelo reutilizável com layouts predefinidos</td><td>✅ Sim</td></tr>
+<tr><td><strong>PDF</strong></td><td><span class="badge badge-violet">.pdf</span></td><td>Partilha e impressão — preserva o layout</td><td>❌ Não</td></tr>
+<tr><td><strong>Vídeo</strong></td><td><span class="badge badge-violet">.mp4</span></td><td>Exportar apresentação como vídeo</td><td>❌ Não</td></tr>
+<tr><td><strong>Imagem</strong></td><td><span class="badge badge-violet">.png / .jpg</span></td><td>Exportar diapositivos como imagens</td><td>❌ Não</td></tr>
+</tbody>
+</table></div>
+<div class="note">📌 O formato .pptx é o formato padrão recomendado para guardar e partilhar apresentações editáveis.</div>
+</section>
+<section id="colaboracao">
+<div class="section-header"><div class="section-icon">👥</div><h2>Colaboração em Tempo Real</h2></div>
+<p>Com o <strong>Microsoft 365</strong>, é possível trabalhar em simultâneo com outros utilizadores na mesma apresentação, a partir de qualquer dispositivo com ligação à internet.</p>
+<div class="cards">
+<div class="card"><div class="card-icon">☁️</div><h4>Guardar na Nuvem</h4><p>Guarda a apresentação no OneDrive para aceder a partir de qualquer dispositivo.</p></div>
+<div class="card"><div class="card-icon">🔗</div><h4>Partilhar com um Link</h4><p>Partilha um link de acesso com permissões de edição ou apenas de visualização.</p></div>
+<div class="card"><div class="card-icon">👁️</div><h4>Ver Quem Está a Editar</h4><p>Vê em tempo real quem está a editar e em que parte da apresentação se encontra.</p></div>
+<div class="card"><div class="card-icon">💬</div><h4>Comentários</h4><p>Adiciona comentários em diapositivos específicos para dar feedback ou fazer anotações.</p></div>
+</div>
+<div class="tip">💡 Para colaborar em tempo real: <strong>Ficheiro &gt; Partilhar</strong> ou clica no botão <strong>Partilhar</strong> no canto superior direito do friso.</div>
+</section>
+<section id="modelos">
+<div class="section-header"><div class="section-icon">🎨</div><h2>Modelos e Temas</h2></div>
+<p>O PowerPoint disponibiliza uma vasta biblioteca de <strong>modelos profissionais</strong> e <strong>temas de design</strong> que permitem criar apresentações com aspeto profissional.</p>
+<div class="img-block"><img alt="Galeria de temas e modelos do PowerPoint" loading="lazy" src="https://ppt-design.com/uploads/product_image/32160b668b9a5f880561b60274f90c5c.jpg"/><div class="img-caption">Exemplos de temas e modelos profissionais disponíveis no PowerPoint</div></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Conceito</th><th>Definição</th><th>Onde aplicar</th></tr></thead>
+<tbody>
+<tr><td><strong>Tema</strong></td><td>Conjunto de cores, tipos de letra e efeitos que definem o aspeto visual global.</td><td>Separador <em>Design</em></td></tr>
+<tr><td><strong>Modelo</strong></td><td>Ficheiro (.potx) com tema, layouts e conteúdo predefinido — ponto de partida para novas apresentações.</td><td><em>Ficheiro &gt; Novo</em></td></tr>
+</tbody>
+</table></div>
+<div class="tip">💡 Podes criar o teu próprio tema personalizado com as cores e tipos de letra da tua organização ou projeto.</div>
+</section>
+<section id="multimedia">
+<div class="section-header"><div class="section-icon">🎬</div><h2>Multimédia Integrado</h2></div>
+<p>O PowerPoint permite inserir e reproduzir <strong>vídeos, áudios e animações</strong> diretamente nos diapositivos, tornando as apresentações mais dinâmicas e envolventes.</p>
+<div class="cards">
+<div class="card"><div class="card-icon">🎥</div><h4>Vídeo</h4><p>Insere vídeos locais ou do YouTube. Configura reprodução automática, em loop ou ao clicar.</p></div>
+<div class="card"><div class="card-icon">🔊</div><h4>Áudio</h4><p>Insere ficheiros de áudio ou grava narração diretamente no PowerPoint.</p></div>
+<div class="card"><div class="card-icon">✨</div><h4>Animações</h4><p>Aplica efeitos de entrada, saída, ênfase e trajetórias de movimento a qualquer objeto.</p></div>
+<div class="card"><div class="card-icon">🔄</div><h4>Transições</h4><p>Efeitos visuais na passagem entre diapositivos — subtis, chamativos ou dinâmicos.</p></div>
+</div>
+<div class="note">📌 Para inserir vídeo: <strong>Inserir &gt; Vídeo &gt; Vídeo neste Computador</strong> (ficheiro local) ou <strong>Vídeo Online</strong>.</div>
+</section>
+<section id="apresentador">
+<div class="section-header"><div class="section-icon">🎤</div><h2>Modo Apresentador</h2></div>
+<p>O <strong>Modo Apresentador</strong> permite ao apresentador ver informação adicional enquanto o público vê apenas o diapositivo atual.</p>
+<div class="feature"><div class="feature-icon">👁️</div><div class="feature-body"><h4>O que o apresentador vê</h4><p>Diapositivo atual · Diapositivo seguinte · Notas do apresentador · Temporizador · Ferramentas de anotação</p></div></div>
+<div class="feature"><div class="feature-icon">📺</div><div class="feature-body"><h4>O que o público vê</h4><p>Apenas o diapositivo atual — sem notas, sem diapositivo seguinte, sem ferramentas.</p></div></div>
+<ul class="content-list">
+<li><strong>Ponteiro laser:</strong> Simula um ponteiro laser para destacar elementos no ecrã.</li>
+<li><strong>Caneta:</strong> Permite desenhar e anotar diretamente no diapositivo.</li>
+<li><strong>Marcador:</strong> Realça elementos com uma cor de destaque.</li>
+<li><strong>Apagar anotações (E):</strong> Remove todas as anotações feitas durante a apresentação.</li>
+</ul>
+<div class="callout"><div class="callout-title">🚀 Como ativar o Modo Apresentador</div><p>Vai a <strong>Apresentação de Diapositivos &gt; Configurar Apresentação de Diapositivos</strong> e ativa a opção <strong>Modo Apresentador</strong>. Requer dois ecrãs.</p></div>
+</section>
+<section id="resumo">
+<div class="section-header"><div class="section-icon">✅</div><h2>Resumo das Características</h2></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Característica</th><th>Descrição resumida</th></tr></thead>
+<tbody>
+<tr><td>🖥️ <strong>Interface intuitiva</strong></td><td>Friso organizado por separadores temáticos; três áreas principais de trabalho.</td></tr>
+<tr><td>📁 <strong>Compatibilidade</strong></td><td>Suporta .pptx, .ppsx, .potx, .pdf, .mp4, .png e outros formatos.</td></tr>
+<tr><td>👥 <strong>Colaboração em tempo real</strong></td><td>Edição simultânea com outros utilizadores via Microsoft 365 e OneDrive.</td></tr>
+<tr><td>🎨 <strong>Modelos e temas</strong></td><td>Biblioteca de modelos profissionais e temas de design personalizáveis.</td></tr>
+<tr><td>🎬 <strong>Multimédia integrado</strong></td><td>Inserção e reprodução de vídeos, áudios, animações e transições.</td></tr>
+<tr><td>🎤 <strong>Modo Apresentador</strong></td><td>Vista especial com notas, diapositivo seguinte e ferramentas de anotação.</td></tr>
+</tbody>
+</table></div>
+</section>
+</main>
+<script>
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('visible');document.getElementById('toggleBtn').textContent='✕';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('visible');document.getElementById('toggleBtn').textContent='☰';}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav.sidebar a[href^="#"]');
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(a=>a.classList.remove('active'));const active=document.querySelector(`nav.sidebar a[href="#${entry.target.id}"]`);if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

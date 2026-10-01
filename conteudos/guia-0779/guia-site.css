@@ -1,0 +1,84 @@
+:root {
+  --orange: #d24726;
+  --orange-bg: #fff5ed;
+  --text: #263752;
+  --text-sec: #43536a;
+}
+
+body {
+  background: #f6f9fc;
+}
+
+header.main-header,
+nav.module-bar,
+nav.sidebar,
+.sidebar-toggle,
+.sidebar-overlay,
+.page-nav-bottom {
+  display: none;
+}
+
+main.page-shell {
+  width: min(900px, calc(100% - 96px));
+  max-width: none;
+  margin: 0 auto;
+  padding: 32px 0 88px;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+main.page-shell > .hero {
+  display: block;
+  min-height: 0;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  background: #fff7ed;
+  border: 1px solid #ead6cb;
+  border-bottom: 5px solid var(--orange);
+  border-radius: 14px;
+}
+
+main.page-shell > .hero::after,
+main.page-shell > .hero .hero-tag,
+main.page-shell > .hero .hero-meta,
+main.page-shell > .hero > p {
+  display: none;
+}
+
+main.page-shell > .hero h1 {
+  margin: 0;
+  max-width: none;
+  color: var(--orange);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
+main.page-shell section p,
+main.page-shell section li,
+main.page-shell section td,
+main.page-shell section th,
+main.page-shell section .step-text,
+main.page-shell section .tip,
+main.page-shell section .note,
+main.page-shell section .callout {
+  font-size: 1.06rem;
+}
+
+main.page-shell section .section-header h2 {
+  font-size: 1.5rem;
+}
+
+main.page-shell section h3 {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 640px) {
+  main.page-shell {
+    width: calc(100% - 32px);
+    padding-top: 24px;
+  }
+
+  main.page-shell > .hero {
+    padding: 1.2rem 1.25rem;
+  }
+}
