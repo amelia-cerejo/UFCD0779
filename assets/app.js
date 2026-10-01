@@ -138,10 +138,10 @@ const activities = [
 const evaluations = [
   { id: "avaliacao-diagnostica", title: "Avaliação Diagnóstica", menuTitle: "Diagnóstica", intro: "Avaliação inicial dos conhecimentos sobre apresentações gráficas.", url: "avaliacoes/avaliacao-diagnostica.html", children: ["resultados-diagnostica"], embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/00-diagnostico.html", embedTitle: "Avaliação diagnóstica — UFCD 0779" },
   { id: "resultados-diagnostica", parentId: "avaliacao-diagnostica", title: "Resultados da Avaliação Diagnóstica", menuTitle: "Resultados", intro: "Leitura global das respostas recolhidas na avaliação diagnóstica.", url: "avaliacoes/resultados-diagnostica.html" },
-  { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0779, em preparação.", url: "avaliacoes/avaliacao-sumativa.html" },
-  { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/04-autoavaliacao-final.html", embedTitle: "Autoavaliação final — UFCD 0779" },
-  { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares", menuTitle: "Entre pares", intro: "Avaliação do projeto de um colega, em preparação.", url: "avaliacoes/avaliacao-entre-pares.html" },
-  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação, em preparação.", url: "avaliacoes/avaliacao-formacao.html" }
+  { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0779.", url: "avaliacoes/avaliacao-sumativa.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/02-sumativa.html", embedTitle: "SUM_1" },
+  { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/04-autoavaliacao-final.html", embedTitle: "AUTO_1" },
+  { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares", menuTitle: "Entre pares", intro: "Avaliação colaborativa da UFCD 0779.", url: "avaliacoes/avaliacao-entre-pares.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/03-entre-pares.html", embedTitle: "Avaliação colaborativa" },
+  { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação.", url: "avaliacoes/avaliacao-formacao.html", embedUrl: "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html", embedTitle: "Avaliação da Qualidade da Formação" }
 ];
 
 const legacyGroupTasks = [
@@ -815,7 +815,7 @@ const individualTasks = [
 ];
 
 const resources = [
-  { id: "manual", title: "Manual de formação", intro: "Espaço reservado para o manual da UFCD 0779.", url: "recursos/manual.html" },
+  { id: "manual", title: "Manual de formação", intro: "Manual da UFCD 0779 — Utilitário de Apresentação Gráfica.", url: "recursos/manual.html", pdfUrl: pendingLinks.manualPdf },
   {
     id: "ficheiros-powerpoint", title: "Ficheiros PowerPoint",
     intro: "Apresentações para explorar o PowerPoint e acompanhar as demonstrações da UFCD 0779.",
@@ -950,7 +950,7 @@ function getBasePath() {
 }
 
 function construirUrlEmbedAvaliacao(embedUrl) {
-  if (/\/ufcd-0779\//.test(embedUrl)) return embedUrl;
+  if (/\/ufcd-0779\//.test(embedUrl) || embedUrl === "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html") return embedUrl;
   if (!embedUrl || !APPS_SCRIPT_SPREADSHEET_ID) return embedUrl;
 
   try {
@@ -1654,10 +1654,9 @@ function carregarVisibilidadeDoSite() {
 function guardarUltimaVisibilidadeRemotaDoSite(itens) {
   if (!Array.isArray(itens)) return;
   try {
-    const itensDaUfcdAtual = filtrarItensControloDaUfcdAtual(itens)
-      .map(normalizarItemControlo)
-      .filter(Boolean);
+    const itensDaUfcdAtual = filtrarItensControloDaUfcdAtual(itens);
     localStorage.setItem(SITE_VISIBILITY_REMOTE_CACHE_KEY, JSON.stringify({
+      schemaVersion: 2,
       savedAt: new Date().toISOString(),
       itens: itensDaUfcdAtual
     }));
@@ -1669,7 +1668,11 @@ function guardarUltimaVisibilidadeRemotaDoSite(itens) {
 function carregarUltimaVisibilidadeRemotaDoSite() {
   try {
     const cached = JSON.parse(localStorage.getItem(SITE_VISIBILITY_REMOTE_CACHE_KEY) || "{}");
-    const itensDaUfcd = filtrarItensControloDaUfcdAtual(cached.itens);
+    if (cached.schemaVersion !== 2) return false;
+    const itensDaUfcd = filtrarItensControloDaUfcdAtual((Array.isArray(cached.itens) ? cached.itens : []).map((item) => ({
+      ...item,
+      chave: obterChaveRemotaSite(item.chave || item.key)
+    })));
     if (!itensDaUfcd.length) return false;
     ocultarVisibilidadeControlada();
     aplicarItensVisibilidadeRemota(itensDaUfcd);
