@@ -141,7 +141,7 @@ const evaluations = [
   { id: "avaliacao-sumativa", title: "Avaliação Sumativa", menuTitle: "Sumativa", intro: "Avaliação final das aprendizagens da UFCD 0779.", url: "avaliacoes/avaliacao-sumativa.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/02-sumativa.html", embedTitle: "SUM_1" },
   { id: "autoavaliacao-final", title: "Autoavaliação Final", menuTitle: "Autoavaliação", intro: "Reflexão final sobre as competências desenvolvidas, comparável com a avaliação diagnóstica.", url: "avaliacoes/autoavaliacao-final.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/04-autoavaliacao-final.html", embedTitle: "AUTO_1" },
   { id: "avaliacao-entre-pares", title: "Avaliação Entre Pares", menuTitle: "Entre pares", intro: "Avaliação colaborativa da UFCD 0779.", url: "avaliacoes/avaliacao-entre-pares.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/03-entre-pares.html", embedTitle: "Avaliação colaborativa" },
-  { id: "avaliacao-entre-pares-todos", title: "Avaliação Entre Pares — Todos", menuTitle: "Entre pares — Todos", controlTitle: "Todos", intro: "Avaliação de todos os colegas presentes, de todos os grupos.", url: "avaliacoes/avaliacao-entre-pares-todos.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/03-entre-pares-todos.html", embedTitle: "Avaliação de todos os colegas presentes", initiallyHidden: true },
+  { id: "avaliacao-entre-pares-todos", title: "Avaliação Entre Pares — Todos", menuTitle: "Entre pares — Todos", controlTitle: "Entre pares — Todos", intro: "Avaliação de todos os colegas presentes, de todos os grupos.", url: "avaliacoes/avaliacao-entre-pares-todos.html", embedUrl: "https://avaliacoes-formacao.netlify.app/ufcd-0779/03-entre-pares-todos.html", embedTitle: "Avaliação de todos os colegas presentes", initiallyHidden: true },
   { id: "avaliacao-formacao", title: "Avaliação da Formação", menuTitle: "Formação", intro: "Feedback sobre a qualidade da formação.", url: "avaliacoes/avaliacao-formacao.html", embedUrl: "https://avaliacoes-formacao.netlify.app/avaliacao-formacao.html?codigo_ufcd=0779", embedTitle: "Avaliação da Qualidade da Formação" }
 ];
 
@@ -981,6 +981,13 @@ function isItemVisible(section, key) {
 }
 
 function atualizarBotoesAvaliacaoPaginaInicial() {
+  const linkEntrePares = document.querySelector("[data-peer-evaluation-link]");
+  if (linkEntrePares) {
+    const todosVisivel = isItemVisible("avaliacao", "avaliacao-entre-pares-todos");
+    const avaliacao = evaluations.find((item) => item.id === (todosVisivel ? "avaliacao-entre-pares-todos" : "avaliacao-entre-pares"));
+    linkEntrePares.dataset.evaluationLink = avaliacao.id;
+    linkEntrePares.href = `${getBasePath()}${avaliacao.url}`;
+  }
   document.querySelectorAll("[data-evaluation-link]").forEach((link) => {
     link.hidden = !isItemVisible("avaliacao", link.dataset.evaluationLink);
   });
@@ -1498,16 +1505,22 @@ function renderEvaluationMenus() {
 
     const currentEvaluation = document.body.dataset.activity || "";
     menu.innerHTML = evaluations
-      .filter((evaluation) => !evaluation.parentId && isItemVisible("avaliacao", evaluation.id))
+      .filter((evaluation) => !evaluation.parentId
+        && evaluation.id !== "avaliacao-entre-pares-todos"
+        && (isItemVisible("avaliacao", evaluation.id)
+          || (evaluation.id === "avaliacao-entre-pares" && isItemVisible("avaliacao", "avaliacao-entre-pares-todos"))))
       .map((evaluation) => {
+        const target = evaluation.id === "avaliacao-entre-pares" && isItemVisible("avaliacao", "avaliacao-entre-pares-todos")
+          ? evaluations.find((item) => item.id === "avaliacao-entre-pares-todos")
+          : evaluation;
         const children = evaluations.filter((child) => child.parentId === evaluation.id && isItemVisible("avaliacao", child.id));
-        const isActive = currentEvaluation === evaluation.id;
+        const isActive = currentEvaluation === target.id;
         const childLinks = children.map((child) => `
           <a href="${getBasePath()}${child.url}" class="${currentEvaluation === child.id ? "active" : ""}">${child.menuTitle || child.title}</a>
         `).join("");
 
         if (!children.length) {
-          return `<a href="${getBasePath()}${evaluation.url}" class="${isActive ? "active" : ""}">${evaluation.menuTitle || evaluation.title}</a>`;
+          return `<a href="${getBasePath()}${target.url}" class="${isActive ? "active" : ""}">${evaluation.menuTitle || evaluation.title}</a>`;
         }
 
         return `
