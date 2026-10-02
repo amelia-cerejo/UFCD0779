@@ -2926,7 +2926,7 @@ function renderGroupTasks0779(root) {
         <h2>Como realizar a tarefa</h2>
         <p>Para o conceito atribuído ao grupo, registem o <strong>termo ou expressão</strong>, a <strong>definição</strong>, <strong>para que serve</strong> e um <strong>exemplo de utilização no PowerPoint</strong>.</p>
         <p>O glossário é desenvolvido ao longo dos cinco dias, com um conceito diferente por grupo em cada dia.</p>
-        ${obterGlossarioUrl() ? `<div class="task-single-action"><a class="small-button orange" href="${escapeHtml(obterGlossarioUrl())}">Abrir glossário no Moodle</a></div>` : ""}
+        ${obterGlossarioUrl() ? `<div class="task-single-action"><a class="small-button orange" href="${escapeHtml(obterGlossarioUrl())}" target="_top">Abrir glossário no Moodle</a></div>` : ""}
       </article>
       <div class="task-module-list">
         ${dias.map((task) => `
@@ -2975,7 +2975,7 @@ function renderIndividualTasks0779(root) {
               ${task.note ? `<aside class="task-note-box"><strong>Atenção</strong><p>${escapeHtml(task.note)}</p></aside>` : ""}
               <div class="embed-fallback resource-action-row align-right">
                 <a class="small-button orange" href="${getBasePath()}${escapeHtml(task.pdfUrl)}">Abrir PDF da ${escapeHtml(task.code)}</a>
-                ${obterForumUrl(task) ? `<a class="small-button moodle-button" href="${escapeHtml(obterForumUrl(task))}">Abrir tópico no Moodle</a>` : ""}
+                ${obterForumUrl(task) ? `<a class="small-button moodle-button" href="${escapeHtml(obterForumUrl(task))}" target="_top">Abrir tópico no Moodle</a>` : ""}
               </div>
             </div>
           </details>`).join("") || '<p>As tarefas serão disponibilizadas pela formadora.</p>'}
